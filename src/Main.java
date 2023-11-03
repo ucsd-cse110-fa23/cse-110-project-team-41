@@ -1,5 +1,6 @@
 
 import javafx.application.Application;
+import javafx.concurrent.Task;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -10,35 +11,12 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class Main extends Application {
-    private Button savedRecipesButton; 
-    private Button newRecipeButton; 
-    private TextField title; 
-    private TextField welcomeMsg; 
-    @Override
+
+public class Main extends Application { 
+    @Override 
     public void start(Stage primaryStage) {
-        primaryStage.setTitle("PantryPal"); 
-
-        StackPane root = new StackPane(); 
-        savedRecipesButton = new Button("Saved Recipes"); 
-        newRecipeButton = new Button("New Recipes"); 
-        HBox navButtons = new HBox(savedRecipesButton, newRecipeButton); 
-        navButtons.setSpacing(20); 
-        navButtons.setAlignment(Pos.CENTER); 
-        title = new TextField("PantyPal"); 
-        welcomeMsg = new TextField("Welcome to Pantry Pal!"); 
-        title.setAlignment(Pos.CENTER); 
-        title.setEditable(false); 
-        welcomeMsg.setAlignment(Pos.CENTER); 
-        welcomeMsg.setEditable(false); 
-        VBox text = new VBox(title, welcomeMsg); 
-        BorderPane welcomeScreen = new BorderPane(); 
-        welcomeScreen.setTop(text); 
-        welcomeScreen.setCenter(navButtons); 
-        root.getChildren().addAll(welcomeScreen); 
-        Scene scene = new Scene(root, 400, 300); 
-
-        primaryStage.setScene(scene); 
+        homeScreen hs = new homeScreen(primaryStage); 
+        primaryStage.setScene(hs.getScene()); 
         primaryStage.show(); 
     } 
 

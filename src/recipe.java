@@ -10,5 +10,9 @@ public class recipe {
     } 
     public String getDetails(){
         return this.recDetails; 
+    } 
+    @Override 
+    public String toString(){
+        return this.name + " " + this.recDetails; 
     }
 }
