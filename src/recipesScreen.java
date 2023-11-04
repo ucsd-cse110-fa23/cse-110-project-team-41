@@ -1,6 +1,4 @@
 
-import java.util.ArrayList;
-
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -37,11 +35,10 @@ public class recipesScreen {
         text.setAlignment(Pos.CENTER); 
 
         recipeHandler rh = new recipeHandler(); 
-        VBox uiElement = rh.getRecipeElements(); 
+        VBox uiElement = rh.getRecipeElements(primaryStage); 
         recipes = new ScrollPane(uiElement); 
 
         BorderPane recipeListScreen = new BorderPane(); 
-        System.out.println(uiElement); 
         recipeListScreen.setTop(text); 
         recipeListScreen.setCenter(recipes); 
         root.getChildren().addAll(recipeListScreen); 
