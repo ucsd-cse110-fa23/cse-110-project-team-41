@@ -12,19 +12,21 @@ import org.json.JSONObject;
 
 public class ChatGPT{
 
-    private static final String MODEL = "text-davinci-003"; // Replace with your model
-    private static final String API_KEY = "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"; // Replace with your API key
+    private static final String MODEL = "text-davinci-003"; 
+    private static final String API_KEY = "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"; 
     private static final String API_ENDPOINT = "https://api.openai.com/v1/completions";
 
     public static void main(String[] args) throws Exception {
-        String mealType = "dinner";
-        String ingredients = "Chicken, rice, eggs";
+        String mealType = "dinner"; //temp holder 
+        String ingredients = "Chicken, rice, eggs"; //temp holder
 
         String recipe = generateRecipe(mealType, ingredients);
 
         saveRecipe("recipe.txt", recipe);
     }
 
+
+    //generates recipe from chatGPT
     private static String generateRecipe(String mealType, String ingredients) throws Exception {
         String prompt = "Give me a concise recipe for a " +
                 mealType +
@@ -62,6 +64,7 @@ public class ChatGPT{
         return recipeGPT;
     }
 
+    //saves recipe to a file 
     private static void saveRecipe(String fp, String recipe) {
         try {
             FileWriter fw = new FileWriter(fp);
