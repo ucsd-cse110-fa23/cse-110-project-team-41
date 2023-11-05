@@ -2,11 +2,18 @@ import java.io.File;
 
 import javax.sound.sampled.*;
 
-import javafx.application.Application;
+
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**
@@ -15,31 +22,62 @@ import javafx.stage.Stage;
  */
 public class AddRecipe{
     private Scene currScene;
+    private Scene prevScene;
     private Stage parent;
     private Button backButton;
     private Button submitButton;
-    private Button recordButton;
+    private Button recordMealButton;
+    private Button recordIngredientButton;
     private Button stopButton;
     private AudioFormat audioFormat;
     private TargetDataLine targetDataLine;
     private Label recordingLabel;
 
-    String defaultButtonStyle = "-fx-border-color: #000000; -fx-font: 13 arial; -fx-pref-width: 175px; -fx-pref-height: 50px;";
-    String defaultLabelStyle = "-fx-font: 13 arial; -fx-pref-width: 175px; -fx-pref-height: 50px; -fx-text-fill: red; visibility: hidden";
-
-    public AddRecipe(Stage parent) {
+    /*
+     * Constructor for recipe scene that sets UI element info
+     */
+    public AddRecipe(Scene prevScene, Stage parent) {
+        //Initialize variables
+        audioFormat = getAudioFormat();
         this.parent = parent;
-        GridPane root = new GridPane();
+        this.prevScene = prevScene;
+        BorderPane root = new BorderPane();
         backButton = new Button("Back");
         submitButton = new Button("Submit");
-        recordButton = new Button("Record");
-        recordingLabel = new Label("Recording...");
-        
+        recordIngredientButton = new Button("Record Ingredients");
+        recordMealButton = new Button("Record Meal Type");
+        recordingLabel = new Label();
+        stopButton = new Button("Stop Recording");
+        addListeners();
+
+        //elements stacks all the hbox on top of each other
+        VBox elements = new VBox();
+        HBox header = new HBox(backButton, submitButton);
+        HBox recordButtons = new HBox(recordMealButton, recordIngredientButton);
+        HBox recordingSign = new HBox(recordingLabel);
+        HBox stop = new HBox(stopButton);
+
+        stopButton.setDisable(true);
+        //Set UI Positions
+        header.setSpacing(250);
+        header.setAlignment(Pos.CENTER);
+
+        //Sets positions for record buttons and label
+        recordButtons.setAlignment(Pos.CENTER);
+        recordButtons.setSpacing(5);
+        recordingSign.setAlignment(Pos.CENTER);
+
+        //Center stop button
+        stop.setAlignment(Pos.CENTER);
 
 
-        
+        elements.setAlignment(Pos.CENTER);
+        elements.getChildren().addAll(recordButtons,recordingSign);
 
-
+        //Build borderpane
+        root.setTop(header);
+        root.setCenter(elements);
+        root.setBottom(stop);
 
         parent.setTitle("Add Recipe");
         this.currScene= new Scene(root, 400, 300);
@@ -53,23 +91,68 @@ public class AddRecipe{
         return currScene;
     }
 
+    /*
+     * Sets the listerners for each of the buttons in the scene
+     * When recording disables both record buttons to ensure that only one
+     * function is running at a time
+     */
     public void addListeners(){
-        recordButton.setOnAction(e -> {
-            recordingLabel.setText("Recording...");
-            recordButton.setDisable(true);
+        //Both record buttons enable stopping and make record label visible
+        recordMealButton.setOnAction(e ->{
+            recordingLabel.setText("Recording Meal Type...");
+            recordMealButton.setDisable(true);
+            recordIngredientButton.setDisable(true);
             stopButton.setDisable(false);
-            captureAudio();
+            captureAudio("mealtime");
         });
+        recordIngredientButton.setOnAction(e -> {
+            recordingLabel.setText("Recording Ingredients...");
+            recordIngredientButton.setDisable(true);
+            recordMealButton.setDisable(true);
+            stopButton.setDisable(false);
+            captureAudio("Ingredients");
+        });
+
+        //Disables itself and stops recording
         stopButton.setOnAction(e -> {
             recordingLabel.setText("Record");
-            recordButton.setDisable(false);
+            recordIngredientButton.setDisable(false);
+            recordMealButton.setDisable(false);
             stopButton.setDisable(true);
             stopCapture();
+        });
+
+        //Checks if both mealtime and ingredients were set properly
+        submitButton.setOnAction(e ->{
+            File meal = new File("mealtime.wav");
+            File ingredients = new File("ingredients.wav");
+            //Check that both ingredients and meal type were recorded
+            if(!meal.exists() && !ingredients.exists()){
+                fileError("meal type and ingredients");
+            }else if (!meal.exists()) {
+                fileError("meal type");
+            }else if (!ingredients.exists()) {
+                fileError("ingredients");
+            }else{
+                //TODO: Call whisper on files and gpt and display recipe in recipe details window
+            }
+        });
+        backButton.setOnAction(e ->{
+            File meal = new File("mealtime.wav");
+            File ingredients = new File("ingredients.wav");
+            //Check if either ingredients and meal type were recorded and deletes them if they do
+            if (meal.exists()) {
+                meal.delete();
+            }
+            if (ingredients.exists()) {
+                ingredients.delete();
+            }
+            parent.setScene(prevScene);
         });
     }
 
     /**
-     * Returns the audio format information
+     * Sets audio format into and returns the audio format information
      * @return the audio format used for the recording
      */
     private AudioFormat getAudioFormat() {
@@ -81,7 +164,10 @@ public class AddRecipe{
         return new AudioFormat(sampleRate, sampleSizeInBits, channels, signed, bigEndian);
     }
 
-    private void captureAudio(){
+    /*
+     * Method to capture audio pulled from Lab 5
+     */
+    private void captureAudio(String type){
         Thread t = new Thread(
             new Runnable() {
                 @Override
@@ -102,7 +188,7 @@ public class AddRecipe{
                                 targetDataLine);
 
                         // the file that will contain the audio data
-                        File audioFile = new File("recording.wav");
+                        File audioFile = new File(type+".wav");
                         AudioSystem.write(
                                 audioInputStream,
                                 AudioFileFormat.Type.WAVE,
@@ -116,8 +202,24 @@ public class AddRecipe{
         t.start();
     }
 
+    /*
+     * Method to stop capture from Lab 5
+     */
     private void stopCapture(){
         targetDataLine.stop();
         targetDataLine.close();
+    }
+
+    /*
+     * Method for showing error popup when missing
+     * mealtime or ingredient
+     */
+    private void fileError(String missing){
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle("Missing Component");
+        alert.setHeaderText("Missing " + missing + " recording!");
+        alert.setContentText("Please make sure all aspects are recorded before submitting.");
+
+        alert.showAndWait();
     }
 }
