@@ -14,6 +14,7 @@ import javafx.stage.Stage;
  * Includes the UI for the user to input the recipe information using voice recordings
  */
 public class AddRecipe{
+    private Scene currScene;
     private Stage parent;
     private Button backButton;
     private Button submitButton;
@@ -41,8 +42,15 @@ public class AddRecipe{
 
 
         parent.setTitle("Add Recipe");
-        Scene scene = new Scene(root, 400, 300);
-        parent.setScene(scene);
+        this.currScene= new Scene(root, 400, 300);
+    }
+
+    /*
+     * Return scene to be displayed
+     * @return scene object to be shown in main stage
+     */
+    public Scene getScene(){
+        return currScene;
     }
 
     public void addListeners(){

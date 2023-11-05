@@ -24,6 +24,10 @@ public class homeScreen{
             recipesScreen rs = new recipesScreen(primaryStage); 
             primaryStage.setScene(rs.getScene()); 
         }); 
+        newRecipeButton.setOnAction(e -> {
+            AddRecipe newRecipe = new AddRecipe(primaryStage);
+            primaryStage.setScene(newRecipe.getScene());
+        });
         HBox navButtons = new HBox(savedRecipesButton, newRecipeButton); 
         navButtons.setSpacing(20); 
         navButtons.setAlignment(Pos.CENTER); 
