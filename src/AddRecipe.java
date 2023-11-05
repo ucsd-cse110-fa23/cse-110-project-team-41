@@ -110,7 +110,7 @@ public class AddRecipe{
             recordIngredientButton.setDisable(true);
             recordMealButton.setDisable(true);
             stopButton.setDisable(false);
-            captureAudio("Ingredients");
+            captureAudio("ingredients");
         });
 
         //Disables itself and stops recording
