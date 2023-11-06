@@ -1,4 +1,6 @@
 import java.io.File;
+import java.io.IOException;
+import java.net.URISyntaxException;
 
 import javax.sound.sampled.*;
 
@@ -134,7 +136,22 @@ public class AddRecipe{
             }else if (!ingredients.exists()) {
                 fileError("ingredients");
             }else{
-                //TODO: Call whisper on files and gpt and display recipe in recipe details window
+                Whisper inputMeal = new Whisper();
+                Whisper inputIngred = new Whisper();
+                String transcribedIngred = "";
+                String transcribedMeal = "";
+                try {
+                    transcribedIngred = inputIngred.main(ingredients);
+                    transcribedMeal= inputMeal.main(meal);
+                } catch (IOException | URISyntaxException e1) {
+                    e1.printStackTrace();
+                }
+                // After acquiring transcripted inputs, concatenate and add necessary prompting before sending to ChatGPT.
+                String prompt = "Give me a" + transcribedMeal + "recipe given that the only ingredients I have are: " + transcribedIngred;
+                
+                // send prompt/input to ChatGPT File: UNCOMMENT WHEN NO LONGER MOCKING
+
+                // ChatGPT recipeMaker = new ChatGPT(prompt);
             }
         });
         backButton.setOnAction(e ->{
