@@ -36,6 +36,10 @@ public class homeScreen{
         welcomeScreen.setCenter(navButtons); 
         root.getChildren().addAll(welcomeScreen); 
         this.scene = new Scene(root, 400, 300); 
+        newRecipeButton.setOnAction(e -> {
+            AddRecipe newRecipe = new AddRecipe(this.scene, primaryStage);
+            primaryStage.setScene(newRecipe.getScene());
+        });
     } 
     public Scene getScene(){
         return this.scene; 
