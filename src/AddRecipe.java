@@ -148,8 +148,15 @@ public class AddRecipe{
                 }
                 // After acquiring transcripted inputs, concatenate and add necessary prompting before sending to ChatGPT.
                 String prompt = "Give me a" + transcribedMeal + "recipe given that the only ingredients I have are: " + transcribedIngred;
-                
+
+                ChatGPT recipeMaker = new ChatGPT(prompt);
+                try{
+                  recipeMaker.main();
+                } catch (Exception e1){
+                    e1.printStackTrace();
+                }
                 // send prompt/input to ChatGPT File: UNCOMMENT WHEN NO LONGER MOCKING
+
 
                 // ChatGPT recipeMaker = new ChatGPT(prompt);
             }

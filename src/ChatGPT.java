@@ -16,22 +16,37 @@ public class ChatGPT{
     private static final String API_KEY = "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"; 
     private static final String API_ENDPOINT = "https://api.openai.com/v1/completions";
 
-    public static void main(String[] args) throws Exception {
-        String mealType = "dinner"; //temp holder 
-        String ingredients = "Chicken, rice, eggs"; //temp holder
+    //private String mealType;
+    //private String ingredients;
+    private String prompt;
+   
+    public ChatGPT(String prompt){
+        //this.mealType = mealType;
+        //this.ingredients = ingredients;
+        this.prompt = prompt;
+    }
 
-        String recipe = generateRecipe(mealType, ingredients);
+    
+    public void main() throws Exception {
+        
+
+        //String recipe = generateRecipe(mealType, ingredients);
+        String recipe = generateRecipe(prompt);
 
         saveRecipe("recipe.txt", recipe);
     }
+    
 
 
     //generates recipe from chatGPT
-    private static String generateRecipe(String mealType, String ingredients) throws Exception {
+    private static String generateRecipe(String prompt) throws Exception {
+        /* 
         String prompt = "Give me a concise recipe for a " +
                 mealType +
                 " meal that ONLY uses the following ingredients: " +
                 ingredients;
+        */
+        
         int maxTokens = 250;
 
         JSONObject requestBody = new JSONObject();
