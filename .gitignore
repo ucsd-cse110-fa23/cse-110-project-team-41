@@ -26,5 +26,8 @@ bin/
 ### VS Code ###
 .vscode/
 
+## Make users build gradle locally ##
+.gradle
+
 ### Mac OS ###
 .DS_Store
