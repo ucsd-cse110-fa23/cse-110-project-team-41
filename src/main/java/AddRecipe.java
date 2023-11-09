@@ -148,18 +148,18 @@ public class AddRecipe{
                     e1.printStackTrace();
                 }
                 // After acquiring transcripted inputs, concatenate and add necessary prompting before sending to ChatGPT.
-                String prompt = "Give me a" + transcribedMeal + "recipe given that the only ingredients I have are: " + transcribedIngred;
+                String prompt = "Give me a" + transcribedMeal + "recipe given that strictly the ONLY ingredients I have are: " + transcribedIngred +
+                                "do not add any more ingredients";
+                
 
+                // send prompt/input to ChatGPT File: UNCOMMENT WHEN NO LONGER MOCKING
+                // ChatGPT recipeMaker = new ChatGPT(prompt);
                 ChatGPT recipeMaker = new ChatGPT(prompt);
                 try{
                   recipeMaker.main();
                 } catch (Exception e1){
                     e1.printStackTrace();
                 }
-                // send prompt/input to ChatGPT File: UNCOMMENT WHEN NO LONGER MOCKING
-
-
-                // ChatGPT recipeMaker = new ChatGPT(prompt);
             }
         });
         backButton.setOnAction(e ->{
@@ -183,7 +183,7 @@ public class AddRecipe{
     private AudioFormat getAudioFormat() {
         float sampleRate = 44100;
         int sampleSizeInBits = 16;
-        int channels = 2;
+        int channels = 1;
         boolean signed = true;
         boolean bigEndian = false;
         return new AudioFormat(sampleRate, sampleSizeInBits, channels, signed, bigEndian);

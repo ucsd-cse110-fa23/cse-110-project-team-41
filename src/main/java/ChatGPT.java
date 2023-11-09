@@ -1,3 +1,5 @@
+package main.java;
+
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -33,7 +35,7 @@ public class ChatGPT{
         //String recipe = generateRecipe(mealType, ingredients);
         String recipe = generateRecipe(prompt);
 
-        saveRecipe("recipe.txt", recipe);
+        saveRecipe("src/recipe.txt", recipe);
     }
     
 
