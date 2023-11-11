@@ -83,7 +83,7 @@ public class Whisper {
         System.out.println("Error Result: " + errorResult);
     }
 
-    public String connect(File args) throws IOException, URISyntaxException, JSONException { 
+    public String main(File args) throws IOException, URISyntaxException, JSONException { 
         String transcribed = "";
         // Set up HTTP connection
         URL url = new URI(API_ENDPOINT).toURL();

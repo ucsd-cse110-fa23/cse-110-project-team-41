@@ -2,6 +2,7 @@ package main.java;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.Iterator;
 
 import javax.sound.sampled.*;
 
@@ -10,7 +11,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
+import javafx.scene.control.Button; 
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -131,29 +132,38 @@ public class AddRecipe{
             File ingredients = new File("ingredients.wav");
             //Check that both ingredients and meal type were recorded
             if(!meal.exists() && !ingredients.exists()){
-                fileError("meal type and ingredients");
+                fileError("meal type and ingredients"); 
             }else if (!meal.exists()) {
                 fileError("meal type");
             }else if (!ingredients.exists()) {
                 fileError("ingredients");
-            }else{
+            }else{ 
                 Whisper inputMeal = new Whisper();
                 Whisper inputIngred = new Whisper();
                 String transcribedIngred = "";
                 String transcribedMeal = "";
                 try {
-                    transcribedIngred = inputIngred.connect(ingredients);
-                    transcribedMeal= inputMeal.connect(meal); 
+                    transcribedIngred = inputIngred.main(ingredients);
+                    transcribedMeal= inputMeal.main(meal);
                 } catch (Exception e1) {
                     e1.printStackTrace();
                 }
                 // After acquiring transcripted inputs, concatenate and add necessary prompting before sending to ChatGPT.
-                String prompt = "Give me a" + transcribedMeal + "recipe given that the only ingredients I have are: " + transcribedIngred;
+                String prompt = "Give me a" + transcribedMeal + "recipe given that strictly the ONLY ingredients I have are: " + transcribedIngred +
+                                "do not add any more ingredients";
                 
-                // send prompt/input to ChatGPT File: UNCOMMENT WHEN NO LONGER MOCKING
 
+                // send prompt/input to ChatGPT File: UNCOMMENT WHEN NO LONGER MOCKING
                 // ChatGPT recipeMaker = new ChatGPT(prompt);
-            }
+                ChatGPT recipeMaker = new ChatGPT(prompt);
+                try{
+                  recipeMaker.main();
+                } catch (Exception e1){
+                    e1.printStackTrace();
+                } 
+                recipeHandler handler = new recipeHandler(); 
+                handler.addToDB(); 
+            } 
         });
         backButton.setOnAction(e ->{
             File meal = new File("mealtime.wav");
@@ -176,7 +186,7 @@ public class AddRecipe{
     private AudioFormat getAudioFormat() {
         float sampleRate = 44100;
         int sampleSizeInBits = 16;
-        int channels = 1; 
+        int channels = 1;
         boolean signed = true;
         boolean bigEndian = false;
         return new AudioFormat(sampleRate, sampleSizeInBits, channels, signed, bigEndian);
