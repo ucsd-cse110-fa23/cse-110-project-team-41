@@ -104,8 +104,8 @@ public class GenerateRecipeTest extends Application {
 
         try {
             // False due to current audio .wav file not containing input
-            assertFalse(inputMeal.main(mealFile).equals(mealTranscribed));
-            assertFalse(inputIngred.main(mealFile).equals(ingredientsTranscribed));
+            assertFalse(inputMeal.connect(mealFile).equals(mealTranscribed));
+            assertFalse(inputIngred.connect(mealFile).equals(ingredientsTranscribed));
         } catch (Exception e) {
             e.printStackTrace();
         }

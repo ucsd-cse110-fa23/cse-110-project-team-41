@@ -142,8 +142,8 @@ public class AddRecipe{
                 String transcribedIngred = "";
                 String transcribedMeal = "";
                 try {
-                    transcribedIngred = inputIngred.main(ingredients);
-                    transcribedMeal= inputMeal.main(meal);
+                    transcribedIngred = inputIngred.connect(ingredients);
+                    transcribedMeal= inputMeal.connect(meal);
                 } catch (Exception e1) {
                     e1.printStackTrace();
                 }
