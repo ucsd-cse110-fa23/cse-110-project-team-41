@@ -38,3 +38,7 @@ javafx {
 test {
     useJUnitPlatform()
 }
+
+dependencies {
+  implementation 'org.mongodb:mongodb-driver-sync:4.11.0'
+}
