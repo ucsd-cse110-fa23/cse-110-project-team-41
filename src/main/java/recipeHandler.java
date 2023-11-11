@@ -9,15 +9,19 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage; 
 public class recipeHandler { 
     private ArrayList<recipe> allRecipes = new ArrayList<recipe>(); 
+    private int numRecipes = 0; 
     public recipeHandler(){ 
         FileReader file;
+        // Changed URI for testing US3, use "/src/main/java/recipes.txt" path when not testing
+        String uri = "/Users/josuemartinez/Documents/GitHub/cse-110-project-team-41/src/test/java/US3Mocks/recipes.txt";
         try {
-            file = new FileReader("src/recipes.txt"); 
+            file = new FileReader(uri); 
             BufferedReader br = new BufferedReader(file); 
             String currLine = null; 
             while((currLine = br.readLine()) != null){
                 String[] info = currLine.split(","); 
                 allRecipes.add(new recipe(info[0], info[1])); 
+                numRecipes += 1;
             } 
             br.close(); 
         } catch (Exception e) { 
@@ -40,6 +44,13 @@ public class recipeHandler {
         } 
         return uiElements; 
     } 
+    public ArrayList<recipe> getRecipes() {
+        return allRecipes;
+    }
+
+    public int getNumRecipes() {
+        return numRecipes;
+    }
 
 
 }
