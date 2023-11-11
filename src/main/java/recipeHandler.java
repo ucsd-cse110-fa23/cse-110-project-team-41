@@ -12,7 +12,7 @@ public class recipeHandler {
     public recipeHandler(){ 
         FileReader file;
         try {
-            file = new FileReader("src/recipes.txt"); 
+            file = new FileReader("src/main/java/recipes.txt"); 
             BufferedReader br = new BufferedReader(file); 
             String currLine = null; 
             while((currLine = br.readLine()) != null){
