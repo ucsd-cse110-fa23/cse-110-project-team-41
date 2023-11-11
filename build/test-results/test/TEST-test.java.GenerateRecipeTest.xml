@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="test.java.GenerateRecipeTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2023-11-07T04:58:40" hostname="DESKTOP-FSQ252S" time="0.517">
+<testsuite name="test.java.GenerateRecipeTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2023-11-09T03:50:39" hostname="Samuels-MacBook-Air-3.local" time="1.215">
   <properties/>
-  <testcase name="testWhisperTask2()" classname="test.java.GenerateRecipeTest" time="0.511"/>
-  <testcase name="testGenerateRecipe()" classname="test.java.GenerateRecipeTest" time="0.005"/>
+  <testcase name="testWhisperTask2()" classname="test.java.GenerateRecipeTest" time="1.207"/>
+  <testcase name="testGenerateRecipe()" classname="test.java.GenerateRecipeTest" time="0.007"/>
   <system-out><![CDATA[Error Result: {  "error": {    "message": "Invalid file format. Supported formats: ['flac', 'm4a', 'mp3', 'mp4', 'mpeg', 'mpga', 'oga', 'ogg', 'wav', 'webm']",    "type": "invalid_request_error",    "param": null,    "code": null  }}
 Error Result: {  "error": {    "message": "Invalid file format. Supported formats: ['flac', 'm4a', 'mp3', 'mp4', 'mpeg', 'mpga', 'oga', 'ogg', 'wav', 'webm']",    "type": "invalid_request_error",    "param": null,    "code": null  }}
 ]]></system-out>
