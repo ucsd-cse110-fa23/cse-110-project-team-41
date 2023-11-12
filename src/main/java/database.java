@@ -2,18 +2,24 @@ package main.java;
 
 import static com.mongodb.client.model.Filters.eq;
 import static com.mongodb.client.model.Filters.lt;
+import static com.mongodb.client.model.Updates.*;
+
 
 import org.bson.Document;
+import org.bson.conversions.Bson;
 
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.result.UpdateResult;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 public class database {
     private String uri;
@@ -56,8 +62,50 @@ public class database {
     }
 
     private void addRecipeFile(MongoCollection<Document> collection, String fp) {
+        
+            ArrayList<String> lines = (ArrayList<String>) processFile(fp);
+            String title = lines.get(0);
+            String ingredients = lines.get(1);
+            String instructions = lines.get(2);
+            Document doc = new Document();
+            doc.append("title", title);
+            doc.append("ingredients", ingredients);
+            doc.append("instructions", instructions);
+
+            collection.insertOne(doc);
+            System.out.println("data added to mongoDB");
+
+    }
+
+    public void clearDB() {
+        try (MongoClient mongoClient = MongoClients.create(uri)) {
+            MongoDatabase database = mongoClient.getDatabase("Recipes");
+            MongoCollection<Document> collection = database.getCollection("savedRecipes");
+            collection.deleteMany(new Document());
+            System.out.println("Cleared Database");
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    public void editRecipe(String recipeName, String updated){
+        try (MongoClient mongoClient = MongoClients.create(uri)) {
+            MongoDatabase database = mongoClient.getDatabase("Recipes");
+            MongoCollection<Document> collection = database.getCollection("savedRecipes");
+            ArrayList<String> lines = (ArrayList<String>) processEdit(updated);
+            Bson filter = eq("title", recipeName);
+            Bson updateIng = set("ingredients", lines.get(0));
+            Bson updateIns = set("instructions", lines.get(1));
+            Bson combined = combine(updateIng, updateIns);
+            UpdateResult result = collection.updateOne(filter, combined);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    private List<String> processFile(String fp) {
+        List<String> lines = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(fp))) {
-            // String title = br.readLine();
             StringBuilder title = new StringBuilder();
             StringBuilder ingredients = new StringBuilder();
             StringBuilder instructions = new StringBuilder();
@@ -81,28 +129,39 @@ public class database {
                     title.append(line).append("\n");
                 }
             }
-            Document doc = new Document();
-            doc.append("title", title.toString().trim());
-            doc.append("ingredients", ingredients.toString().trim());
-            doc.append("instructions", instructions.toString().trim());
-
-            collection.insertOne(doc);
-            System.out.println("data added to mongoDB");
-
+            lines.add(title.toString().trim());
+            lines.add(ingredients.toString().trim());
+            lines.add(instructions.toString().trim());
         } catch (IOException e) {
             System.out.println(e);
             e.printStackTrace();
         }
+        return lines;
     }
 
-    public void clearDB() {
-        try (MongoClient mongoClient = MongoClients.create(uri)) {
-            MongoDatabase database = mongoClient.getDatabase("Recipes");
-            MongoCollection<Document> collection = database.getCollection("savedRecipes");
-            collection.deleteMany(new Document());
-            System.out.println("Cleared Database");
-        } catch (Exception e) {
-            System.out.println(e);
+    private List<String> processEdit(String edited){
+        ArrayList<String> lines = new ArrayList<>();
+        String[] split = edited.split("\n");
+        StringBuilder ingredients = new StringBuilder();
+        StringBuilder instructions = new StringBuilder();
+        boolean isIngredients = false;
+        boolean isInstructions = false;
+        for (String line : split) {
+            if (line.contains("Ingredients:")) {
+                isIngredients = true;
+                isInstructions = false;
+
+            } else if (line.equals("Instructions:")) {
+                isIngredients = false;
+                isInstructions = true;
+            } else if (isIngredients) {
+                ingredients.append(line).append("\n");
+            } else if (isInstructions) {
+                instructions.append(line).append("\n");
+            }
         }
+        lines.add(ingredients.toString().trim());
+        lines.add(instructions.toString().trim());
+        return lines;
     }
 }

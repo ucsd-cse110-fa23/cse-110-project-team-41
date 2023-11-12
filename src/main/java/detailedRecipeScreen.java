@@ -93,6 +93,8 @@ public class detailedRecipeScreen {
                 recLabel.setEditable(false);
                 // TODO: Save changes to recipe in DB
 
+                database dbOBJ = new database();
+                dbOBJ.editRecipe(rec.getName(), recLabel.getText());
             }
         });
     }
