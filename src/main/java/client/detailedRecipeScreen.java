@@ -2,6 +2,7 @@ package main.java.client;
 
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -28,6 +29,7 @@ public class detailedRecipeScreen {
     private Stage primaryStage;
     private boolean editing;
     private recipe rec;
+    private Model model;
 
     public detailedRecipeScreen(Stage primaryStage, recipe rec) {
         StackPane root = new StackPane();
@@ -39,6 +41,7 @@ public class detailedRecipeScreen {
         this.primaryStage = primaryStage;
         editing = false;
         this.rec = rec;
+        this.model = new Model();
 
         HBox r_buttons = new HBox(editButton, deleteButton); 
         HBox heading = new HBox(backButton, title, r_buttons); 
@@ -83,7 +86,11 @@ public class detailedRecipeScreen {
             }
         }); 
         deleteButton.setOnAction(e -> { 
-
+            model.performRequest("DELETE", null, null, null, rec.getName(), null);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Recipe deleted!");
+            //Go Back to recipesScreen
+            recipesScreen rs = new recipesScreen(primaryStage);
+            primaryStage.setScene(rs.getScene());
         });  
 
         editButton.setOnAction(e -> {

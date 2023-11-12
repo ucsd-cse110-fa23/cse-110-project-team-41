@@ -149,37 +149,11 @@ public class AddRecipe {
             } else if (!ingredients.exists()) {
                 fileError("ingredients");
             } else {
-                model.performRequest("POST", meal, null, "mealTime", null, null);
-                model.performRequest("POST", null, ingredients, "ingredients,", null, null);
-                Whisper inputMeal = new Whisper();
-                Whisper inputIngred = new Whisper();
-                String transcribedIngred = "";
-                String transcribedMeal = "";
-                try {
-                    transcribedIngred = inputIngred.main(ingredients);
-                    transcribedMeal = inputMeal.main(meal);
-                } catch (Exception e1) {
-                    e1.printStackTrace();
-                }
-                // After acquiring transcripted inputs, concatenate and add necessary prompting
-                // before sending to ChatGPT.
-                String prompt = "Give me a" + transcribedMeal
-                        + "recipe given that strictly the ONLY ingredients I have are: " + transcribedIngred +
-                        "do not add any more ingredients";
-
-                // send prompt/input to ChatGPT File: UNCOMMENT WHEN NO LONGER MOCKING
-                // ChatGPT recipeMaker = new ChatGPT(prompt);
-                ChatGPT recipeMaker = new ChatGPT(prompt);
-                try {
-                    recipeMaker.main();
-                } catch (Exception e1) {
-                    e1.printStackTrace();
-                }
-
-                //TODO: Add redirect to a detailed recipe screen with the generated recipe before adding to DB
-                //Need confirmation from user to save recipe cannot just add it in
-                recipeHandler handler = new recipeHandler();
-                handler.addToDB();
+                String mealR = model.performRequest("POST", meal, null, "mealTime", null, null);
+                String ingR = model.performRequest("POST", null, ingredients, "ingredients", null, null);
+                System.out.println(mealR);
+                System.out.println(ingR);
+                
             }
         });
         backButton.setOnAction(e -> {

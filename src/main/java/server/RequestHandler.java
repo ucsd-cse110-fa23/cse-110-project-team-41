@@ -4,6 +4,8 @@ import com.mongodb.internal.logging.LogMessage.Entry;
 import com.sun.glass.ui.SystemClipboard;
 import com.sun.net.httpserver.*;
 
+import main.java.client.recipeHandler;
+
 import java.io.*;
 import java.net.*;
 import java.util.*;
@@ -70,9 +72,15 @@ public class RequestHandler implements HttpHandler {
         System.out.println(exchange.getRequestHeaders());
         String response = "Invalid POST Request";
         File output = processMultipart(exchange);
-
-        URI uri = exchange.getRequestURI();
-        String query = uri.getRawQuery();
+        if(output.getName().contains("ingredients")){
+            //Invoke GPT-3
+            getGPT();
+            recipeHandler handler = new recipeHandler();
+            handler.addToDB();
+            response = "Ingredients received and generated recipe";
+        }else{
+            response = "Meal time received";
+        }
         return response;
     }
 
@@ -98,7 +106,8 @@ public class RequestHandler implements HttpHandler {
         InputStream in = exchange.getRequestBody();
         Scanner scanner = new Scanner(in);
         String title = scanner.nextLine();
-        // db.deleteRecipe(title);
+        db.deleteRecipe(title);
+        response = "Recipe: " + title + " deleted";
         return response;
     }
 
@@ -185,5 +194,32 @@ public class RequestHandler implements HttpHandler {
                 "Reached end of stream while reading the current line!");
     }
 
-    // public String 
+    private void getGPT(){
+        File meal = new File("src/main/java/server/mealTime.wav");
+        File ingredients = new File("src/main/java/server/ingredients.wav");
+        Whisper inputMeal = new Whisper();
+        Whisper inputIngred = new Whisper();
+        String transcribedIngred = "";
+        String transcribedMeal = "";
+        try {
+            transcribedIngred = inputIngred.main(ingredients);
+            transcribedMeal = inputMeal.main(meal);
+        } catch (Exception e1) {
+            e1.printStackTrace();
+        }
+        // After acquiring transcripted inputs, concatenate and add necessary prompting
+        // before sending to ChatGPT.
+        String prompt = "Give me a" + transcribedMeal
+                + "recipe given that strictly the ONLY ingredients I have are: " + transcribedIngred +
+                "do not add any more ingredients";
+
+        // send prompt/input to ChatGPT File: UNCOMMENT WHEN NO LONGER MOCKING
+        // ChatGPT recipeMaker = new ChatGPT(prompt);
+        ChatGPT recipeMaker = new ChatGPT(prompt);
+        try {
+            recipeMaker.main();
+        } catch (Exception e1) {
+            e1.printStackTrace();
+        }
+    }
 }

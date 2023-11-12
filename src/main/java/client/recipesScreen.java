@@ -51,4 +51,8 @@ public class recipesScreen {
     public Scene getScene() {
         return this.scene;
     }
+
+    public void setList(VBox list) {
+        recipes.setContent(list);
+    }
 }
