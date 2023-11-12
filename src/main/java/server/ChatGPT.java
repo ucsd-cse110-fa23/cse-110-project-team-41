@@ -1,4 +1,4 @@
-package main.java;
+package main.java.server;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -11,44 +11,40 @@ import java.net.http.HttpResponse;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+public class ChatGPT {
 
-public class ChatGPT{
-
-    private static final String MODEL = "text-davinci-003"; 
-    private static final String API_KEY = "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"; 
+    private static final String MODEL = "text-davinci-003";
+    private static final String API_KEY = "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";
     private static final String API_ENDPOINT = "https://api.openai.com/v1/completions";
 
-    //private String mealType;
-    //private String ingredients;
+    // private String mealType;
+    // private String ingredients;
     private String prompt;
-   
-    public ChatGPT(String prompt){
-        //this.mealType = mealType;
-        //this.ingredients = ingredients;
+
+    public ChatGPT(String prompt) {
+        // this.mealType = mealType;
+        // this.ingredients = ingredients;
         this.prompt = prompt;
     }
 
-    
     public void main() throws Exception {
-        
 
-        //String recipe = generateRecipe(mealType, ingredients);
-        String recipe = generateRecipe(prompt);
+        // String recipe = generateRecipe(mealType, ingredients);
+        String recipe = generateRecipe(prompt); 
 
-        saveRecipe("src/recipe.txt", recipe);
+        saveRecipe("src/main/java/recipe.txt", recipe); 
+
     }
-    
 
-
-    //generates recipe from chatGPT
+    // generates recipe from chatGPT
     private static String generateRecipe(String prompt) throws Exception {
-        /* 
-        String prompt = "Give me a concise recipe for a " +
-                mealType +
-                " meal that ONLY uses the following ingredients: " +
-                ingredients;
-        */
-        
+        /*
+         * String prompt = "Give me a concise recipe for a " +
+         * mealType +
+         * " meal that ONLY uses the following ingredients: " +
+         * ingredients;
+         */
+
         int maxTokens = 250;
 
         JSONObject requestBody = new JSONObject();
@@ -60,28 +56,27 @@ public class ChatGPT{
         HttpClient client = HttpClient.newHttpClient();
 
         HttpRequest request = HttpRequest
-        .newBuilder()
-        .uri(new URI(API_ENDPOINT))
-        .header("Content-Type", "application/json")
-        .header("Authorization", String.format("Bearer %s", API_KEY))
-        .POST(HttpRequest.BodyPublishers.ofString(requestBody.toString()))
-        .build();
+                .newBuilder()
+                .uri(new URI(API_ENDPOINT))
+                .header("Content-Type", "application/json")
+                .header("Authorization", String.format("Bearer %s", API_KEY))
+                .POST(HttpRequest.BodyPublishers.ofString(requestBody.toString()))
+                .build();
 
         HttpResponse<String> response = client.send(
-        request,
-        HttpResponse.BodyHandlers.ofString()
-        );
+                request,
+                HttpResponse.BodyHandlers.ofString());
 
         String responseBody = response.body();
 
         JSONObject responseJSON = new JSONObject(responseBody);
         JSONArray choices = responseJSON.getJSONArray("choices");
         String recipeGPT = choices.getJSONObject(0).getString("text");
-        
+
         return recipeGPT;
     }
 
-    //saves recipe to a file 
+    // saves recipe to a file
     private static void saveRecipe(String fp, String recipe) {
         try {
             FileWriter fw = new FileWriter(fp);
@@ -91,6 +86,10 @@ public class ChatGPT{
         } catch (IOException e) {
             e.printStackTrace();
         }
+    } 
+    public String getResponse(){ 
+        String response = null; 
+        return response; 
     }
-    
+
 }

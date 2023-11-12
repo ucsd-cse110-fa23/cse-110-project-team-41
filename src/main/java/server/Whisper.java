@@ -1,8 +1,8 @@
-package main.java;
+package main.java.server;
+
 import java.io.*;
 import java.net.*;
 import org.json.*;
-
 
 public class Whisper {
     private static final String API_ENDPOINT = "https://api.openai.com/v1/audio/transcriptions";
@@ -61,9 +61,9 @@ public class Whisper {
         String generatedText = responseJson.getString("text");
 
         // Mock the transcription result
-        System.out.println("Transcription Result: " + "\n" + generatedText); 
+        System.out.println("Transcription Result: " + "\n" + generatedText);
         return generatedText;
-        // return individual transcriptions for each recording. 
+        // return individual transcriptions for each recording.
         // return generatedText;
 
     }
@@ -83,7 +83,7 @@ public class Whisper {
         System.out.println("Error Result: " + errorResult);
     }
 
-    public String main(File args) throws IOException, URISyntaxException, JSONException { 
+    public String main(File args) throws IOException, URISyntaxException, JSONException {
         String transcribed = "";
         // Set up HTTP connection
         URL url = new URI(API_ENDPOINT).toURL();
@@ -98,7 +98,7 @@ public class Whisper {
                 "multipart/form-data; boundary=" + boundary);
         connection.setRequestProperty("Authorization", "Bearer " + TOKEN);
 
-        // Set up output stream to write request body 
+        // Set up output stream to write request body
         OutputStream outputStream = connection.getOutputStream();
 
         // Write model parameter to request body
@@ -124,11 +124,10 @@ public class Whisper {
             handleErrorResponse(connection);
         }
 
-
         // Disconnect connection
         connection.disconnect();
         // return the transcribed input audio
         return transcribed;
-    } 
+    }
 
 }

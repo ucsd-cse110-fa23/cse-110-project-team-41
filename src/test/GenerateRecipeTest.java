@@ -1,11 +1,11 @@
-package test.java;
+package test;
 
 import org.junit.jupiter.api.Test;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import main.java.Whisper;
-import main.java.homeScreen;
+import main.java.client.homeScreen;
+import main.java.server.Whisper;
 
 import org.junit.jupiter.api.BeforeEach;
 
