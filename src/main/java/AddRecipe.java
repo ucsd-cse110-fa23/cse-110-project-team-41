@@ -163,6 +163,9 @@ public class AddRecipe {
                 } catch (Exception e1) {
                     e1.printStackTrace();
                 }
+
+                //TODO: Add redirect to a detailed recipe screen with the generated recipe before adding to DB
+                //Need confirmation from user to save recipe cannot just add it in
                 recipeHandler handler = new recipeHandler();
                 handler.addToDB();
             }
