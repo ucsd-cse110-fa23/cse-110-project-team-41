@@ -3,6 +3,10 @@ import org.junit.jupiter.api.Test;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+import main.java.IChatGPT;
+import main.java.IWhisper;
+import main.java.MockGPT;
+import main.java.MockWhisper;
 import main.java.Whisper;
 import main.java.homeScreen;
 
@@ -12,13 +16,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class GenerateRecipeTest extends Application {
+public class US1Tests extends Application {
 
     @Override 
     public void start(Stage primaryStage) {
@@ -51,29 +57,31 @@ public class GenerateRecipeTest extends Application {
         assertTrue(mealFile.exists());
         assertTrue(ingredientFile.exists());
 
-        // Mock Input Audio Files into Transcriptions
-        String mealType = "Lunch";
-        String ingredients = "Chicken, rice, eggs";
-
         // Assume files have been transcribed into text after Whisper transcription
-        String prompt = "Give me a concise recipe for a " +
-                mealType +
-                " meal that ONLY uses the following ingredients: " +
-                ingredients;
+        IWhisper mock = new MockWhisper();
+        String prompt = mock.connect(ingredientFile);
 
         // Mock input and output for ChatGPT
-        // - ChatGPT recipeMaker = new ChatGPT();
-        // - String recipe = recipeMaker.generateRecipe();
-        String recipeTitle = "Chicken Fried Rice";
+        IChatGPT recipeMaker = new MockGPT();
+        String recipe = recipeMaker.generateRecipe(prompt);
+        String fp = "/US3Mocks/recipes.txt";
+        recipeMaker.saveRecipe(fp, recipe);
 
-        // These asserts appear to be insignificant, but once mocking is terminated and 
-        // actual audio inputs include these parameters then testing will be helpful in
-        // tracking expected behavior before sending to Whisper/ChatGPT.
-
-        assertEquals("Lunch", mealType);
-        assertEquals("Chicken, rice, eggs", ingredients);
-        assertEquals("Chicken Fried Rice", recipeTitle);
-
+        int count = 0;
+        try {
+            File myObj = new File(fp);
+            Scanner myReader = new Scanner(myObj);
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
+                count++;
+            }
+            myReader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+        // One new recipe in recipes.txt
+        assertEquals(1, count);
         mealFile.delete();
         ingredientFile.delete();
     }
@@ -93,8 +101,8 @@ public class GenerateRecipeTest extends Application {
         }
 
         // Uncomment when mocking is no longer needed
-        Whisper inputMeal = new Whisper();
-        Whisper inputIngred = new Whisper();
+        IWhisper inputMeal = new MockWhisper();
+        IWhisper inputIngred = new MockWhisper();
         
         // - String mealTranscribed = inputMeal.Main(mealFile);
         // - String ingredientsTranscribed = inputMeal.Main(ingredientsFile);

@@ -22,6 +22,8 @@ dependencies {
 
     // https://mvnrepository.com/artifact/org.json/json
     implementation 'org.json:json:20090211'
+    implementation 'org.mongodb:bson:4.11.0'
+    implementation 'org.mongodb:mongodb-driver-sync:4.11.0'
 
     implementation "org.junit.jupiter:junit-jupiter:$junitVersion"
 
@@ -35,6 +37,13 @@ javafx {
     version = "21.0.1"
     modules = [ 'javafx.controls' , 'javafx.fxml']
 }
+apply plugin :"java"
+ext{
+    javaMainClass = "main.java.Main"
+}
 test {
     useJUnitPlatform()
+}
+application {
+    mainClassName = javaMainClass
 }

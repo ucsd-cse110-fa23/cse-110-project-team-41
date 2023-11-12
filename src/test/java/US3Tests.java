@@ -1,6 +1,7 @@
 
 import org.junit.jupiter.api.Test;
 
+import javafx.stage.Stage;
 import main.java.recipe;
 import main.java.recipeHandler;
 
@@ -14,23 +15,17 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+
+/*
+ * Tests displaying all recipes functionality
+ */
 public class US3Tests {
     private recipeHandler rh;
-    private File f; 
-    private FileWriter fw;
-    private String uri; 
-    private BufferedWriter bw;
+    private Stage primaryStage; 
     
     @BeforeEach
     void setUp() {
-        uri = "/Users/josuemartinez/Documents/GitHub/cse-110-project-team-41/src/test/java/US3Mocks/recipes.txt";
-        f = new File(uri);
-        try {
-            fw = new FileWriter(f.getAbsoluteFile());
-        } catch (IOException e) {
-            System.out.println("Cannot write to file!");
-        }
-        bw = new BufferedWriter(fw);  
+        primaryStage = new Stage();
     }
     
     @Test
@@ -41,40 +36,17 @@ public class US3Tests {
 
     @Test
     void testAddRecipes() {
-        String text = "";
-        for(int i = 1; i <= 20; i++) {
-            text = "Recipe " + i + ", description - ... for recipe " + i;
-            try {
-                // fw.write("Recipe " + i + ": description - ... for recipe " + i);
-                bw.write(text + "\n");
-                bw.flush();
-            } catch (IOException e) {
-                System.out.println("Cannot write recipes to file!");
-            }
-        }
         rh = new recipeHandler();
-        assertEquals(20, rh.getNumRecipes());
-
-        // Final test to prove tracked added recipes
-        String expRecName = "Recipe 21";
-        String expRecDesc = " description - ... for recipe 21";
-        try {
-            bw.write(expRecName + "," + expRecDesc);
-            bw.flush();
-            bw.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+        rh.getRecipeElements(primaryStage);
+        int currentCount = rh.getNumRecipes();
+        // load in the same recipe 3 times into the database. 
+        for(int i = 0; i < 3; i++) {
+            rh.addToDB();
         }
-        rh = new recipeHandler();
-        
-        assertEquals(21, rh.getNumRecipes());
-
         ArrayList<recipe> recipes = rh.getRecipes();
-        String actualRecName = recipes.get(20).getName();
-        String actualRecDesc = recipes.get(20).getDetails();
-
-        assertEquals(expRecDesc, actualRecDesc);
-        assertEquals(expRecName, actualRecName);
+        // Assert database accounted for 3 new recipes and total count matches with database count.
+        assertEquals(currentCount + 3, rh.getNumRecipes());
+        assertEquals(currentCount + 3, recipes.size());
     }
     
 }
