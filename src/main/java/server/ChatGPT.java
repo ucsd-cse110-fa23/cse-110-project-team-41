@@ -85,6 +85,10 @@ public class ChatGPT {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    } 
+    public String getResponse(){ 
+        String response = null; 
+        return response; 
     }
 
 }

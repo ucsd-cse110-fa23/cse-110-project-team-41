@@ -98,6 +98,7 @@ public class AddRecipe {
     /*
      * Return scene to be displayed
      * 
+     * 
      * @return scene object to be shown in main stage
      */
     public Scene getScene() {
@@ -126,6 +127,7 @@ public class AddRecipe {
             captureAudio("ingredients");
         });
 
+        // Disables itself and stops recording
         // Disables itself and stops recording
         stopButton.setOnAction(e -> {
             recordingLabel.setText("Record");

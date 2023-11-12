@@ -85,7 +85,7 @@ public class database {
             System.out.println("Cleared Database");
         } catch (Exception e) {
             System.out.println(e);
-        }
+        } 
     }
 
     public void editRecipe(String recipeName, String updated){
@@ -159,7 +159,7 @@ public class database {
             } else if (isInstructions) {
                 instructions.append(line).append("\n");
             }
-        }
+        } 
         lines.add(ingredients.toString().trim());
         lines.add(instructions.toString().trim());
         return lines;
@@ -174,5 +174,17 @@ public class database {
             }
         }
         return null;
+    } 
+    public boolean deleteRecipe(String title){ 
+        try (MongoClient mongoClient = MongoClients.create(uri)) {
+            MongoDatabase database = mongoClient.getDatabase("Recipes");
+            MongoCollection<Document> collection = database.getCollection("savedRecipes");
+            collection.deleteOne(new Document().append("title", title)); 
+            System.out.println("Deleted " + title); 
+            return true; 
+        } catch (Exception e) { 
+            System.out.println(e);
+        } 
+        return false; 
     }
 }

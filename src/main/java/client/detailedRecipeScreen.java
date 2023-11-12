@@ -22,7 +22,8 @@ public class detailedRecipeScreen {
     private Label recNameMsg;
     private TextArea recLabel;
     private Button editButton;
-    private Button backButton;
+    private Button backButton; 
+    private Button deleteButton; 
     private ScrollPane detailedRecipe;
     private Stage primaryStage;
     private boolean editing;
@@ -33,12 +34,14 @@ public class detailedRecipeScreen {
         title = new Label("PantyPal");
         recNameMsg = new Label(rec.getName());
         backButton = new Button("Back");
-        editButton = new Button("Edit");
+        editButton = new Button("Edit"); 
+        deleteButton = new Button("Delete"); 
         this.primaryStage = primaryStage;
         editing = false;
         this.rec = rec;
 
-        HBox heading = new HBox(backButton, title, editButton);
+        HBox r_buttons = new HBox(editButton, deleteButton); 
+        HBox heading = new HBox(backButton, title, r_buttons); 
         heading.setAlignment(Pos.CENTER);
         heading.setSpacing(80);
 
@@ -50,14 +53,14 @@ public class detailedRecipeScreen {
         this.recLabel.setEditable(false);
         // recLabel.setWrapText(true);
         detailedRecipe = new ScrollPane(recLabel);
-        detailedRecipe.setFitToWidth(true);
-        detailedRecipe.setFitToHeight(true);
+        detailedRecipe.setFitToWidth(true); 
+        detailedRecipe.setFitToHeight(true); 
 
-        BorderPane detailedScreen = new BorderPane();
-        detailedScreen.setTop(text);
-        detailedScreen.setCenter(detailedRecipe);
-        root.getChildren().addAll(detailedScreen);
-        this.scene = new Scene(root, 400, 300);
+        BorderPane detailedScreen = new BorderPane(); 
+        detailedScreen.setTop(text); 
+        detailedScreen.setCenter(detailedRecipe); 
+        root.getChildren().addAll(detailedScreen); 
+        this.scene = new Scene(root, 400, 300); 
         addListeners();
     }
 
@@ -78,11 +81,14 @@ public class detailedRecipeScreen {
                 recipesScreen rs = new recipesScreen(primaryStage);
                 primaryStage.setScene(rs.getScene());
             }
-        });
+        }); 
+        deleteButton.setOnAction(e -> { 
+
+        });  
 
         editButton.setOnAction(e -> {
             if (!editing) {
-                editing = true;
+                editing = true; 
                 editButton.setText("Save");
                 backButton.setText("Cancel");
                 // Enable editing for detailedRecipe
