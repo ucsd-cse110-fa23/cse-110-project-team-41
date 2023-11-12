@@ -69,15 +69,7 @@ public class RequestHandler implements HttpHandler {
         System.out.println("Handling post request");
         System.out.println(exchange.getRequestHeaders());
         String response = "Invalid POST Request";
-        // InputStream is = exchange.getRequestBody();
-        // BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-        // for(String line = reader.readLine(); line != null; line = reader.readLine()){
-        // System.out.println(line);
-        // }
         File output = processMultipart(exchange);
-        // Files.copy(is, output.toPath(), StandardCopyOption.REPLACE_EXISTING);
-        // is.close();
-        // Read multipart/form-data
 
         URI uri = exchange.getRequestURI();
         String query = uri.getRawQuery();
@@ -86,56 +78,36 @@ public class RequestHandler implements HttpHandler {
 
     private String handlePut(HttpExchange exchange) {
         String response = "Invalid PUT Request";
-
+        InputStream in = exchange.getRequestBody();
+        Scanner scanner = new Scanner(in);
+        String title = scanner.nextLine();
+        String line = "";
+        String details = "";
+        boolean isIngredients = false, isInstructions = false;
+        while (scanner.hasNextLine()) {
+            line = scanner.nextLine();
+            details += line + "\n";
+        }
+        db.editRecipe(title, details);
+        response = "Recipe: " + title +  " edited";
         return response;
     }
 
     private String handleDelete(HttpExchange exchange) {
         String response = "Invalid DELETE Request";
-
+        InputStream in = exchange.getRequestBody();
+        Scanner scanner = new Scanner(in);
+        String title = scanner.nextLine();
+        // db.deleteRecipe(title);
         return response;
     }
 
+    /*
+     * Code inspired from
+     * https://stackoverflow.com/questions/37869483/transfer-audio-file-from-client-
+     * to-http-server-via-urlconnection
+     */
     private File processMultipart(HttpExchange exchange) throws IOException {
-        // InputStream in = exchange.getRequestBody();
-        // BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-        // boolean content = false;
-        // boolean created = false;
-        // String boundary = reader.readLine();
-        // String fileName = exchange.getRequestProperty("fileNames");
-        // System.out.println(fileName);
-        // String line;
-        // File output = null;
-        // FileOutputStream out = null;
-        // BufferedOutputStream bos = null;
-        // while ((line = reader.readLine()) != null) {
-        //     if (line.contains(boundary)) {
-        //         break;
-        //     }
-        //     if (content) {
-        //         if (!created) {
-        //             output = new File("src/main/java/server/" + fileName);
-        //             // Clear the existing file
-        //             if (output.exists()) {
-        //                 output.delete();
-        //             }
-        //             output.createNewFile();
-        //             out = new FileOutputStream(output);
-        //             bos = new BufferedOutputStream(out);
-        //             created = true;
-        //         }
-        //         bos.write(line.getBytes());
-        //         continue;
-        //     }
-        //     if (line.contains("Content-Type")) {
-        //         content = true;
-        //         line = reader.readLine();
-        //     }
-        // }
-        // bos.flush();
-        // in.close();
-        // return output;
-
         String CRLF = "\r\n";
         int fileSize = 0;
         String fileName = "";
@@ -211,6 +183,7 @@ public class RequestHandler implements HttpHandler {
 
         throw new IOException(
                 "Reached end of stream while reading the current line!");
-
     }
+
+    // public String 
 }

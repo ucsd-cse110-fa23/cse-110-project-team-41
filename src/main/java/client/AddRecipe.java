@@ -148,6 +148,7 @@ public class AddRecipe {
                 fileError("ingredients");
             } else {
                 model.performRequest("POST", meal, null, "mealTime", null, null);
+                model.performRequest("POST", null, ingredients, "ingredients,", null, null);
                 Whisper inputMeal = new Whisper();
                 Whisper inputIngred = new Whisper();
                 String transcribedIngred = "";
