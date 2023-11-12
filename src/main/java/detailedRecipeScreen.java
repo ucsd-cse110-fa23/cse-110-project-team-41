@@ -13,86 +13,87 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-public class detailedRecipeScreen { 
-    private Scene scene; 
-    private Label title; 
-    private Label recNameMsg; 
+
+public class detailedRecipeScreen {
+    private Scene scene;
+    private Label title;
+    private Label recNameMsg;
     private TextArea recLabel;
-    private Button editButton; 
-    private Button backButton; 
-    private ScrollPane detailedRecipe; 
+    private Button editButton;
+    private Button backButton;
+    private ScrollPane detailedRecipe;
     private Stage primaryStage;
     private boolean editing;
     private recipe rec;
-    public detailedRecipeScreen(Stage primaryStage, recipe rec){ 
-        StackPane root = new StackPane(); 
-        title = new Label("PantyPal"); 
-        recNameMsg = new Label(rec.getName()); 
-        backButton = new Button("Back"); 
-        editButton = new Button("Edit"); 
+
+    public detailedRecipeScreen(Stage primaryStage, recipe rec) {
+        StackPane root = new StackPane();
+        title = new Label("PantyPal");
+        recNameMsg = new Label(rec.getName());
+        backButton = new Button("Back");
+        editButton = new Button("Edit");
         this.primaryStage = primaryStage;
         editing = false;
         this.rec = rec;
 
-        HBox heading = new HBox(backButton, title, editButton); 
-        heading.setAlignment(Pos.CENTER); 
-        heading.setSpacing(80); 
+        HBox heading = new HBox(backButton, title, editButton);
+        heading.setAlignment(Pos.CENTER);
+        heading.setSpacing(80);
 
-        HBox subHeading = new HBox(recNameMsg); 
-        subHeading.setAlignment(Pos.TOP_LEFT); 
-        VBox text = new VBox(heading, subHeading); 
-        text.setAlignment(Pos.CENTER); 
-        this.recLabel = new TextArea(rec.getDetails()); 
+        HBox subHeading = new HBox(recNameMsg);
+        subHeading.setAlignment(Pos.TOP_LEFT);
+        VBox text = new VBox(heading, subHeading);
+        text.setAlignment(Pos.CENTER);
+        this.recLabel = new TextArea(rec.getDetails());
         this.recLabel.setEditable(false);
-        // recLabel.setWrapText(true); 
-        detailedRecipe = new ScrollPane(recLabel); 
-        detailedRecipe.setFitToWidth(true); 
-        detailedRecipe.setFitToHeight(true); 
+        // recLabel.setWrapText(true);
+        detailedRecipe = new ScrollPane(recLabel);
+        detailedRecipe.setFitToWidth(true);
+        detailedRecipe.setFitToHeight(true);
 
-        BorderPane detailedScreen = new BorderPane(); 
-        detailedScreen.setTop(text); 
-        detailedScreen.setCenter(detailedRecipe); 
-        root.getChildren().addAll(detailedScreen); 
-        this.scene = new Scene(root, 400, 300); 
+        BorderPane detailedScreen = new BorderPane();
+        detailedScreen.setTop(text);
+        detailedScreen.setCenter(detailedRecipe);
+        root.getChildren().addAll(detailedScreen);
+        this.scene = new Scene(root, 400, 300);
         addListeners();
-    } 
-
-    public Scene getScene(){
-        return this.scene; 
     }
 
-    private void addListeners(){
-        backButton.setOnAction(e -> { 
-            if(editing){
+    public Scene getScene() {
+        return this.scene;
+    }
+
+    private void addListeners() {
+        backButton.setOnAction(e -> {
+            if (editing) {
                 editing = false;
                 editButton.setText("Edit");
                 backButton.setText("Back");
-                //Disable editing for detailedRecipe and reset text
+                // Disable editing for detailedRecipe and reset text
                 recLabel.setText(rec.getDetails());
                 recLabel.setEditable(false);
-            }else{
-                recipesScreen rs = new recipesScreen(primaryStage); 
-                primaryStage.setScene(rs.getScene()); 
+            } else {
+                recipesScreen rs = new recipesScreen(primaryStage);
+                primaryStage.setScene(rs.getScene());
             }
-        }); 
+        });
 
-        editButton.setOnAction(e -> { 
-            if(!editing){
+        editButton.setOnAction(e -> {
+            if (!editing) {
                 editing = true;
                 editButton.setText("Save");
                 backButton.setText("Cancel");
-                //Enable editing for detailedRecipe
+                // Enable editing for detailedRecipe
                 recLabel.setEditable(true);
-            }else{
+            } else {
                 editing = false;
                 editButton.setText("Edit");
                 backButton.setText("Back");
-                //Disable editing for detailedRecipe and reset text
+                // Disable editing for detailedRecipe and reset text
                 recLabel.setEditable(false);
-                //TODO: Save changes to recipe in DB
-                
+                // TODO: Save changes to recipe in DB
+
             }
         });
     }
 }
-
