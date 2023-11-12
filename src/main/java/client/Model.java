@@ -40,22 +40,23 @@ public class Model {
                 writer.append("--" + boundary).append(CRLF);
                 if(postType.equals("mealTime")){
                     writer.append("Content-Disposition: form-data; name=\"file\"; filename=\"" + mealTime.getName() + "\"").append(CRLF);
+                    writer.append("Content-Length: " + mealTime.length()).append(CRLF);
                     writer.append("Content-Type: " + connection.guessContentTypeFromName(mealTime.getName())).append(CRLF);
+                    writer.append("Content-Transfer-Encoding: binary").append(CRLF);
                     writer.append(CRLF).flush();
                     Files.copy(mealTime.toPath(), output);
                     output.flush();
-                    writer.append(CRLF).flush();
                 }else if(postType.equals("ingredients")){
                     writer.append("Content-Disposition: form-data; name=\"file\"; filename=\"" + ingredients.getName() + "\"").append(CRLF);
+                    writer.append("Content-Length: " + ingredients.length()).append(CRLF);
                     writer.append("Content-Type: " + connection.guessContentTypeFromName(ingredients.getName())).append(CRLF);
+                    writer.append("Content-Transfer-Encoding: binary").append(CRLF);
                     writer.append(CRLF).flush();
                     Files.copy(ingredients.toPath(), output);
                     output.flush();
-                    writer.append(CRLF).flush();
+                }else{
+                    throw new Exception("Not Valid Post Type");
                 }
-                writer.append("--" + boundary + "--").append(CRLF).flush();
-                writer.close();
-                output.close();
 
                 //Get response from server
                 response = processResponse(connection);
