@@ -1,4 +1,14 @@
+<<<<<<< Updated upstream
 package test;
+=======
+package test; 
+import main.java.server.*; 
+import main.java.client.*; 
+import java.io.File;
+import java.io.FileWriter;
+import java.util.ArrayList;
+import java.util.List;
+>>>>>>> Stashed changes
 
 import org.junit.jupiter.api.Test;
 
