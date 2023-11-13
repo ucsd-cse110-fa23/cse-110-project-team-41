@@ -19,6 +19,7 @@ import java.net.URISyntaxException;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+
 public class GenerateRecipeTest extends Application {
 
     @Override 

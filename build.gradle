@@ -16,6 +16,11 @@ sourceSets {
             srcDirs = ['src']
         }
     }
+    test{
+        java{
+            srcDirs = ['src']
+        }
+    }
 }
 dependencies {
     def junitVersion = '5.8.1'
