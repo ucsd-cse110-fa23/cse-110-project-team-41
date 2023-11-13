@@ -103,7 +103,7 @@ public class database {
         }
     }
 
-    private List<String> processFile(String fp) {
+    public List<String> processFile(String fp) {
         List<String> lines = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(fp))) {
             StringBuilder title = new StringBuilder();
