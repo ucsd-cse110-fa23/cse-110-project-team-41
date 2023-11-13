@@ -59,8 +59,6 @@ public class Model {
                 }else{
                     throw new Exception("Not Valid Post Type");
                 }
-
-                //Get response from server
             }else if (method.equals("GET")) {
                 System.out.println(urlString);
             }else if(method.equals("PUT")){

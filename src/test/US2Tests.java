@@ -17,6 +17,6 @@ public class US2Tests {
 
     @Test
     void testConnectToDB() {
-
+        
     }
 }

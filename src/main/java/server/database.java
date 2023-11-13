@@ -117,8 +117,7 @@ public class database {
                 if (line.contains("Ingredients:")) {
                     isIngredients = true;
                     isInstructions = false;
-
-                } else if (line.equals("Instructions:")) {
+                } else if (line.contains("Instructions:")) {
                     isIngredients = false;
                     isInstructions = true;
                 } else if (isIngredients) {
