@@ -25,6 +25,9 @@ dependencies {
 
     implementation "org.junit.jupiter:junit-jupiter:$junitVersion"
 
+    implementation 'org.mongodb:bson:4.11.0'
+    implementation 'org.mongodb:mongodb-driver-sync:4.11.0'
+
     
     //Implementations for junit tests
     testImplementation "org.junit.jupiter:junit-jupiter-api:$junitVersion"
@@ -38,7 +41,10 @@ javafx {
 test {
     useJUnitPlatform()
 }
-
-dependencies {
-  implementation 'org.mongodb:mongodb-driver-sync:4.11.0'
+apply plugin :"java"
+ext{
+    javaMainClass = "main.java.client.Main"
+}
+application {
+    mainClassName = javaMainClass
 }

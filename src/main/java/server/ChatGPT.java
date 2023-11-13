@@ -30,10 +30,9 @@ public class ChatGPT {
     public void main() throws Exception {
 
         // String recipe = generateRecipe(mealType, ingredients);
-        String recipe = generateRecipe(prompt); 
+        String recipe = generateRecipe(prompt);
 
-        saveRecipe("src/main/java/recipe.txt", recipe); 
-
+        saveRecipe("src/main/java/recipe.txt", recipe);
     }
 
     // generates recipe from chatGPT
