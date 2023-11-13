@@ -1,5 +1,6 @@
 package main.java.server;
 
+
 import com.mongodb.internal.logging.LogMessage.Entry;
 import com.sun.glass.ui.SystemClipboard;
 import com.sun.net.httpserver.*;
@@ -72,6 +73,15 @@ public class RequestHandler implements HttpHandler {
         System.out.println(exchange.getRequestHeaders());
         String response = "Invalid POST Request";
         File output = processMultipart(exchange);
+        if(output.getName().contains("ingredients")){
+            //Invoke GPT-3
+            getGPT();
+            recipeHandler handler = new recipeHandler();
+            handler.addToDB();
+            response = "Ingredients received and generated recipe";
+        }else{
+            response = "Meal time received";
+        }
         if(output.getName().contains("ingredients")){
             //Invoke GPT-3
             getGPT();
