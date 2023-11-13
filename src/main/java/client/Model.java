@@ -20,7 +20,8 @@ public class Model {
         try{
             String urlString = "http://localhost:8100/";
             if(recipeName != null){
-                urlString += "/?=" + recipeName;
+                urlString += "?=" + recipeName;
+                urlString = urlString.replaceAll(" ", "%20");
             }
             URL url = new URI(urlString).toURL();
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -59,36 +60,29 @@ public class Model {
                 }
 
                 //Get response from server
-                response = processResponse(connection);
             }else if (method.equals("GET")) {
-                BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                String line;
-                while((line = reader.readLine()) != null){
-                    response += line + "\n";
-                }
-                reader.close();
+                System.out.println(urlString);
             }else if(method.equals("PUT")){
                 OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
                 writer.write(recipeName + "\n" + details);
                 writer.close();
-            }else if(method.equals("DELETE")){
-                OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
-                writer.write(recipeName);
-                writer.close();
             }else{
                 throw new Exception("Not Valid Request Method");
             }
+            response = processResponse(connection);
+            System.out.println("Received: " + response);
+            return response;
         }catch(Exception e){
             System.out.println("Error: " + e);
+            return "Error: " + e;
         }
-        return response;
     }
 
     private String processResponse(HttpURLConnection connection) throws Exception{
         BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-        String line;
+        String line = "";
         String response = "";
-        while((line = reader.readLine()) != null){
+        while ((line = reader.readLine()) != null) {
             response += line + "\n";
         }
         reader.close();

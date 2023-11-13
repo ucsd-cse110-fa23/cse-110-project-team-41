@@ -45,26 +45,28 @@ public class RequestHandler implements HttpHandler {
     }
 
     private String handleGet(HttpExchange exchange) {
-        String response = "Invalid GET Request";
+        String response = "";
         URI uri = exchange.getRequestURI();
         String query = uri.getRawQuery();
         if (query != null) {
             String value = query.substring(query.indexOf("=") + 1);
+            value = value.replaceAll("%20", " ");
             if (value.equals("ALL")) {
                 Iterator<Document> itr = db.getAll();
                 while (itr.hasNext()) {
-                    response += itr.next().getString("title") + "\n";
+                    response += itr.next().getString("title") + "|";
+                    System.out.println("Response is: " + response);
                 }
             } else {
                 recipe out = db.getRecipe(value);
                 if (out == null) {
-                    response = "No recipe found with that name";
+                    response = "";
                 } else {
                     response = out.getDetails();
                 }
             }
         }
-        return response;
+        return (response.equals("")) ? "Invalid GET Request" : response;
     }
 
     private String handlePost(HttpExchange exchange) throws IOException {
@@ -96,6 +98,7 @@ public class RequestHandler implements HttpHandler {
             line = scanner.nextLine();
             details += line + "\n";
         }
+        scanner.close();
         db.editRecipe(title, details);
         response = "Recipe: " + title +  " edited";
         return response;
@@ -103,9 +106,10 @@ public class RequestHandler implements HttpHandler {
 
     private String handleDelete(HttpExchange exchange) {
         String response = "Invalid DELETE Request";
-        InputStream in = exchange.getRequestBody();
-        Scanner scanner = new Scanner(in);
-        String title = scanner.nextLine();
+        URI uri = exchange.getRequestURI();
+        String query = uri.getRawQuery();
+        String title = query.substring(query.indexOf("=") + 1);
+        title = title.replaceAll("%20", " ");
         db.deleteRecipe(title);
         response = "Recipe: " + title + " deleted";
         return response;

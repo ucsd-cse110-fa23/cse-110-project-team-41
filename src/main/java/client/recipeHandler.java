@@ -41,26 +41,26 @@ public class recipeHandler {
         }
     }
 
-    public VBox getRecipeElements(Stage primaryStage) {
-        this.getRecipesFromDB();
-        // ArrayList<HBox> uiElements = new ArrayList<>();
-        VBox uiElements = new VBox();
-        for (recipe r : allRecipes) {
-            // Button rec = new Button(r.getName() + ": " + r.getDetails());
-            Button rec = new Button(r.getName());
-            rec.setStyle("-fx-background-color: #00000000; ");
-            rec.setMaxHeight(10);
-            // rec.setMinHeight(10);
-            rec.setMaxWidth(uiElements.getMaxWidth());
-            rec.setOnAction(e -> {
-                detailedRecipeScreen dsr = new detailedRecipeScreen(primaryStage, r);
-                primaryStage.setScene(dsr.getScene());
-            });
-            HBox hb = new HBox(rec);
-            hb.setAlignment(Pos.CENTER_LEFT);
-            uiElements.getChildren().add(hb);
-        }
-        return uiElements;
-    }
+    // public VBox getRecipeElements(Stage primaryStage) {
+    //     this.getRecipesFromDB();
+    //     // ArrayList<HBox> uiElements = new ArrayList<>();
+    //     VBox uiElements = new VBox();
+    //     for (recipe r : allRecipes) {
+    //         // Button rec = new Button(r.getName() + ": " + r.getDetails());
+    //         Button rec = new Button(r.getName());
+    //         rec.setStyle("-fx-background-color: #00000000; ");
+    //         rec.setMaxHeight(10);
+    //         // rec.setMinHeight(10);
+    //         rec.setMaxWidth(uiElements.getMaxWidth());
+    //         rec.setOnAction(e -> {
+    //             detailedRecipeScreen dsr = new detailedRecipeScreen(primaryStage, r);
+    //             primaryStage.setScene(dsr.getScene());
+    //         });
+    //         HBox hb = new HBox(rec);
+    //         hb.setAlignment(Pos.CENTER_LEFT);
+    //         uiElements.getChildren().add(hb);
+    //     }
+    //     return uiElements;
+    // }
 
 }

@@ -28,20 +28,22 @@ public class detailedRecipeScreen {
     private ScrollPane detailedRecipe;
     private Stage primaryStage;
     private boolean editing;
-    private recipe rec;
     private Model model;
+    private String name;
+    private String details;
 
-    public detailedRecipeScreen(Stage primaryStage, recipe rec) {
+    public detailedRecipeScreen(Stage primaryStage, String name, String details) {
         StackPane root = new StackPane();
         title = new Label("PantyPal");
-        recNameMsg = new Label(rec.getName());
+        recNameMsg = new Label(name);
         backButton = new Button("Back");
         editButton = new Button("Edit"); 
         deleteButton = new Button("Delete"); 
         this.primaryStage = primaryStage;
         editing = false;
-        this.rec = rec;
         this.model = new Model();
+        this.name = name;
+        this.details = details;
 
         HBox r_buttons = new HBox(editButton, deleteButton); 
         HBox heading = new HBox(backButton, title, r_buttons); 
@@ -52,7 +54,7 @@ public class detailedRecipeScreen {
         subHeading.setAlignment(Pos.TOP_LEFT);
         VBox text = new VBox(heading, subHeading);
         text.setAlignment(Pos.CENTER);
-        this.recLabel = new TextArea(rec.getDetails());
+        this.recLabel = new TextArea(details);
         this.recLabel.setEditable(false);
         // recLabel.setWrapText(true);
         detailedRecipe = new ScrollPane(recLabel);
@@ -78,7 +80,7 @@ public class detailedRecipeScreen {
                 editButton.setText("Edit");
                 backButton.setText("Back");
                 // Disable editing for detailedRecipe and reset text
-                recLabel.setText(rec.getDetails());
+                recLabel.setText(details);
                 recLabel.setEditable(false);
             } else {
                 recipesScreen rs = new recipesScreen(primaryStage);
@@ -86,8 +88,10 @@ public class detailedRecipeScreen {
             }
         }); 
         deleteButton.setOnAction(e -> { 
-            model.performRequest("DELETE", null, null, null, rec.getName(), null);
+            String response = model.performRequest("DELETE", null, null, null, name, null);
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Recipe deleted!");
+            alert.showAndWait();
+            System.out.println(response);
             //Go Back to recipesScreen
             recipesScreen rs = new recipesScreen(primaryStage);
             primaryStage.setScene(rs.getScene());
@@ -104,12 +108,8 @@ public class detailedRecipeScreen {
                 editing = false;
                 editButton.setText("Edit");
                 backButton.setText("Back");
-                // Disable editing for detailedRecipe and reset text
                 recLabel.setEditable(false);
-                // TODO: Save changes to recipe in DB
-
-                database dbOBJ = new database();
-                dbOBJ.editRecipe(rec.getName(), recLabel.getText());
+                model.performRequest("PUT", null, null, null, name, recLabel.getText());
             }
         });
     }
