@@ -68,11 +68,11 @@ goto fail
 :execute
 @rem Setup the command line
 
-set CLASSPATH=%APP_HOME%\lib\cse-110-project-team-41-1.0-SNAPSHOT.jar;%APP_HOME%\lib\json-20090211.jar;%APP_HOME%\lib\junit-jupiter-params-5.8.1.jar;%APP_HOME%\lib\junit-jupiter-engine-5.8.1.jar;%APP_HOME%\lib\junit-jupiter-api-5.8.1.jar;%APP_HOME%\lib\junit-platform-engine-1.8.1.jar;%APP_HOME%\lib\junit-platform-commons-1.8.1.jar;%APP_HOME%\lib\junit-jupiter-5.8.1.jar;%APP_HOME%\lib\javafx-fxml-21.0.1-mac-aarch64.jar;%APP_HOME%\lib\javafx-controls-21.0.1-mac-aarch64.jar;%APP_HOME%\lib\javafx-graphics-21.0.1-mac-aarch64.jar;%APP_HOME%\lib\opentest4j-1.2.0.jar;%APP_HOME%\lib\javafx-base-21.0.1-mac-aarch64.jar
+set CLASSPATH=%APP_HOME%\lib\cse-110-project-team-41-1.0-SNAPSHOT.jar;%APP_HOME%\lib\json-20090211.jar;%APP_HOME%\lib\junit-jupiter-params-5.8.1.jar;%APP_HOME%\lib\junit-jupiter-engine-5.8.1.jar;%APP_HOME%\lib\junit-jupiter-api-5.8.1.jar;%APP_HOME%\lib\junit-platform-engine-1.8.1.jar;%APP_HOME%\lib\junit-platform-commons-1.8.1.jar;%APP_HOME%\lib\junit-jupiter-5.8.1.jar;%APP_HOME%\lib\mongodb-driver-sync-4.11.0.jar;%APP_HOME%\lib\mongodb-driver-core-4.11.0.jar;%APP_HOME%\lib\bson-record-codec-4.11.0.jar;%APP_HOME%\lib\bson-4.11.0.jar;%APP_HOME%\lib\javafx-fxml-21.0.1-mac-aarch64.jar;%APP_HOME%\lib\javafx-controls-21.0.1-mac-aarch64.jar;%APP_HOME%\lib\javafx-graphics-21.0.1-mac-aarch64.jar;%APP_HOME%\lib\opentest4j-1.2.0.jar;%APP_HOME%\lib\javafx-base-21.0.1-mac-aarch64.jar
 
 
 @rem Execute cse-110-project-team-41
-"%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %CSE_110_PROJECT_TEAM_41_OPTS%  -classpath "%CLASSPATH%"  %*
+"%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %CSE_110_PROJECT_TEAM_41_OPTS%  -classpath "%CLASSPATH%" main.java.client.Main %*
 
 :end
 @rem End local scope for the variables with windows NT shell

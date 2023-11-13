@@ -16,6 +16,11 @@ sourceSets {
             srcDirs = ['src']
         }
     }
+    test{
+        java{
+            srcDirs = ['src']
+        }
+    }
 }
 dependencies {
     def junitVersion = '5.8.1'
@@ -24,6 +29,9 @@ dependencies {
     implementation 'org.json:json:20090211'
 
     implementation "org.junit.jupiter:junit-jupiter:$junitVersion"
+
+    implementation 'org.mongodb:bson:4.11.0'
+    implementation 'org.mongodb:mongodb-driver-sync:4.11.0'
 
     
     //Implementations for junit tests
@@ -37,4 +45,11 @@ javafx {
 }
 test {
     useJUnitPlatform()
+}
+apply plugin :"java"
+ext{
+    javaMainClass = "main.java.client.Main"
+}
+application {
+    mainClassName = javaMainClass
 }

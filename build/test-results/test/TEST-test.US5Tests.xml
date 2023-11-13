@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="test.US5Tests" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-11-13T07:25:44" hostname="Samuels-MacBook-Air-3.local" time="2.325">
+  <properties/>
+  <testcase name="testDeleteDB()" classname="test.US5Tests" time="2.325"/>
+  <system-out><![CDATA[Deleted Recipe2
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
