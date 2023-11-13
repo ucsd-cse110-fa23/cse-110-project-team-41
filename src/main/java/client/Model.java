@@ -22,6 +22,7 @@ public class Model {
             if(recipeName != null){
                 urlString += "?=" + recipeName;
                 urlString = urlString.replaceAll(" ", "%20");
+                System.out.println("Method : " + method + "\nURL: " + urlString);
             }
             URL url = new URI(urlString).toURL();
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();

@@ -88,6 +88,7 @@ public class detailedRecipeScreen {
             }
         }); 
         deleteButton.setOnAction(e -> { 
+            System.out.println("Deleting: " + name);
             String response = model.performRequest("DELETE", null, null, null, name, null);
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Recipe deleted!");
             alert.showAndWait();

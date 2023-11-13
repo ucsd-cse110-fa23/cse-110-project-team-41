@@ -4,8 +4,6 @@ import com.mongodb.internal.logging.LogMessage.Entry;
 import com.sun.glass.ui.SystemClipboard;
 import com.sun.net.httpserver.*;
 
-import main.java.client.recipeHandler;
-
 import java.io.*;
 import java.net.*;
 import java.util.*;
@@ -110,8 +108,12 @@ public class RequestHandler implements HttpHandler {
         String query = uri.getRawQuery();
         String title = query.substring(query.indexOf("=") + 1);
         title = title.replaceAll("%20", " ");
-        db.deleteRecipe(title);
-        response = "Recipe: " + title + " deleted";
+        boolean success = db.deleteRecipe(title);
+        if (success) {
+            response = "Recipe: " + title + " deleted";
+        }else{
+            response = "Recipe: " + title + " not found";
+        }
         return response;
     }
 

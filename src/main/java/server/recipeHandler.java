@@ -1,4 +1,4 @@
-package main.java.client;
+package main.java.server;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -14,8 +14,6 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import main.java.server.database;
-import main.java.server.recipe;
 
 public class recipeHandler {
     private ArrayList<recipe> allRecipes;
