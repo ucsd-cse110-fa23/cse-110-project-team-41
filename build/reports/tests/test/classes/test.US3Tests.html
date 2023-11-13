@@ -3,17 +3,17 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <meta http-equiv="x-ua-compatible" content="IE=edge"/>
-<title>Test results - GenerateRecipeTest</title>
+<title>Test results - US3Tests</title>
 <link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
 <link href="../css/style.css" rel="stylesheet" type="text/css"/>
 <script src="../js/report.js" type="text/javascript"></script>
 </head>
 <body>
 <div id="content">
-<h1>GenerateRecipeTest</h1>
+<h1>US3Tests</h1>
 <div class="breadcrumbs">
 <a href="../index.html">all</a> &gt; 
-<a href="../packages/test.html">test</a> &gt; GenerateRecipeTest</div>
+<a href="../packages/test.html">test</a> &gt; US3Tests</div>
 <div id="summary">
 <table>
 <tr>
@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.541s</div>
+<div class="counter">8.382s</div>
 <p>duration</p>
 </div>
 </td>
@@ -66,6 +66,9 @@
 <li>
 <a href="#tab1">Standard output</a>
 </li>
+<li>
+<a href="#tab2">Standard error</a>
+</li>
 </ul>
 <div id="tab0" class="tab">
 <h2>Tests</h2>
@@ -78,13 +81,13 @@
 </tr>
 </thead>
 <tr>
-<td class="success">testGenerateRecipe()</td>
-<td class="success">0.006s</td>
+<td class="success">testAddRecipes()</td>
+<td class="success">7.253s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
-<td class="success">testWhisperTask2()</td>
-<td class="success">0.535s</td>
+<td class="success">testRecipesCount()</td>
+<td class="success">1.129s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -92,8 +95,17 @@
 <div id="tab1" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>Error Result: {  &quot;error&quot;: {    &quot;message&quot;: &quot;Invalid file format. Supported formats: ['flac', 'm4a', 'mp3', 'mp4', 'mpeg', 'mpga', 'oga', 'ogg', 'wav', 'webm']&quot;,    &quot;type&quot;: &quot;invalid_request_error&quot;,    &quot;param&quot;: null,    &quot;code&quot;: null  }}
-Error Result: {  &quot;error&quot;: {    &quot;message&quot;: &quot;Invalid file format. Supported formats: ['flac', 'm4a', 'mp3', 'mp4', 'mpeg', 'mpga', 'oga', 'ogg', 'wav', 'webm']&quot;,    &quot;type&quot;: &quot;invalid_request_error&quot;,    &quot;param&quot;: null,    &quot;code&quot;: null  }}
+<pre>data added to mongoDB
+data added to mongoDB
+data added to mongoDB
+</pre>
+</span>
+</div>
+<div id="tab2" class="tab">
+<h2>Standard error</h2>
+<span class="code">
+<pre>Nov 12, 2023 11:01:44 PM com.mongodb.internal.diagnostics.logging.Loggers shouldUseSLF4J
+WARNING: SLF4J not found on the classpath.  Logging is disabled for the 'org.mongodb.driver' component
 </pre>
 </span>
 </div>
