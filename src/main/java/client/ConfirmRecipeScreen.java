@@ -23,11 +23,9 @@ public class ConfirmRecipeScreen {
     private Label recNameMsg;
     private TextArea recLabel;
     private Button saveButton;
-    private Button cancelButton; 
     private Button deleteButton; 
     private ScrollPane detailedRecipe;
     private Stage primaryStage;
-    private boolean editing;
     private Model model;
     private String name;
     private String details;
@@ -36,17 +34,15 @@ public class ConfirmRecipeScreen {
         StackPane root = new StackPane();
         title = new Label("PantyPal");
         recNameMsg = new Label(name);
-        cancelButton = new Button("Back");
-        saveButton = new Button("Edit"); 
+        saveButton = new Button("Save"); 
         deleteButton = new Button("Delete"); 
         this.primaryStage = primaryStage;
-        editing = false;
         this.model = new Model();
         this.name = name;
         this.details = details;
 
         HBox r_buttons = new HBox(saveButton, deleteButton); 
-        HBox heading = new HBox(cancelButton, title, r_buttons); 
+        HBox heading = new HBox(title, r_buttons); 
         heading.setAlignment(Pos.CENTER);
         heading.setSpacing(80);
 
@@ -74,19 +70,6 @@ public class ConfirmRecipeScreen {
     }
 
     private void addListeners() {
-        cancelButton.setOnAction(e -> {
-            if (editing) {
-                editing = false;
-                editButton.setText("Edit");
-                backButton.setText("Back");
-                // Disable editing for detailedRecipe and reset text
-                recLabel.setText(details);
-                recLabel.setEditable(false);
-            } else {
-                recipesScreen rs = new recipesScreen(primaryStage);
-                primaryStage.setScene(rs.getScene());
-            }
-        }); 
         deleteButton.setOnAction(e -> { 
             System.out.println("Deleting: " + name);
             String response = model.performRequest("DELETE", null, null, null, name, null);
@@ -98,20 +81,11 @@ public class ConfirmRecipeScreen {
             primaryStage.setScene(rs.getScene());
         });  
 
-        editButton.setOnAction(e -> {
-            if (!editing) {
-                editing = true; 
-                editButton.setText("Save");
-                backButton.setText("Cancel");
-                // Enable editing for detailedRecipe
-                recLabel.setEditable(true);
-            } else {
-                editing = false;
-                editButton.setText("Edit");
-                backButton.setText("Back");
-                recLabel.setEditable(false);
-                model.performRequest("PUT", null, null, null, name, recLabel.getText());
-            }
+        saveButton.setOnAction(e -> {
+            Alert saved = new Alert(Alert.AlertType.INFORMATION, "Recipe saved!");
+            saved.showAndWait();
+            recipesScreen rs = new recipesScreen(primaryStage);
+            primaryStage.setScene(rs.getScene());
         });
     }
 }

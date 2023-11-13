@@ -75,19 +75,10 @@ public class RequestHandler implements HttpHandler {
         File output = processMultipart(exchange);
         if(output.getName().contains("ingredients")){
             //Invoke GPT-3
-            getGPT();
+            response = getGPT();
             recipeHandler handler = new recipeHandler();
             handler.addToDB();
-            response = "Ingredients received and generated recipe";
-        }else{
-            response = "Meal time received";
-        }
-        if(output.getName().contains("ingredients")){
-            //Invoke GPT-3
-            getGPT();
-            recipeHandler handler = new recipeHandler();
-            handler.addToDB();
-            response = "Ingredients received and generated recipe";
+            //Return recipe name
         }else{
             response = "Meal time received";
         }
@@ -210,7 +201,7 @@ public class RequestHandler implements HttpHandler {
                 "Reached end of stream while reading the current line!");
     }
 
-    private void getGPT(){
+    private String getGPT(){
         File meal = new File("src/main/java/server/mealTime.wav");
         File ingredients = new File("src/main/java/server/ingredients.wav");
         Whisper inputMeal = new Whisper();
@@ -237,5 +228,7 @@ public class RequestHandler implements HttpHandler {
         } catch (Exception e1) {
             e1.printStackTrace();
         }
+        List<String> lines = db.processFile("src/main/java/recipe.txt");
+        return lines.get(0);
     }
 }
