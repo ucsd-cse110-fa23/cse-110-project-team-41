@@ -25,11 +25,11 @@ public class homeScreen {
         savedRecipesButton.setOnAction(e -> {
             recipesScreen rs = new recipesScreen(primaryStage);
             primaryStage.setScene(rs.getScene());
-        });
+        }); 
         HBox navButtons = new HBox(savedRecipesButton, newRecipeButton);
         navButtons.setSpacing(20);
         navButtons.setAlignment(Pos.CENTER);
-        title = new Label("PantyPal");
+        title = new Label("PantyPal"); 
         welcomeMsg = new Label("Welcome to Pantry Pal!");
         VBox text = new VBox(title, welcomeMsg);
         text.setAlignment(Pos.CENTER);
