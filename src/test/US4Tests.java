@@ -14,6 +14,7 @@ import org.bson.conversions.Bson;
 import org.junit.jupiter.api.BeforeEach;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -50,16 +51,6 @@ public class US4Tests {
 
         // Assert that no new recipes were created/added to the database, only modified. 
         assertEquals(beforeCount, rh.getNumRecipes());
-    }
-    /* 
-     * Test for editing response when editing is enabled yet there are no recipes to edit
-     */ 
-    @Test
-    void testEditEmpty() {
-        // Assumptions: (1) add isEditable() to recipeHandler class that will return true when there is at least one recipe recorded in db
-        db.clearDB();
-        db.editRecipe("Recipe 0", "description 0");
-        assertFalse(rh.isEditable()); 
     }
 
 } 

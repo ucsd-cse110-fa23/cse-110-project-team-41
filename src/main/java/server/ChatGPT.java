@@ -78,6 +78,7 @@ public class ChatGPT {
     // saves recipe to a file
     private static void saveRecipe(String fp, String recipe) {
         try {
+            recipe = recipe.trim();
             FileWriter fw = new FileWriter(fp);
             fw.write(recipe);
             fw.close();

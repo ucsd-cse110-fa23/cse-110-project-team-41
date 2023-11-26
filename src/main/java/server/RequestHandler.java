@@ -1,5 +1,6 @@
 package main.java.server;
 
+
 import com.mongodb.internal.logging.LogMessage.Entry;
 import com.sun.glass.ui.SystemClipboard;
 import com.sun.net.httpserver.*;
@@ -20,7 +21,7 @@ public class RequestHandler implements HttpHandler {
 
     public void handle(HttpExchange exchange) throws IOException {
         String response = "Request received";
-        String method = exchange.getRequestMethod(); 
+        String method = exchange.getRequestMethod();
         try {
             if (method.equals("GET")) {
                 response = handleGet(exchange);
@@ -74,10 +75,10 @@ public class RequestHandler implements HttpHandler {
         File output = processMultipart(exchange);
         if(output.getName().contains("ingredients")){
             //Invoke GPT-3
-            getGPT();
+            response = getGPT();
             recipeHandler handler = new recipeHandler();
             handler.addToDB();
-            response = "Ingredients received and generated recipe";
+            //Return recipe name
         }else{
             response = "Meal time received";
         }
@@ -102,8 +103,8 @@ public class RequestHandler implements HttpHandler {
         return response;
     }
 
-    private String handleDelete(HttpExchange exchange) { 
-        String response = "Invalid DELETE Request"; 
+    private String handleDelete(HttpExchange exchange) {
+        String response = "Invalid DELETE Request";
         URI uri = exchange.getRequestURI();
         String query = uri.getRawQuery();
         String title = query.substring(query.indexOf("=") + 1);
@@ -200,7 +201,7 @@ public class RequestHandler implements HttpHandler {
                 "Reached end of stream while reading the current line!");
     }
 
-    private void getGPT(){
+    private String getGPT(){
         File meal = new File("src/main/java/server/mealTime.wav");
         File ingredients = new File("src/main/java/server/ingredients.wav");
         Whisper inputMeal = new Whisper();
@@ -227,5 +228,7 @@ public class RequestHandler implements HttpHandler {
         } catch (Exception e1) {
             e1.printStackTrace();
         }
+        List<String> lines = db.processFile("src/main/java/recipe.txt");
+        return lines.get(0);
     }
 }

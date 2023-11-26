@@ -152,7 +152,9 @@ public class AddRecipe {
                 String mealR = model.performRequest("POST", meal, null, "mealTime", null, null);
                 String ingR = model.performRequest("POST", null, ingredients, "ingredients", null, null);
                 System.out.println(mealR);
-                System.out.println(ingR);
+                String response = model.performRequest("GET", null, null, null, ingR.trim(), null);
+                ConfirmRecipeScreen crs = new ConfirmRecipeScreen(parent, ingR, response.substring(response.indexOf("\n")+1));
+                parent.setScene(crs.getScene());
                 
             }
         });
