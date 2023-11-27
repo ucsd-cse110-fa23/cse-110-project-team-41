@@ -82,6 +82,46 @@ public class Model {
         }
     }
 
+    public String performLoginRequest(String method, String username, String password){
+        String response = "";
+        try{
+            String urlString = "http://localhost:8100/";
+            if(username != null){
+                urlString += "?=" + username;
+                urlString = urlString.replaceAll(" ", "%20");
+                System.out.println("Method : " + method + "\nURL: " + urlString);
+            }
+            URL url = new URI(urlString).toURL();
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection(); 
+            connection.setRequestMethod(method); 
+            connection.setDoOutput(true);
+            if(method.equals("POST")){
+                OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
+                writer.write(username + "\n" + password);
+                writer.close();
+            }else if (method.equals("GET")) {
+                System.out.println(urlString);
+            }else if(method.equals("PUT")){
+                OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
+                writer.write(username + "\n" + password);
+                writer.close();
+            } else if (method.equals("DELETE")){
+                OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
+                writer.write(username + "\n" + password); 
+                writer.close(); 
+            }
+            else{
+                throw new Exception("Not Valid Request Method");
+            }
+            response = processResponse(connection);
+            System.out.println("Received: " + response);
+            return response;
+        }catch(Exception e){
+            System.out.println("Error: " + e);
+            return "Error: " + e;
+        }
+    }
+
     private String processResponse(HttpURLConnection connection) throws Exception{
         BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
         String line = "";

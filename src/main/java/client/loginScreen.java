@@ -2,9 +2,12 @@ package main.java.client;
 
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
@@ -28,14 +31,6 @@ public class loginScreen {
         primaryStage.setTitle("PantryPal"); 
         loginButton = new Button("Log In"); 
         signupButton = new Button("Sign Up"); 
-        loginButton.setOnAction(e -> {
-            // TODO: check credentials 
-            homeScreen ls = new homeScreen(primaryStage); 
-            primaryStage.setScene(ls.getScene()); 
-        }); 
-        signupButton.setOnAction(e -> {
-            // TODO: 
-        }); 
         HBox buttons = new HBox(loginButton,signupButton); 
         buttons.setAlignment(Pos.CENTER); 
         buttons.setSpacing(100); 
@@ -51,6 +46,24 @@ public class loginScreen {
         StackPane root = new StackPane(); 
         root.getChildren().addAll(logscreen);
         this.scene = new Scene(root, 400, 300); 
+    }
+
+    public void addListeners() {
+        loginButton.setOnAction(e -> {
+            String username = user.getText();
+            String password = pass.getText();
+            
+            //Check if username and password are filled in
+            if (username.equals("") || password.equals("")) {
+                Alert alert = new Alert(AlertType.ERROR, "Please enter a username and password", ButtonType.OK);
+                alert.show();
+            }
+        });
+
+        signupButton.setOnAction(e -> {
+
+        });
+
     }
 
     public Scene getScene() {
