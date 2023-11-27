@@ -15,11 +15,14 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 //Going to remove once mvc is setup
@@ -39,11 +42,16 @@ public class AddRecipe {
     private Button submitButton;
     private Button recordMealButton;
     private Button recordIngredientButton;
+    private Button refreshButton;
     private Button stopButton;
     private AudioFormat audioFormat;
     private TargetDataLine targetDataLine;
     private Label recordingLabel;
+    private Label recNameMsg;
+    private TextArea recLabel;
+    private HBox recipeName;
     private Model model;
+    private VBox elements;
 
     /*
      * Constructor for recipe scene that sets UI element info
@@ -56,6 +64,7 @@ public class AddRecipe {
         BorderPane root = new BorderPane();
         backButton = new Button("Back");
         submitButton = new Button("Submit");
+        refreshButton = new Button("Refresh Recipe");
         recordIngredientButton = new Button("Record Ingredients");
         recordMealButton = new Button("Record Meal Type");
         recordingLabel = new Label();
@@ -64,7 +73,7 @@ public class AddRecipe {
         addListeners();
 
         // elements stacks all the hbox on top of each other
-        VBox elements = new VBox();
+        elements = new VBox();
         HBox header = new HBox(backButton, submitButton);
         HBox recordButtons = new HBox(recordMealButton, recordIngredientButton);
         HBox recordingSign = new HBox(recordingLabel);
@@ -149,11 +158,12 @@ public class AddRecipe {
             } else if (!ingredients.exists()) {
                 fileError("ingredients");
             } else {
-                String mealR = model.performRequest("POST", meal, null, "mealTime", null, null);
+                model.performRequest("POST", meal, null, "mealTime", null, null);
                 String ingR = model.performRequest("POST", null, ingredients, "ingredients", null, null);
-                System.out.println(mealR);
-                System.out.println(ingR);
-                
+                String response = model.performRequest("GET", null, null, null, ingR.trim(), null);
+                String details = response.substring(response.indexOf("\n")+1);
+                ConfirmRecipeScreen crs = new ConfirmRecipeScreen(parent, ingR, details, meal, ingredients);
+                parent.setScene(crs.getScene());
             }
         });
         backButton.setOnAction(e -> {
