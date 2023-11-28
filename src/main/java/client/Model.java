@@ -85,9 +85,9 @@ public class Model {
     public String performLoginRequest(String method, String username, String password){
         String response = "";
         try{
-            String urlString = "http://localhost:8100/";
+            String urlString = "http://localhost:8100/login/";
             if(username != null){
-                urlString += "?=" + username;
+                urlString += "?=" + username + "%20" + password;
                 urlString = urlString.replaceAll(" ", "%20");
                 System.out.println("Method : " + method + "\nURL: " + urlString);
             }

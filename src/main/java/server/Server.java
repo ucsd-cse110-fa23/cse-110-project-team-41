@@ -25,6 +25,7 @@ public class Server {
         // TODO: set the executor
         // TODO: start the server
         server.createContext("/", new RequestHandler(db));
+        server.createContext("/login/", new LoginHandler(db));
         server.setExecutor(threadPoolExecutor);
         server.start();
 

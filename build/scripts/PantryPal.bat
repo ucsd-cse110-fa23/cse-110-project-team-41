@@ -72,7 +72,7 @@ set CLASSPATH=%APP_HOME%\lib\PantryPal-1.0-SNAPSHOT.jar;%APP_HOME%\lib\json-2009
 
 
 @rem Execute PantryPal
-"%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %PANTRY_PAL_OPTS%  -classpath "%CLASSPATH%" main.java.Main %*
+"%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %PANTRY_PAL_OPTS%  -classpath "%CLASSPATH%" main.java.client.Main %*
 
 :end
 @rem End local scope for the variables with windows NT shell

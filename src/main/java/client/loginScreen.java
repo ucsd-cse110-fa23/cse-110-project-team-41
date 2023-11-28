@@ -5,6 +5,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
@@ -14,16 +15,19 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class loginScreen { 
+public class LoginScreen{ 
     private Button signupButton; 
     private Button loginButton; 
+    private CheckBox rememberMe;
     private Label loginMsg; 
     private TextField user; 
     private TextField pass; 
     private Label title; 
     private Scene scene;
+    private Stage primaryStage;
 
-    public loginScreen(Stage primaryStage) { 
+    public LoginScreen(Stage primaryStage) { 
+        this.primaryStage = primaryStage;
         user = new TextField(); 
         user.setPromptText("Username: "); 
         pass = new TextField(); 
@@ -31,7 +35,8 @@ public class loginScreen {
         primaryStage.setTitle("PantryPal"); 
         loginButton = new Button("Log In"); 
         signupButton = new Button("Sign Up"); 
-        HBox buttons = new HBox(loginButton,signupButton); 
+        rememberMe = new CheckBox("Remember Me");
+        HBox buttons = new HBox(loginButton,signupButton,rememberMe); 
         buttons.setAlignment(Pos.CENTER); 
         buttons.setSpacing(100); 
         loginMsg = new Label("Login Information: "); 
@@ -46,6 +51,7 @@ public class loginScreen {
         StackPane root = new StackPane(); 
         root.getChildren().addAll(logscreen);
         this.scene = new Scene(root, 400, 300); 
+        addListeners();
     }
 
     public void addListeners() {
@@ -57,11 +63,26 @@ public class loginScreen {
             if (username.equals("") || password.equals("")) {
                 Alert alert = new Alert(AlertType.ERROR, "Please enter a username and password", ButtonType.OK);
                 alert.show();
+            }else{
+                Model model = new Model();
+                String response = model.performLoginRequest("GET", username, password);
+                if (response.contains("Invalid")) {
+                    Alert alert = new Alert(AlertType.ERROR, "Invalid Username or Password", ButtonType.OK);
+                    alert.show();
+                    
+                }else{
+                    //Open home screen
+                    homeScreen hs = new homeScreen(primaryStage);
+                    Stage stage = (Stage) loginButton.getScene().getWindow();
+                    stage.setScene(hs.getScene());
+                }
             }
         });
 
         signupButton.setOnAction(e -> {
-
+            SignUpScreen ss = new SignUpScreen(primaryStage);
+            Stage stage = (Stage) signupButton.getScene().getWindow();
+            stage.setScene(ss.getScene());
         });
 
     }

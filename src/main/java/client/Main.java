@@ -18,7 +18,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) { 
         checkServer(); 
-        loginScreen ls = new loginScreen(primaryStage); 
+        LoginScreen ls = new LoginScreen(primaryStage); 
         primaryStage.setScene(ls.getScene()); 
         primaryStage.show();
     }
@@ -29,16 +29,18 @@ public class Main extends Application {
     private void checkServer(){ 
         Model model = new Model(); 
         String response = model.performRequest("GET", null, null, null, null, null); 
-        while (response.contains("java.net.ConnectException")){ 
+        if(response.contains("java.net.ConnectException")){ 
             serverError(); 
             response = model.performRequest("GET", null, null, null, null, null); 
         } 
     } 
     private void serverError() { 
+        //Stop program is server isn't running
         Alert alert = new Alert(AlertType.ERROR);
         alert.setTitle("Missing Server"); 
         alert.setHeaderText("Server Not Active!"); 
         alert.setContentText("Please Load Up Server."); 
         alert.showAndWait(); 
+        System.exit(0);
     } 
 }
