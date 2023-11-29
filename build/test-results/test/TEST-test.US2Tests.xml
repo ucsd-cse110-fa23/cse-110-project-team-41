@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="test.US2Tests" tests="3" skipped="0" failures="0" errors="0" timestamp="2023-11-13T07:25:32" hostname="Samuels-MacBook-Air-3.local" time="0.003">
+<testsuite name="test.US2Tests" tests="3" skipped="0" failures="0" errors="0" timestamp="2023-11-28T09:16:13" hostname="DESKTOP-FSQ252S" time="0.002">
   <properties/>
   <testcase name="testFileReading()" classname="test.US2Tests" time="0.001"/>
   <testcase name="testRecipeFileExists()" classname="test.US2Tests" time="0.0"/>

@@ -186,4 +186,38 @@ public class database {
         } 
         return false; 
     }
+
+    public boolean validUser(String username, String password){
+        try (MongoClient mongoClient = MongoClients.create(uri)) {
+            MongoDatabase database = mongoClient.getDatabase("Users");
+            MongoCollection<Document> collection = database.getCollection("users");
+            Document doc = collection.find(eq("username", username)).first();
+            if(doc != null){
+                if(doc.getString("password").equals(password)){
+                    return true;
+                }
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return false;
+    }
+
+    public boolean addUser(String username, String password){
+        try (MongoClient mongoClient = MongoClients.create(uri)) {
+            MongoDatabase database = mongoClient.getDatabase("Users");
+            MongoCollection<Document> collection = database.getCollection("users");
+            Document doc = collection.find(eq("username", username)).first();
+            if(doc == null){
+                Document newUser = new Document();
+                newUser.append("username", username);
+                newUser.append("password", password);
+                collection.insertOne(newUser);
+                return true;
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return false;
+    }
 }

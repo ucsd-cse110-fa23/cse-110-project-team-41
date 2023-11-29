@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="test.GenerateRecipeTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2023-11-13T07:25:31" hostname="Samuels-MacBook-Air-3.local" time="0.613">
+<testsuite name="test.GenerateRecipeTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2023-11-28T09:16:12" hostname="DESKTOP-FSQ252S" time="0.831">
   <properties/>
-  <testcase name="testWhisperTask2()" classname="test.GenerateRecipeTest" time="0.604"/>
-  <testcase name="testGenerateRecipe()" classname="test.GenerateRecipeTest" time="0.007"/>
+  <testcase name="testWhisperTask2()" classname="test.GenerateRecipeTest" time="0.827"/>
+  <testcase name="testGenerateRecipe()" classname="test.GenerateRecipeTest" time="0.003"/>
   <system-out><![CDATA[Error Result: {  "error": {    "message": "Invalid file format. Supported formats: ['flac', 'm4a', 'mp3', 'mp4', 'mpeg', 'mpga', 'oga', 'ogg', 'wav', 'webm']",    "type": "invalid_request_error",    "param": null,    "code": null  }}
 Error Result: {  "error": {    "message": "Invalid file format. Supported formats: ['flac', 'm4a', 'mp3', 'mp4', 'mpeg', 'mpga', 'oga', 'ogg', 'wav', 'webm']",    "type": "invalid_request_error",    "param": null,    "code": null  }}
 ]]></system-out>

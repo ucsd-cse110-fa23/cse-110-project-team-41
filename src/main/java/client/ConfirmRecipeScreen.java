@@ -1,5 +1,7 @@
 package main.java.client;
 
+import java.io.File;
+
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -24,24 +26,30 @@ public class ConfirmRecipeScreen {
     private TextArea recLabel;
     private Button saveButton;
     private Button deleteButton; 
+    private Button refreshButton;
     private ScrollPane detailedRecipe;
     private Stage primaryStage;
     private Model model;
     private String name;
     private String details;
+    private File meal;
+    private File ingredients;
 
-    public ConfirmRecipeScreen(Stage primaryStage, String name, String details) {
+    public ConfirmRecipeScreen(Stage primaryStage, String name, String details, File meal, File ingredients) {
         StackPane root = new StackPane();
         title = new Label("PantyPal");
         recNameMsg = new Label(name);
         saveButton = new Button("Save"); 
         deleteButton = new Button("Delete"); 
+        refreshButton = new Button("Refresh Recipe"); 
         this.primaryStage = primaryStage;
         this.model = new Model();
         this.name = name;
         this.details = details;
+        this.meal = meal;
+        this.ingredients = ingredients;
 
-        HBox r_buttons = new HBox(saveButton, deleteButton); 
+        HBox r_buttons = new HBox(saveButton, deleteButton, refreshButton); 
         HBox heading = new HBox(title, r_buttons); 
         heading.setAlignment(Pos.CENTER);
         heading.setSpacing(80);
@@ -87,5 +95,23 @@ public class ConfirmRecipeScreen {
             recipesScreen rs = new recipesScreen(primaryStage);
             primaryStage.setScene(rs.getScene());
         });
+        refreshButton.setOnAction(e -> {
+            refreshRecipe(meal, ingredients);
+        });
+
     }
+    public void refreshRecipe(File meal, File ingredients) {
+        model.performRequest("DELETE", null, null, "mealTime", name, null);
+        model.performRequest("POST", meal, null, "mealTime", null, null);
+        
+        String ingR = model.performRequest("POST", null, ingredients, "ingredients", null, null);
+        String response = model.performRequest("GET", null, null, null, ingR.trim(), null);
+        String det = response.substring(response.indexOf("\n")+1);
+        
+        recLabel.setText(det);
+        recNameMsg.setText(ingR);
+        name = ingR;
+        details = det;
+    }
+
 }
