@@ -100,16 +100,18 @@ public class ConfirmRecipeScreen {
         });
 
     }
-        public void refreshRecipe(File meal, File ingredients) {
-            model.performRequest("DELETE", null, null, "mealTime", name, null);
-            model.performRequest("POST", meal, null, "mealTime", null, null);
-            String ingR = model.performRequest("POST", null, ingredients, "ingredients", null, null);
-            String response = model.performRequest("GET", null, null, null, ingR.trim(), null);
-            String det = response.substring(response.indexOf("\n")+1);
-            recLabel.setText(det);
-            recNameMsg.setText(ingR);
-            name = ingR;
-            details = det;
+    public void refreshRecipe(File meal, File ingredients) {
+        model.performRequest("DELETE", null, null, "mealTime", name, null);
+        model.performRequest("POST", meal, null, "mealTime", null, null);
+        
+        String ingR = model.performRequest("POST", null, ingredients, "ingredients", null, null);
+        String response = model.performRequest("GET", null, null, null, ingR.trim(), null);
+        String det = response.substring(response.indexOf("\n")+1);
+        
+        recLabel.setText(det);
+        recNameMsg.setText(ingR);
+        name = ingR;
+        details = det;
     }
 
 }

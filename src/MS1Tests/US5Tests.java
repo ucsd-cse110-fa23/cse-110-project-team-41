@@ -1,4 +1,4 @@
-package test; 
+package MS1Tests; 
 import main.java.server.*; 
 import main.java.client.*; 
 import org.junit.jupiter.api.Test;
@@ -14,7 +14,6 @@ import org.bson.conversions.Bson;
 import org.junit.jupiter.api.BeforeEach;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -22,35 +21,37 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class US4Tests {
+public class US5Tests {
 
     private recipeHandler rh;
     private database db;
     recipe rec;
+    recipe rec2;
+    recipe rec3;
+    recipe rec4;
 
     @BeforeEach 
     void setUp() {
         rh = new recipeHandler();
         db = new database();
         rec = new recipe("Recipe1", "Description 1");
+        rec2 = new recipe("Recipe2", "Description 2");
+        rec3 = new recipe("Recipe3", "Description 3");
+        rec4 = new recipe("Recipe4", "Description 4");
+        
+
     }
 
     /* 
-     * Test for working functionality when database contains prefilled recipes
+     * Test for deleting a recipe from db
      */
     @Test
-    void testEdit() {
-        // Assumptions: (1) add numRecipes++ to getRecipesFromDB() within while loop in recipeHandler class (2) add private member numRecipes (3) add public getNumRecipes(){return numRecipes;}
-        // rh.getRecipeElements(new Stage()); 
-        int beforeCount = rh.getNumRecipes();
-
-        String recName = rec.getName();
-        String updated = "Updated Description for Recipe1";
-
-        db.editRecipe(recName, updated);
-
-        // Assert that no new recipes were created/added to the database, only modified. 
-        assertEquals(beforeCount, rh.getNumRecipes());
+    void testDeleteDB() {
+        // 4 recipes already exist in the database, delete recipe2
+        db.deleteRecipe("Recipe2");
+        //if a recipe dne in db, attempting to find it will result in a null return value
+        //we now attempt to find the recipe we deleted, but since it should not exist in the db anymore we should get null
+        assertEquals(null,db.getRecipe("Recipe2"));
     }
-
-} 
+    
+}
