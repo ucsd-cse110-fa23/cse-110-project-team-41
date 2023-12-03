@@ -1,5 +1,7 @@
 package main.java.client;
 
+import java.io.File;
+
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -71,6 +73,21 @@ public class LoginScreen{
                     alert.show();
                     
                 }else{
+                    //Check remember me
+                    if (rememberMe.isSelected()) {
+                        //Save username and password
+                        //Save info to local .dat file
+                        File file = new File("src/main/java/client/user.dat");
+                        if (!file.exists()) {
+                            try {
+                                file.createNewFile();
+                            } catch (Exception e1) {
+                                System.out.println("Error: " + e1);
+                            }
+                        }
+                        //Save username and password to file
+                        model.saveUser(username, password);
+                    }
                     //Open home screen
                     homeScreen hs = new homeScreen(primaryStage);
                     Stage stage = (Stage) loginButton.getScene().getWindow();

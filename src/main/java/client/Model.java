@@ -132,4 +132,15 @@ public class Model {
         reader.close();
         return response;
     }
+
+    public void saveUser(String username, String password){
+        try{
+            PrintWriter writer = new PrintWriter("src/main/java/client/user.dat", "UTF-8");
+            writer.println(username);
+            writer.println(password);
+            writer.close();
+        }catch(Exception e){
+            System.out.println("Error: " + e);
+        }
+    }
 }
