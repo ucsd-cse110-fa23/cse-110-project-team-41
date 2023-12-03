@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="test.MS1Tests.US3Tests" tests="2" skipped="0" failures="0" errors="0" timestamp="2023-12-03T08:21:13" hostname="Samuels-MacBook-Air-3.local" time="9.134">
+  <properties/>
+  <testcase name="testAddRecipes()" classname="test.MS1Tests.US3Tests" time="7.898"/>
+  <testcase name="testRecipesCount()" classname="test.MS1Tests.US3Tests" time="1.235"/>
+  <system-out><![CDATA[data added to mongoDB
+data added to mongoDB
+data added to mongoDB
+]]></system-out>
+  <system-err><![CDATA[Dec 03, 2023 12:21:13 AM com.mongodb.internal.diagnostics.logging.Loggers shouldUseSLF4J
+WARNING: SLF4J not found on the classpath.  Logging is disabled for the 'org.mongodb.driver' component
+]]></system-err>
+</testsuite>
