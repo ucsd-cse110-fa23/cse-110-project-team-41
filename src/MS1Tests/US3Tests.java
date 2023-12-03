@@ -1,4 +1,4 @@
-package test; 
+package MS1Tests; 
 import main.java.server.*; 
 import main.java.client.*; 
 import org.junit.jupiter.api.Test;
