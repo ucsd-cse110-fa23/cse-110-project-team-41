@@ -3,9 +3,11 @@ package main.java.server;
 public class recipe {
     private String name;
     private String recDetails;
+    private String mealType;
 
-    public recipe(String recName, String details) {
+    public recipe(String recName, String mealType, String details) {
         this.name = recName;
+        this.mealType = mealType;
         this.recDetails = details;
     }
 
@@ -15,6 +17,10 @@ public class recipe {
 
     public String getDetails() {
         return this.recDetails;
+    }
+
+    public String getMealType() {
+        return this.mealType;
     }
 
     @Override
