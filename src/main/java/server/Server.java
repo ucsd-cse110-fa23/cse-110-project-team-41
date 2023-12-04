@@ -26,6 +26,7 @@ public class Server {
         // TODO: start the server
         server.createContext("/", new RequestHandler(db));
         server.createContext("/login/", new LoginHandler(db));
+        server.createContext("/share/", new ShareHandler(db));
         server.setExecutor(threadPoolExecutor);
         server.start();
 

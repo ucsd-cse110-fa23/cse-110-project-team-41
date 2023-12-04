@@ -1,5 +1,9 @@
 package main.java.client;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+
 import javafx.application.Application;
 import javafx.concurrent.Task;
 import javafx.geometry.Pos;
@@ -7,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -18,9 +23,15 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) { 
         checkServer(); 
-        LoginScreen ls = new LoginScreen(primaryStage); 
-        primaryStage.setScene(ls.getScene()); 
-        primaryStage.show();
+        if (checkRemember()) {
+            homeScreen hs = new homeScreen(primaryStage);
+            primaryStage.setScene(hs.getScene());
+            primaryStage.show();
+        }else{
+            LoginScreen ls = new LoginScreen(primaryStage); 
+            primaryStage.setScene(ls.getScene()); 
+            primaryStage.show();
+        }
     }
 
     public static void main(String[] args) {
@@ -43,4 +54,33 @@ public class Main extends Application {
         alert.showAndWait(); 
         System.exit(0);
     } 
+    private boolean checkRemember(){
+        File file = new File("src/main/java/client/user.dat");
+        if (file.exists()) {
+            //Read file
+            try{
+                FileReader fr = new FileReader(file);
+                BufferedReader br = new BufferedReader(fr);
+                String username = br.readLine();
+                String password = br.readLine();
+                br.close();
+                Model model = new Model();
+                String response = model.performLoginRequest("GET", username, password);
+                if (response.contains("Invalid")) {
+                    Alert alert = new Alert(AlertType.ERROR, "Invalid Username or Password Saved", ButtonType.OK);
+                    alert.show();
+                    return false;
+                }else{
+                    return true;
+                }
+            }catch(Exception e){
+                System.out.println("Error: " + e);
+                Alert alert = new Alert(AlertType.ERROR, "Error Reading Saved Username/Password Data", ButtonType.OK);
+                alert.show();
+                return false;
+            }
+        }else{
+            return false;
+        }
+    }
 }
