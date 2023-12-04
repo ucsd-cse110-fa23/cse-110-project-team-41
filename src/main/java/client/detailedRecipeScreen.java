@@ -8,6 +8,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
@@ -25,6 +27,7 @@ public class detailedRecipeScreen {
     private Button editButton;
     private Button backButton; 
     private Button deleteButton; 
+    private Button shareButton;
     private ScrollPane detailedRecipe;
     private Stage primaryStage;
     private boolean editing;
@@ -39,13 +42,14 @@ public class detailedRecipeScreen {
         backButton = new Button("Back");
         editButton = new Button("Edit"); 
         deleteButton = new Button("Delete"); 
+        shareButton = new Button("Share");
         this.primaryStage = primaryStage;
         editing = false;
         this.model = new Model();
         this.name = name;
         this.details = details;
 
-        HBox r_buttons = new HBox(editButton, deleteButton); 
+        HBox r_buttons = new HBox(shareButton, editButton, deleteButton); 
         HBox heading = new HBox(backButton, title, r_buttons); 
         heading.setAlignment(Pos.CENTER);
         heading.setSpacing(80);
@@ -111,6 +115,21 @@ public class detailedRecipeScreen {
                 backButton.setText("Back");
                 recLabel.setEditable(false);
                 model.performRequest("PUT", null, null, null, name, recLabel.getText());
+            }
+        });
+
+        shareButton.setOnAction(e -> {
+            String link = model.shareRequest(name);
+            if (link.contains("Invalid") || link.contains("Error")) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Failed to share recipe!");
+                alert.showAndWait();
+            }else{
+                Alert alert = new Alert(Alert.AlertType.INFORMATION, "Recipe Link Generated and Copied to Clipboard: \n" + link);
+                Clipboard clipboard = Clipboard.getSystemClipboard();
+                ClipboardContent content = new ClipboardContent();
+                content.putString(link);
+                clipboard.setContent(content);
+                alert.showAndWait();
             }
         });
     }
