@@ -61,20 +61,31 @@ public class database {
         return null;
     }
 
-    private void addRecipeFile(MongoCollection<Document> collection, String fp) {
+    private void addRecipeFile(MongoCollection<Document> collection, String fp ) {
         
             ArrayList<String> lines = (ArrayList<String>) processFile(fp);
             String title = lines.get(0);
             String ingredients = lines.get(1);
             String instructions = lines.get(2);
+
+            imageGenerator recipeImage = new imageGenerator(title);
+            try{
+                recipeImage.main();
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+    
+            String generatedImageURL = recipeImage.getImageURL(); 
+
             Document doc = new Document();
             doc.append("title", title);
             doc.append("ingredients", ingredients);
-            doc.append("instructions", instructions);
+            doc.append("instructions", instructions);           
+            doc.append("imageURL", generatedImageURL);
 
             collection.insertOne(doc);
             System.out.println("data added to mongoDB");
-
+  
     }
 
     public void clearDB() {
@@ -131,12 +142,17 @@ public class database {
             lines.add(title.toString().trim());
             lines.add(ingredients.toString().trim());
             lines.add(instructions.toString().trim());
+
+            
+
         } catch (IOException e) {
             System.out.println(e);
             e.printStackTrace();
         }
+        
         return lines;
     }
+
 
     private List<String> processEdit(String edited){
         ArrayList<String> lines = new ArrayList<>();
