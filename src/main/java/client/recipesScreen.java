@@ -128,7 +128,7 @@ public class recipesScreen {
            //regenerates image each time if it does not exist already locally
            //not saving in mongoDb since imageURL expires after around 2hrs
            
-            String localImage = recipes[i]+"image.jpg";
+            String localImage = recipes[i]+"image.png";
             File imageFile = new File(localImage);
             if(!imageFile.exists()){
                 imageGenerator recipeImage = new imageGenerator(recipes[i]);

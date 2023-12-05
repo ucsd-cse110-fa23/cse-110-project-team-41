@@ -89,7 +89,7 @@ public class imageGenerator {
             InputStream in = new URI(generatedImageURL).toURL().openStream()
         )
         {
-            Files.copy(in, Paths.get(name +"image.jpg"));
+            Files.copy(in, Paths.get(name +"image.png"));
         }
     }
         
