@@ -3,6 +3,7 @@ package main.java.client;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -35,7 +36,8 @@ public class detailedRecipeScreen {
     private String name;
     private String details;
 
-    public detailedRecipeScreen(Stage primaryStage, String name, String details) {
+    public detailedRecipeScreen(Stage primaryStage, String name, String details) { 
+        checkServer(); 
         StackPane root = new StackPane();
         title = new Label("PantryPal");
         recNameMsg = new Label(name);
@@ -132,5 +134,22 @@ public class detailedRecipeScreen {
                 alert.showAndWait();
             }
         });
-    }
+    } 
+    private void checkServer(){ 
+        Model model = new Model(); 
+        String response = model.performRequest("GET", null, null, null, null, null); 
+        if(response.contains("java.net.ConnectException")){ 
+            serverError(); 
+            response = model.performRequest("GET", null, null, null, null, null); 
+        } 
+    } 
+    private void serverError() { 
+        //Stop program is server isn't running
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle("Missing Server"); 
+        alert.setHeaderText("Server Not Active!"); 
+        alert.setContentText("Please Load Up Server."); 
+        alert.showAndWait(); 
+        System.exit(0);
+    } 
 }
