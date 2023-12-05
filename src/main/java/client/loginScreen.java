@@ -17,7 +17,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class LoginScreen{ 
+public class loginScreen{ 
     private Button signupButton; 
     private Button loginButton; 
     private CheckBox rememberMe;
@@ -28,7 +28,7 @@ public class LoginScreen{
     private Scene scene;
     private Stage primaryStage;
 
-    public LoginScreen(Stage primaryStage) { 
+    public loginScreen(Stage primaryStage) { 
         this.primaryStage = primaryStage;
         user = new TextField(); 
         user.setPromptText("Username: "); 

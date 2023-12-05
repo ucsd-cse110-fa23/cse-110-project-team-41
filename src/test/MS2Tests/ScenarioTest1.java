@@ -2,7 +2,7 @@ package test.MS2Tests;
 
 import org.junit.jupiter.api.Test;
 
-import main.java.client.LoginScreen;
+import main.java.client.loginScreen;
 import test.MockDatabase;
 
 public class ScenarioTest1 {

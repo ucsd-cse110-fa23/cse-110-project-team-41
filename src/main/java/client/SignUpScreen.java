@@ -51,7 +51,7 @@ public class SignUpScreen {
 
     private void addListeners(){
         backButton.setOnAction(e -> {
-            LoginScreen ls = new LoginScreen(primaryStage);
+            loginScreen ls = new loginScreen(primaryStage);
             Stage stage = (Stage) backButton.getScene().getWindow();
             stage.setScene(ls.getScene());
         });
@@ -88,7 +88,7 @@ public class SignUpScreen {
                     alert.setHeaderText("Account Created");
                     alert.setContentText("Your login has been created");
                     alert.showAndWait();
-                    LoginScreen ls = new LoginScreen(primaryStage);
+                    loginScreen ls = new loginScreen(primaryStage);
                     Stage stage = (Stage) createButton.getScene().getWindow();
                     stage.setScene(ls.getScene());
                 }

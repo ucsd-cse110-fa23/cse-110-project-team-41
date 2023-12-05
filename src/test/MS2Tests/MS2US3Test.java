@@ -24,9 +24,9 @@ public class MS2US3Test {
 
     @BeforeEach 
     void setUp() {
-        rec1 = new recipe("Recipe1", "Breakfast", "imageURl 1", "Description 1");
-        rec2 = new recipe("Recipe2", "Breakfast", "imageURl 2","Description 2");
-        rec3 = new recipe("Recipe3", "Breakfast", "imageURl 3","Description 3");
+        rec1 = new recipe("Recipe1", "Breakfast", "Description 1", "imageURl 1");
+        rec2 = new recipe("Recipe2", "Breakfast", "Description 2","imageURl 2");
+        rec3 = new recipe("Recipe3", "Breakfast", "Description 3","imageURl 3");
     }
 
     /* 

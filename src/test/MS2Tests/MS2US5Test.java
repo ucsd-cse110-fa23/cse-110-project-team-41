@@ -26,13 +26,13 @@ public class MS2US5Test {
         for (int i = 1; i <= 9; i++) {
             switch (i % 3) {
                 case 1:
-                    recipes.add(new recipe("Recipe " + i, "Breakfast", "imageURl", "Description " + i));
+                    recipes.add(new recipe("Recipe " + i, "Breakfast", "Description " + i, "imageURl"));
                     break;
                 case 2:
-                    recipes.add(new recipe("Recipe " + i, "Lunch", "imageURl", "Description " + i));
+                    recipes.add(new recipe("Recipe " + i, "Lunch", "Description " + i, "imageURl"));
                     break;
                 default:
-                    recipes.add(new recipe("Recipe " + i, "Dinner", "imageURl", "Description " + i));
+                    recipes.add(new recipe("Recipe " + i, "Dinner", "Description " + i, "imageURl"));
                     break;
             }
         }

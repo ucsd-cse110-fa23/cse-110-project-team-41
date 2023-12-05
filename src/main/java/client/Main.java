@@ -28,7 +28,7 @@ public class Main extends Application {
             primaryStage.setScene(hs.getScene());
             primaryStage.show();
         }else{
-            LoginScreen ls = new LoginScreen(primaryStage); 
+            loginScreen ls = new loginScreen(primaryStage); 
             primaryStage.setScene(ls.getScene()); 
             primaryStage.show();
         }

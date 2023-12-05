@@ -6,7 +6,7 @@ public class recipe {
     private String mealType;
     private String imageURL;
 
-    public recipe(String recName, String mealType, String imageURL, String details) {
+    public recipe(String recName, String mealType, String details, String imageURL) {
         this.name = recName;
         this.mealType = mealType;
         this.recDetails = details;
