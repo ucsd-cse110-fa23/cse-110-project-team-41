@@ -20,10 +20,10 @@ public class ChatGPT {
     // private String mealType;
     // private String ingredients;
     private String prompt;
+    private String mealType;
 
-    public ChatGPT(String prompt) {
-        // this.mealType = mealType;
-        // this.ingredients = ingredients;
+    public ChatGPT(String prompt, String mealType) {
+        this.mealType = mealType;
         this.prompt = prompt;
     }
 
@@ -32,7 +32,7 @@ public class ChatGPT {
         // String recipe = generateRecipe(mealType, ingredients);
         String recipe = generateRecipe(prompt);
 
-        saveRecipe("src/main/java/recipe.txt", recipe);
+        saveRecipe("src/main/java/recipe.txt","src/main/java/meal.txt", recipe, mealType);
     }
 
     // generates recipe from chatGPT
@@ -76,12 +76,15 @@ public class ChatGPT {
     }
 
     // saves recipe to a file
-    private static void saveRecipe(String fp, String recipe) {
+    private static void saveRecipe(String fp, String fpMeal, String recipe, String mealType) {
         try {
             recipe = recipe.trim();
             FileWriter fw = new FileWriter(fp);
+            FileWriter fm = new FileWriter(fpMeal);
+            fm.write(mealType.trim());
             fw.write(recipe);
             fw.close();
+            fm.close();
             System.out.println("Recipe saved to " + fp);
         } catch (IOException e) {
             e.printStackTrace();

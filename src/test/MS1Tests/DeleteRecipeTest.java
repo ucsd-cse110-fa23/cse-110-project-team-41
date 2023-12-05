@@ -20,7 +20,7 @@ public class DeleteRecipeTest {
         List<recipe> dbFake = new ArrayList<>();
 
         //Represents the recipe to be deleted
-        recipe rec = new recipe("Recipe1", "Description 1");
+        recipe rec = new recipe("Lunch", "Recipe1", "Description 1");
 
         //Add recipe to db
         dbFake.add(rec);

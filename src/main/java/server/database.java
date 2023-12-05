@@ -62,6 +62,16 @@ public class database {
     }
 
     private void addRecipeFile(MongoCollection<Document> collection, String fp) {
+
+            String mealType = "mealType";
+            try (BufferedReader br = new BufferedReader(new FileReader("src/main/java/meal.txt"))) {
+                String line; 
+                if ((line = br.readLine()) != null) {
+                    mealType = line;
+                }
+            } catch (Exception e) {
+                System.out.println(e);
+            }
         
             ArrayList<String> lines = (ArrayList<String>) processFile(fp);
             String title = lines.get(0);
@@ -69,6 +79,7 @@ public class database {
             String instructions = lines.get(2);
             Document doc = new Document();
             doc.append("title", title);
+            doc.append("mealType", mealType);
             doc.append("ingredients", ingredients);
             doc.append("instructions", instructions);
 
@@ -169,7 +180,7 @@ public class database {
         while(itr.hasNext()){
             Document doc = itr.next();
             if(doc.getString("title").equals(title)){
-                return new recipe(doc.getString("title"), "Ingredients: \n" + doc.getString("ingredients") + "\nInstructions: \n" + doc.getString("instructions"));
+                return new recipe(doc.getString("title"), doc.getString("mealType"), "Ingredients: \n" + doc.getString("ingredients") + "\nInstructions: \n" + doc.getString("instructions"));
             }
         }
         return null;
