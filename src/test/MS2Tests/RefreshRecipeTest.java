@@ -20,14 +20,14 @@ public class RefreshRecipeTest {
     @Test
     void testRefreshRecipe() {
         List<recipe> dbFake = new ArrayList<>();
-        recipe beforeRec = new recipe("Recipe1", "Description 1");
+        recipe beforeRec = new recipe("Dinner", "Recipe1", "Description 1", "imageURl");
         dbFake.add(beforeRec);
 
         // This line mimics user interactions to refresh an unsatisfactory recipe suggestion
         // refreshRecipe(beforeRec);
 
         dbFake.remove(beforeRec);
-        recipe refreshedRecipe = new recipe("Recipe2", "Description 2");
+        recipe refreshedRecipe = new recipe("Breakfast", "Recipe2", "Description 2", "imageURl");
         dbFake.add(refreshedRecipe);
 
         // Assert that the recipe was placed in our fake local db (dbFake)

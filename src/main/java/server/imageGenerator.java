@@ -32,7 +32,9 @@ public class imageGenerator {
     }
 
     public String main() throws IOException, InterruptedException, URISyntaxException, JSONException {
-        return generateImage(imagePrompt);
+        String imageURL = generateImage(imagePrompt);
+        saveImage(imageURL,imagePrompt);
+        return imageURL;
     }
 
     public static String generateImage(String prompt) throws IOException, InterruptedException, URISyntaxException, JSONException{
@@ -74,20 +76,20 @@ public class imageGenerator {
         JSONObject image = data.getJSONObject(0);
         generatedImageURL = image.getString("url");
      
-        //System.out.println("DALL-E Response:");
-        //System.out.println(generatedImageURL);
+        System.out.println("DALL-E Response:");
+        System.out.println(generatedImageURL);
 
         return generatedImageURL;
     }
 
-    public static void saveImage(String generatedImageURL) throws IOException , URISyntaxException  {
+    public static void saveImage(String generatedImageURL, String name) throws IOException , URISyntaxException  {
 
         // Download the Generated Image to Current Directory
         try(
             InputStream in = new URI(generatedImageURL).toURL().openStream()
         )
         {
-            Files.copy(in, Paths.get("image.jpg"));
+            Files.copy(in, Paths.get(name +"image.jpg"));
         }
     }
         

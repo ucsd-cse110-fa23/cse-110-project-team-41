@@ -39,17 +39,23 @@ public class ShareHandler implements HttpHandler{
         if (query != null) {
             name = query.substring(query.indexOf("=") + 1);
             name = name.replaceAll("%20", " ");
+        }else{
+            return "Invalid Request";
         }
+        System.out.println("Name: " + name);
         recipe r = db.getRecipe(name);
-
+        if (r == null) {
+            return "Invalid Recipe Name";
+        }
         StringBuilder htmlBuilder = new StringBuilder();
         //Build html response
         //TODO: Implement image support
         htmlBuilder.append("<html>")
             .append("<body>")
             .append("<h1>").append(r.getName()).append("</h1>")
-            .append("<h2>").append("Ingredients").append("</h2>")
-            .append("<p>").append(r.getDetails()).append("</p>")
+            //Image Here
+            .append("<h2>").append("Details").append("</h2>")
+            .append("<p>").append(r.getDetails().replaceAll("\n","<br\\>")).append("</p>")
             .append("</body>")
             .append("</html>");
 

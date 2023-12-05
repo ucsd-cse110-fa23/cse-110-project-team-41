@@ -61,7 +61,17 @@ public class database {
         return null;
     }
 
-    private void addRecipeFile(MongoCollection<Document> collection, String fp ) {
+    private void addRecipeFile(MongoCollection<Document> collection, String fp) {
+
+            String mealType = "mealType";
+            try (BufferedReader br = new BufferedReader(new FileReader("src/main/java/meal.txt"))) {
+                String line; 
+                if ((line = br.readLine()) != null) {
+                    mealType = line;
+                }
+            } catch (Exception e) {
+                System.out.println(e);
+            }
         
             ArrayList<String> lines = (ArrayList<String>) processFile(fp);
             String title = lines.get(0);
@@ -79,6 +89,7 @@ public class database {
 
             Document doc = new Document();
             doc.append("title", title);
+            doc.append("mealType", mealType);
             doc.append("ingredients", ingredients);
             doc.append("instructions", instructions);           
             doc.append("imageURL", generatedImageURL);
@@ -185,7 +196,7 @@ public class database {
         while(itr.hasNext()){
             Document doc = itr.next();
             if(doc.getString("title").equals(title)){
-                return new recipe(doc.getString("title"), "Ingredients: \n" + doc.getString("ingredients") + "\nInstructions: \n" + doc.getString("instructions"));
+                return new recipe(doc.getString("title"), doc.getString("mealType"), "Ingredients: \n" + doc.getString("ingredients") + "\nInstructions: \n" + doc.getString("instructions"), doc.getString("imageURL"));
             }
         }
         return null;
@@ -235,5 +246,17 @@ public class database {
             System.out.println(e);
         }
         return false;
+    }
+
+    public boolean clearRecipes(){
+        try (MongoClient mongoClient = MongoClients.create(uri)) {
+            MongoDatabase database = mongoClient.getDatabase("Recipes");
+            MongoCollection<Document> collection = database.getCollection("savedRecipes");
+            collection.drop();
+            return true;
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }
     }
 }

@@ -3,10 +3,14 @@ package main.java.server;
 public class recipe {
     private String name;
     private String recDetails;
+    private String mealType;
+    private String imageURL;
 
-    public recipe(String recName, String details) {
+    public recipe(String recName, String mealType, String imageURL, String details) {
         this.name = recName;
+        this.mealType = mealType;
         this.recDetails = details;
+        this.imageURL = imageURL;
     }
 
     public String getName() {
@@ -16,6 +20,15 @@ public class recipe {
     public String getDetails() {
         return this.recDetails;
     }
+
+    public String getMealType() {
+        return this.mealType;
+    }
+
+    public String getImageURL(){
+        return this.imageURL;
+    }
+
 
     @Override
     public String toString() {

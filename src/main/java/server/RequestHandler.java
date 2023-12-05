@@ -43,7 +43,7 @@ public class RequestHandler implements HttpHandler {
         out.close();
     }
 
-    private String handleGet(HttpExchange exchange) {
+    private String handleGet(HttpExchange exchange) throws IOException {
         String response = "";
         URI uri = exchange.getRequestURI();
         String query = uri.getRawQuery();
@@ -61,7 +61,7 @@ public class RequestHandler implements HttpHandler {
                 if (out == null) {
                     response = "";
                 } else {
-                    response = out.getDetails();
+                    response = out.getMealType() + "$" +  out.getDetails() + "$" + out.getImageURL();
                 }
             }
         }
@@ -222,7 +222,7 @@ public class RequestHandler implements HttpHandler {
 
         // send prompt/input to ChatGPT File: UNCOMMENT WHEN NO LONGER MOCKING
         // ChatGPT recipeMaker = new ChatGPT(prompt);
-        ChatGPT recipeMaker = new ChatGPT(prompt);
+        ChatGPT recipeMaker = new ChatGPT(prompt, transcribedMeal);
         try {
             recipeMaker.main();
         } catch (Exception e1) {
