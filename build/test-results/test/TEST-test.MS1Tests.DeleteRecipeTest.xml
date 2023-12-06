@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<<<<<<< HEAD
-<testsuite name="test.MS1Tests.DeleteRecipeTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-12-06T06:28:55" hostname="Tharuns-MacBook-Pro.local" time="0.002">
-=======
-<testsuite name="test.MS1Tests.DeleteRecipeTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-12-06T06:18:33" hostname="Josues-Air" time="0.0">
->>>>>>> 827af6c338a547a926e3b138eea045d8521a2254
+<testsuite name="test.MS1Tests.DeleteRecipeTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-12-06T07:43:17" hostname="Tharuns-MacBook-Pro.local" time="0.002">
   <properties/>
   <testcase name="testDeleteRecipe()" classname="test.MS1Tests.DeleteRecipeTest" time="0.002"/>
   <system-out><![CDATA[]]></system-out>

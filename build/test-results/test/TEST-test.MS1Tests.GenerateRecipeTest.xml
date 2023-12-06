@@ -1,17 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<<<<<<< HEAD
-<testsuite name="test.MS1Tests.GenerateRecipeTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2023-12-06T06:28:55" hostname="Tharuns-MacBook-Pro.local" time="0.8">
+<testsuite name="test.MS1Tests.GenerateRecipeTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2023-12-06T07:43:17" hostname="Tharuns-MacBook-Pro.local" time="2.031">
   <properties/>
-  <testcase name="testWhisperTask2()" classname="test.MS1Tests.GenerateRecipeTest" time="0.794"/>
-  <testcase name="testGenerateRecipe()" classname="test.MS1Tests.GenerateRecipeTest" time="0.005"/>
-=======
-<testsuite name="test.MS1Tests.GenerateRecipeTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2023-12-06T06:18:33" hostname="Josues-Air" time="0.509">
-  <properties/>
-  <testcase name="testWhisperTask2()" classname="test.MS1Tests.GenerateRecipeTest" time="0.506"/>
-  <testcase name="testGenerateRecipe()" classname="test.MS1Tests.GenerateRecipeTest" time="0.002"/>
->>>>>>> 827af6c338a547a926e3b138eea045d8521a2254
-  <system-out><![CDATA[Error Result: {  "error": {    "message": "Invalid file format. Supported formats: ['flac', 'm4a', 'mp3', 'mp4', 'mpeg', 'mpga', 'oga', 'ogg', 'wav', 'webm']",    "type": "invalid_request_error",    "param": null,    "code": null  }}
-Error Result: {  "error": {    "message": "Invalid file format. Supported formats: ['flac', 'm4a', 'mp3', 'mp4', 'mpeg', 'mpga', 'oga', 'ogg', 'wav', 'webm']",    "type": "invalid_request_error",    "param": null,    "code": null  }}
+  <testcase name="testWhisperTask2()" classname="test.MS1Tests.GenerateRecipeTest" time="2.026"/>
+  <testcase name="testGenerateRecipe()" classname="test.MS1Tests.GenerateRecipeTest" time="0.004"/>
+  <system-out><![CDATA[Transcription Result: 
+Breakfast.
+Transcription Result: 
+Breakfast.
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
