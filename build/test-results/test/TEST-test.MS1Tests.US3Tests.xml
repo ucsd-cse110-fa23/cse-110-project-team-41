@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="test.MS1Tests.US3Tests" tests="2" skipped="0" failures="0" errors="0" timestamp="2023-12-06T07:15:57" hostname="DESKTOP-FSQ252S" time="29.832">
+<testsuite name="test.MS1Tests.US3Tests" tests="2" skipped="0" failures="0" errors="0" timestamp="2023-12-06T07:38:07" hostname="DESKTOP-FSQ252S" time="30.031">
   <properties/>
-  <testcase name="testAddRecipes()" classname="test.MS1Tests.US3Tests" time="28.654"/>
-  <testcase name="testRecipesCount()" classname="test.MS1Tests.US3Tests" time="1.178"/>
+  <testcase name="testAddRecipes()" classname="test.MS1Tests.US3Tests" time="28.759"/>
+  <testcase name="testRecipesCount()" classname="test.MS1Tests.US3Tests" time="1.272"/>
   <system-out><![CDATA[DALL-E Response:
-https://oaidalleapiprodscus.blob.core.windows.net/private/org-Sd9bwBmEf5IDns4KIh3k3fXp/user-mlF2UiRIjgQpU5OH9QHus5gd/img-R9h9WlNB65tAP43nLipiddfk.png?st=2023-12-06T06%3A16%3A06Z&se=2023-12-06T08%3A16%3A06Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2023-12-05T19%3A56%3A04Z&ske=2023-12-06T19%3A56%3A04Z&sks=b&skv=2021-08-06&sig=2cWvLUDaIUiELZhWl6tmMPvXvll7EuNZh0N8ZoX8m6U%3D
+https://oaidalleapiprodscus.blob.core.windows.net/private/org-Sd9bwBmEf5IDns4KIh3k3fXp/user-mlF2UiRIjgQpU5OH9QHus5gd/img-yzKYerknp8L47LuEW82jT6Dn.png?st=2023-12-06T06%3A38%3A16Z&se=2023-12-06T08%3A38%3A16Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2023-12-05T19%3A53%3A27Z&ske=2023-12-06T19%3A53%3A27Z&sks=b&skv=2021-08-06&sig=NmWYb1S0KmwVdsmIo1USN7/DA1VogNiASZiv8g1Uz0I%3D
 data added to mongoDB
 DALL-E Response:
-https://oaidalleapiprodscus.blob.core.windows.net/private/org-Sd9bwBmEf5IDns4KIh3k3fXp/user-mlF2UiRIjgQpU5OH9QHus5gd/img-7eQoXHFKLosvf7UD2x3Z7pZ4.png?st=2023-12-06T06%3A16%3A14Z&se=2023-12-06T08%3A16%3A14Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2023-12-05T19%3A53%3A23Z&ske=2023-12-06T19%3A53%3A23Z&sks=b&skv=2021-08-06&sig=KnX6HENWAGeeOlnqGssf8agwqjASAWfxpsEz8h0onp8%3D
+https://oaidalleapiprodscus.blob.core.windows.net/private/org-Sd9bwBmEf5IDns4KIh3k3fXp/user-mlF2UiRIjgQpU5OH9QHus5gd/img-pWd6kVQRlixPqr1auZB0AcQl.png?st=2023-12-06T06%3A38%3A25Z&se=2023-12-06T08%3A38%3A25Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2023-12-05T19%3A59%3A36Z&ske=2023-12-06T19%3A59%3A36Z&sks=b&skv=2021-08-06&sig=s0XTTMDP/tP8ZEwbtPnsVqJY%2BIHPo4rpSx7Gv3NP1Ls%3D
 data added to mongoDB
 DALL-E Response:
-https://oaidalleapiprodscus.blob.core.windows.net/private/org-Sd9bwBmEf5IDns4KIh3k3fXp/user-mlF2UiRIjgQpU5OH9QHus5gd/img-TyOu7bXel42dwIEBnQtsOrta.png?st=2023-12-06T06%3A16%3A22Z&se=2023-12-06T08%3A16%3A22Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2023-12-05T19%3A52%3A37Z&ske=2023-12-06T19%3A52%3A37Z&sks=b&skv=2021-08-06&sig=lpAgL/J53E1hqC1EAw38F9kNeg6%2B15l/rmO7i2pPEIc%3D
+https://oaidalleapiprodscus.blob.core.windows.net/private/org-Sd9bwBmEf5IDns4KIh3k3fXp/user-mlF2UiRIjgQpU5OH9QHus5gd/img-iuQq3SssrTa3aFPeIe38piin.png?st=2023-12-06T06%3A38%3A32Z&se=2023-12-06T08%3A38%3A32Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2023-12-05T19%3A56%3A14Z&ske=2023-12-06T19%3A56%3A14Z&sks=b&skv=2021-08-06&sig=1aYSH1CwU8jsHUpic8V6sMZlvA2JAAPzCLn47RuQHVA%3D
 data added to mongoDB
 ]]></system-out>
-  <system-err><![CDATA[Dec 05, 2023 11:15:57 PM com.mongodb.internal.diagnostics.logging.Loggers shouldUseSLF4J
+  <system-err><![CDATA[Dec 05, 2023 11:38:07 PM com.mongodb.internal.diagnostics.logging.Loggers shouldUseSLF4J
 WARNING: SLF4J not found on the classpath.  Logging is disabled for the 'org.mongodb.driver' component
 java.nio.file.InvalidPathException: Illegal char <:> at index 22: Blueberry French Toast:image.png
 	at java.base/sun.nio.fs.WindowsPathParser.normalize(WindowsPathParser.java:182)

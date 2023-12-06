@@ -280,4 +280,27 @@ public class recipesScreen {
         alert.showAndWait(); 
         System.exit(0);
     } 
+    public static void sortRec(String by, ArrayList<String> list){ 
+        switch (by) { 
+            case "name": 
+                list.sort((a,b) -> a.compareTo(b)); 
+                break;
+            case "time (new)": 
+                // ArrayList<String> listR = new ArrayList<>(); 
+                // for (int i = list.size()-1 ; i <= 0 ; i--){ 
+                //     listR.add(list.get(i)); 
+                // } 
+                // list.clear(); 
+                // for (String s : listR){ 
+                //     list.add(s); 
+                // }
+                Collections.reverse(list);
+                break; 
+            case "time (old)": 
+                list = list; 
+                break; 
+            default:
+                break;
+        }
+    } 
 }

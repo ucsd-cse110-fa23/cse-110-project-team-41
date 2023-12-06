@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="test.MS1Tests.US5Tests" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-12-06T07:16:30" hostname="DESKTOP-FSQ252S" time="2.605">
+<testsuite name="test.MS1Tests.US5Tests" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-12-06T07:38:41" hostname="DESKTOP-FSQ252S" time="2.403">
   <properties/>
-  <testcase name="testDeleteDB()" classname="test.MS1Tests.US5Tests" time="2.605"/>
+  <testcase name="testDeleteDB()" classname="test.MS1Tests.US5Tests" time="2.403"/>
   <system-out><![CDATA[Deleted Recipe2
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
