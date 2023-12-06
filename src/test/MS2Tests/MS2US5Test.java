@@ -58,15 +58,19 @@ public class MS2US5Test {
     }  
 
     @Test
-    void testFilterNull() {
-        String mealFilter = "";
+    void testFilterDinner() {
+        String mealFilter = "Dinner";
         Iterator<recipe> iterator = recipes.iterator();
+        
         while (iterator.hasNext()) {
             recipe recipe = iterator.next();
             if (!recipe.getMealType().equals(mealFilter)) {
                 iterator.remove();
             }
         }
-        assertEquals(9, recipes.size());
+        assertEquals(3, recipes.size());
+        assertEquals("Dinner", recipes.get(0).getMealType());
+        assertEquals("Dinner", recipes.get(1).getMealType());
+        assertEquals("Dinner", recipes.get(2).getMealType());
     }  
 }

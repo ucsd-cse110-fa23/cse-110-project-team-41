@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="test.MS1Tests.US3Tests" tests="2" skipped="0" failures="0" errors="0" timestamp="2023-12-06T03:08:37" hostname="Tharuns-MacBook-Pro.local" time="33.503">
+<testsuite name="test.MS1Tests.US3Tests" tests="2" skipped="0" failures="0" errors="0" timestamp="2023-12-06T03:45:47" hostname="Josues-Air" time="31.319">
   <properties/>
-  <testcase name="testAddRecipes()" classname="test.MS1Tests.US3Tests" time="32.068"/>
-  <testcase name="testRecipesCount()" classname="test.MS1Tests.US3Tests" time="1.434"/>
+  <testcase name="testAddRecipes()" classname="test.MS1Tests.US3Tests" time="29.96"/>
+  <testcase name="testRecipesCount()" classname="test.MS1Tests.US3Tests" time="1.358"/>
   <system-out><![CDATA[DALL-E Response:
-https://oaidalleapiprodscus.blob.core.windows.net/private/org-Sd9bwBmEf5IDns4KIh3k3fXp/user-mlF2UiRIjgQpU5OH9QHus5gd/img-9Y6wJThGyo04YcA3OOlnXktV.png?st=2023-12-06T02%3A08%3A46Z&se=2023-12-06T04%3A08%3A46Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2023-12-05T19%3A52%3A29Z&ske=2023-12-06T19%3A52%3A29Z&sks=b&skv=2021-08-06&sig=PsRxPEYerA080ur5yR2DxfXHS1JeAdJFsFMgS5UFC3k%3D
+https://oaidalleapiprodscus.blob.core.windows.net/private/org-Sd9bwBmEf5IDns4KIh3k3fXp/user-mlF2UiRIjgQpU5OH9QHus5gd/img-nvLDyhPN6ixnYOd7RnwKgFh3.png?st=2023-12-06T02%3A45%3A56Z&se=2023-12-06T04%3A45%3A56Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2023-12-05T19%3A54%3A56Z&ske=2023-12-06T19%3A54%3A56Z&sks=b&skv=2021-08-06&sig=G3ZKjC6uQkar1PdOsQ9THqBCSZqa6z2AzfxI4qS%2BpmA%3D
 data added to mongoDB
 DALL-E Response:
-https://oaidalleapiprodscus.blob.core.windows.net/private/org-Sd9bwBmEf5IDns4KIh3k3fXp/user-mlF2UiRIjgQpU5OH9QHus5gd/img-UbmQWqf1tawG9CYXPtZVSAEv.png?st=2023-12-06T02%3A08%3A55Z&se=2023-12-06T04%3A08%3A55Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2023-12-05T19%3A58%3A19Z&ske=2023-12-06T19%3A58%3A19Z&sks=b&skv=2021-08-06&sig=pCt%2BFExunO2KNNkXvPoBfSER68UQBQ%2BQm/MHucYrUTU%3D
+https://oaidalleapiprodscus.blob.core.windows.net/private/org-Sd9bwBmEf5IDns4KIh3k3fXp/user-mlF2UiRIjgQpU5OH9QHus5gd/img-XDrfprswGNecNsHOvp7d5N6q.png?st=2023-12-06T02%3A46%3A05Z&se=2023-12-06T04%3A46%3A05Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2023-12-05T19%3A57%3A18Z&ske=2023-12-06T19%3A57%3A18Z&sks=b&skv=2021-08-06&sig=k%2Bq86r6rTlfVM/mS6kgwH%2BMDdkFiVO5hwLlC6CQhLa4%3D
 data added to mongoDB
 DALL-E Response:
-https://oaidalleapiprodscus.blob.core.windows.net/private/org-Sd9bwBmEf5IDns4KIh3k3fXp/user-mlF2UiRIjgQpU5OH9QHus5gd/img-HAsZlTMFizI5V89mpLvK2UkN.png?st=2023-12-06T02%3A09%3A04Z&se=2023-12-06T04%3A09%3A04Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2023-12-05T19%3A55%3A55Z&ske=2023-12-06T19%3A55%3A55Z&sks=b&skv=2021-08-06&sig=ZaYELqXxRzls9yxhPZ/cZfo7y5c7UyP9Mqg%2BLF3zysQ%3D
+https://oaidalleapiprodscus.blob.core.windows.net/private/org-Sd9bwBmEf5IDns4KIh3k3fXp/user-mlF2UiRIjgQpU5OH9QHus5gd/img-z9B9wZS0FCoe39l7Yo4SrGRr.png?st=2023-12-06T02%3A46%3A13Z&se=2023-12-06T04%3A46%3A13Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2023-12-05T19%3A53%3A18Z&ske=2023-12-06T19%3A53%3A18Z&sks=b&skv=2021-08-06&sig=0kTO3JPBfvkKtPzPuabk961Ya4TpGtb87XEDEsyYB9E%3D
 data added to mongoDB
 ]]></system-out>
-  <system-err><![CDATA[Dec 05, 2023 7:08:37 PM com.mongodb.internal.diagnostics.logging.Loggers shouldUseSLF4J
+  <system-err><![CDATA[Dec 05, 2023 7:45:47 PM com.mongodb.internal.diagnostics.logging.Loggers shouldUseSLF4J
 WARNING: SLF4J not found on the classpath.  Logging is disabled for the 'org.mongodb.driver' component
 java.nio.file.FileAlreadyExistsException: Quesadilla Avocado Tacos:image.png
 	at java.base/sun.nio.fs.UnixException.translateToIOException(UnixException.java:94)
@@ -22,15 +22,17 @@ java.nio.file.FileAlreadyExistsException: Quesadilla Avocado Tacos:image.png
 	at java.base/sun.nio.fs.UnixFileSystemProvider.newByteChannel(UnixFileSystemProvider.java:218)
 	at java.base/java.nio.file.spi.FileSystemProvider.newOutputStream(FileSystemProvider.java:484)
 	at java.base/java.nio.file.Files.newOutputStream(Files.java:228)
-	at java.base/java.nio.file.Files.copy(Files.java:3161)
+	at java.base/java.nio.file.Files.copy(Files.java:3160)
 	at main.java.server.imageGenerator.saveImage(imageGenerator.java:92)
 	at main.java.server.imageGenerator.main(imageGenerator.java:36)
 	at main.java.server.database.addRecipeFile(database.java:83)
 	at main.java.server.database.addFileToDb(database.java:45)
 	at main.java.server.recipeHandler.addToDB(recipeHandler.java:29)
 	at test.MS1Tests.US3Tests.testAddRecipes(US3Tests.java:45)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:577)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
 	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:725)
 	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60)
 	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131)
@@ -93,8 +95,10 @@ java.nio.file.FileAlreadyExistsException: Quesadilla Avocado Tacos:image.png
 	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.access$000(JUnitPlatformTestClassProcessor.java:94)
 	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor.stop(JUnitPlatformTestClassProcessor.java:89)
 	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.stop(SuiteTestClassProcessor.java:62)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:577)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
 	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:36)
 	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
 	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:33)
@@ -116,15 +120,17 @@ java.nio.file.FileAlreadyExistsException: Quesadilla Avocado Tacos:image.png
 	at java.base/sun.nio.fs.UnixFileSystemProvider.newByteChannel(UnixFileSystemProvider.java:218)
 	at java.base/java.nio.file.spi.FileSystemProvider.newOutputStream(FileSystemProvider.java:484)
 	at java.base/java.nio.file.Files.newOutputStream(Files.java:228)
-	at java.base/java.nio.file.Files.copy(Files.java:3161)
+	at java.base/java.nio.file.Files.copy(Files.java:3160)
 	at main.java.server.imageGenerator.saveImage(imageGenerator.java:92)
 	at main.java.server.imageGenerator.main(imageGenerator.java:36)
 	at main.java.server.database.addRecipeFile(database.java:83)
 	at main.java.server.database.addFileToDb(database.java:45)
 	at main.java.server.recipeHandler.addToDB(recipeHandler.java:29)
 	at test.MS1Tests.US3Tests.testAddRecipes(US3Tests.java:45)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:577)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
 	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:725)
 	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60)
 	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131)
@@ -187,8 +193,10 @@ java.nio.file.FileAlreadyExistsException: Quesadilla Avocado Tacos:image.png
 	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.access$000(JUnitPlatformTestClassProcessor.java:94)
 	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor.stop(JUnitPlatformTestClassProcessor.java:89)
 	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.stop(SuiteTestClassProcessor.java:62)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:577)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
 	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:36)
 	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
 	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:33)
@@ -210,15 +218,17 @@ java.nio.file.FileAlreadyExistsException: Quesadilla Avocado Tacos:image.png
 	at java.base/sun.nio.fs.UnixFileSystemProvider.newByteChannel(UnixFileSystemProvider.java:218)
 	at java.base/java.nio.file.spi.FileSystemProvider.newOutputStream(FileSystemProvider.java:484)
 	at java.base/java.nio.file.Files.newOutputStream(Files.java:228)
-	at java.base/java.nio.file.Files.copy(Files.java:3161)
+	at java.base/java.nio.file.Files.copy(Files.java:3160)
 	at main.java.server.imageGenerator.saveImage(imageGenerator.java:92)
 	at main.java.server.imageGenerator.main(imageGenerator.java:36)
 	at main.java.server.database.addRecipeFile(database.java:83)
 	at main.java.server.database.addFileToDb(database.java:45)
 	at main.java.server.recipeHandler.addToDB(recipeHandler.java:29)
 	at test.MS1Tests.US3Tests.testAddRecipes(US3Tests.java:45)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:577)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
 	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:725)
 	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60)
 	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131)
@@ -281,8 +291,10 @@ java.nio.file.FileAlreadyExistsException: Quesadilla Avocado Tacos:image.png
 	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.access$000(JUnitPlatformTestClassProcessor.java:94)
 	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor.stop(JUnitPlatformTestClassProcessor.java:89)
 	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.stop(SuiteTestClassProcessor.java:62)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:577)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
 	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:36)
 	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
 	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:33)

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="test.MS2Tests.LoginTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2023-12-06T03:09:18" hostname="Tharuns-MacBook-Pro.local" time="0.002">
+<testsuite name="test.MS2Tests.LoginTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2023-12-06T03:46:25" hostname="Josues-Air" time="0.002">
   <properties/>
   <testcase name="testValidUser()" classname="test.MS2Tests.LoginTest" time="0.001"/>
   <testcase name="testCreateUser()" classname="test.MS2Tests.LoginTest" time="0.0"/>
