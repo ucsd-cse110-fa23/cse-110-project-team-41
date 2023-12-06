@@ -220,4 +220,16 @@ public class database {
         }
         return false;
     }
+
+    public boolean clearRecipes(){
+        try (MongoClient mongoClient = MongoClients.create(uri)) {
+            MongoDatabase database = mongoClient.getDatabase("Recipes");
+            MongoCollection<Document> collection = database.getCollection("savedRecipes");
+            collection.drop();
+            return true;
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }
+    }
 }

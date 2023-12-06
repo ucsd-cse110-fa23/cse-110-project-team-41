@@ -43,7 +43,7 @@ public class LoginScreen{
         rememberMe = new CheckBox("Remember Me");
         HBox buttons = new HBox(loginButton,signupButton,rememberMe); 
         buttons.setAlignment(Pos.CENTER); 
-        buttons.setSpacing(100); 
+        buttons.setSpacing(80); 
         loginMsg = new Label("Login Information: "); 
         title = new Label("PantyPal"); 
         VBox vbT = new VBox(title); 

@@ -143,4 +143,29 @@ public class Model {
             System.out.println("Error: " + e);
         }
     }
+
+    public String shareRequest(String recipeName){
+        try{
+            String urlString = "http://localhost:8100/share/";
+            if(recipeName != null){
+                urlString += "?=" + recipeName;
+                urlString = urlString.replaceAll(" ", "%20");
+                System.out.println("URL: " + urlString);
+            }
+            URL url = new URI(urlString).toURL();
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection(); 
+            connection.setRequestMethod("GET"); 
+            connection.setDoOutput(true);
+            String response = processResponse(connection);
+            System.out.println("Received: " + response);
+            if(response.contains("Invalid")){
+                return "Invalid Request";
+            }else{
+            return urlString;
+            }
+        }catch(Exception e){
+            System.out.println("Error: " + e);
+            return "Error: " + e;
+        }
+    }
 }

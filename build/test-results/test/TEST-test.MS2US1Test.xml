@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="test.MS2US1Test" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-12-06T05:15:09" hostname="DESKTOP-FSQ252S" time="0.013">
+  <properties/>
+  <testcase name="testCreateUser()" classname="test.MS2US1Test" time="0.013"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
