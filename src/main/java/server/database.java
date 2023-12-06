@@ -77,15 +77,26 @@ public class database {
             String title = lines.get(0);
             String ingredients = lines.get(1);
             String instructions = lines.get(2);
+
+            imageGenerator recipeImage = new imageGenerator(title);
+            try{
+                recipeImage.main();
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+    
+            String generatedImageURL = recipeImage.getImageURL(); 
+
             Document doc = new Document();
             doc.append("title", title);
             doc.append("mealType", mealType);
             doc.append("ingredients", ingredients);
-            doc.append("instructions", instructions);
+            doc.append("instructions", instructions);           
+            doc.append("imageURL", generatedImageURL);
 
             collection.insertOne(doc);
             System.out.println("data added to mongoDB");
-
+  
     }
 
     public void clearDB() {
@@ -142,12 +153,17 @@ public class database {
             lines.add(title.toString().trim());
             lines.add(ingredients.toString().trim());
             lines.add(instructions.toString().trim());
+
+            
+
         } catch (IOException e) {
             System.out.println(e);
             e.printStackTrace();
         }
+        
         return lines;
     }
+
 
     private List<String> processEdit(String edited){
         ArrayList<String> lines = new ArrayList<>();
@@ -180,7 +196,7 @@ public class database {
         while(itr.hasNext()){
             Document doc = itr.next();
             if(doc.getString("title").equals(title)){
-                return new recipe(doc.getString("title"), doc.getString("mealType"), "Ingredients: \n" + doc.getString("ingredients") + "\nInstructions: \n" + doc.getString("instructions"));
+                return new recipe(doc.getString("title"), doc.getString("mealType"), "Ingredients: \n" + doc.getString("ingredients") + "\nInstructions: \n" + doc.getString("instructions"), doc.getString("imageURL"));
             }
         }
         return null;

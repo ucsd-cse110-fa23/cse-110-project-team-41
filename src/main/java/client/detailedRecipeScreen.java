@@ -3,11 +3,14 @@ package main.java.client;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.layout.BorderPane;
@@ -34,8 +37,11 @@ public class detailedRecipeScreen {
     private Model model;
     private String name;
     private String details;
+    private String imageURL;
+    private ImageView imageView;
 
-    public detailedRecipeScreen(Stage primaryStage, String name, String details) {
+    public detailedRecipeScreen(Stage primaryStage, String name, String details, String imageURL) { 
+        checkServer(); 
         StackPane root = new StackPane();
         title = new Label("PantryPal");
         recNameMsg = new Label(name);
@@ -48,6 +54,15 @@ public class detailedRecipeScreen {
         this.model = new Model();
         this.name = name;
         this.details = details;
+        this.imageURL = imageURL;
+
+         
+        if(imageURL != null && !imageURL.isEmpty()){
+            this.imageView = new ImageView(new Image(imageURL));
+            this.imageView.setFitWidth(250);
+            this.imageView.setFitHeight(250);
+        }
+        
 
         HBox r_buttons = new HBox(shareButton, editButton, deleteButton); 
         HBox heading = new HBox(backButton, title, r_buttons); 
@@ -68,8 +83,17 @@ public class detailedRecipeScreen {
         BorderPane detailedScreen = new BorderPane(); 
         detailedScreen.setTop(text); 
         detailedScreen.setCenter(detailedRecipe); 
+
+         
+        if(this.imageView != null){
+            VBox imageContainer = new VBox(imageView);
+            imageContainer.setAlignment(Pos.CENTER);
+            detailedScreen.setRight(imageContainer);
+        }
+        
+
         root.getChildren().addAll(detailedScreen); 
-        this.scene = new Scene(root, 400, 300); 
+        this.scene = new Scene(root, 1000, 600); 
         addListeners();
     }
 
@@ -132,5 +156,22 @@ public class detailedRecipeScreen {
                 alert.showAndWait();
             }
         });
-    }
+    } 
+    private void checkServer(){ 
+        Model model = new Model(); 
+        String response = model.performRequest("GET", null, null, null, null, null); 
+        if(response.contains("java.net.ConnectException")){ 
+            serverError(); 
+            response = model.performRequest("GET", null, null, null, null, null); 
+        } 
+    } 
+    private void serverError() { 
+        //Stop program is server isn't running
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle("Missing Server"); 
+        alert.setHeaderText("Server Not Active!"); 
+        alert.setContentText("Please Load Up Server."); 
+        alert.showAndWait(); 
+        System.exit(0);
+    } 
 }

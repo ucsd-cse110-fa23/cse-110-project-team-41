@@ -32,7 +32,7 @@ public class US4Tests {
     void setUp() {
         rh = new recipeHandler();
         db = new database();
-        rec = new recipe("Dinner", "Recipe1", "Description 1");
+        rec = new recipe("Dinner", "Recipe1", "Description 1", "imageURL");
     }
 
     /* 

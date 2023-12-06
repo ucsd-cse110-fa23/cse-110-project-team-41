@@ -17,12 +17,12 @@ public class EditRecipeTest {
         //So we create a fake db to test our editRecipe() method
         //List reflects a collection in MongoDB
         List<recipe> dbFake = new ArrayList<>();
-        recipe rec = new recipe("Breakfast","Recipe1", "Description 1");
+        recipe rec = new recipe("Breakfast","Recipe1", "Description 1", "imageURL");
         dbFake.add(rec);
         String recName = rec.getName();
         String updated = "Updated Description for Recipe1";
 
-        recipe recUpdated = new recipe("Lunch", recName, updated);
+        recipe recUpdated = new recipe("Lunch", recName, updated, "imageuRL");
         assertNotEquals(rec.getDetails(), recUpdated.getDetails());
         dbFake.set(0, recUpdated);
 
