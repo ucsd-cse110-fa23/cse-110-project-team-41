@@ -34,8 +34,9 @@ public class detailedRecipeScreen {
     private Model model;
     private String name;
     private String details;
+    private String username;
 
-    public detailedRecipeScreen(Stage primaryStage, String name, String details) {
+    public detailedRecipeScreen(String username, Stage primaryStage, String name, String details) {
         StackPane root = new StackPane();
         title = new Label("PantryPal");
         recNameMsg = new Label(name);
@@ -48,6 +49,7 @@ public class detailedRecipeScreen {
         this.model = new Model();
         this.name = name;
         this.details = details;
+        this.username = username;
 
         HBox r_buttons = new HBox(shareButton, editButton, deleteButton); 
         HBox heading = new HBox(backButton, title, r_buttons); 
@@ -87,18 +89,18 @@ public class detailedRecipeScreen {
                 recLabel.setText(details);
                 recLabel.setEditable(false);
             } else {
-                recipesScreen rs = new recipesScreen(primaryStage);
+                recipesScreen rs = new recipesScreen(username, primaryStage);
                 primaryStage.setScene(rs.getScene());
             }
         }); 
         deleteButton.setOnAction(e -> { 
             System.out.println("Deleting: " + name);
-            String response = model.performRequest("DELETE", null, null, null, name, null);
+            String response = model.performRequest("DELETE", null, null, null, name, null, username);
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Recipe deleted!");
             alert.showAndWait();
             System.out.println(response);
             //Go Back to recipesScreen
-            recipesScreen rs = new recipesScreen(primaryStage);
+            recipesScreen rs = new recipesScreen(username, primaryStage);
             primaryStage.setScene(rs.getScene());
         });  
 
@@ -114,12 +116,12 @@ public class detailedRecipeScreen {
                 editButton.setText("Edit");
                 backButton.setText("Back");
                 recLabel.setEditable(false);
-                model.performRequest("PUT", null, null, null, name, recLabel.getText());
+                model.performRequest("PUT", null, null, null, name, recLabel.getText(), username);
             }
         });
 
         shareButton.setOnAction(e -> {
-            String link = model.shareRequest(name);
+            String link = model.shareRequest(username, name);
             if (link.contains("Invalid") || link.contains("Error")) {
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Failed to share recipe!");
                 alert.showAndWait();

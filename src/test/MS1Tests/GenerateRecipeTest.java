@@ -24,7 +24,7 @@ public class GenerateRecipeTest extends Application {
 
     @Override 
     public void start(Stage primaryStage) {
-        homeScreen hs = new homeScreen(primaryStage); 
+        homeScreen hs = new homeScreen("test", primaryStage); 
         primaryStage.setScene(hs.getScene()); 
         primaryStage.show(); 
     } 

@@ -24,8 +24,9 @@ public class recipesScreen {
     private Button backButton;
     private ScrollPane recipes;
     private Model model;
+    private String username;
 
-    public recipesScreen(Stage primaryStage) {
+    public recipesScreen(String username, Stage primaryStage) {
         StackPane root = new StackPane();
         title = new Label("PantryPal");
         welcomeMsg = new Label("Saved Recipes");
@@ -33,6 +34,7 @@ public class recipesScreen {
         editButton = new Button("Edit");
         this.model = new Model();
         this.primaryStage = primaryStage;
+        this.username = username;
 
         filterButton = new MenuButton("Filter by Meal");
         MenuItem all = new MenuItem("All");
@@ -42,7 +44,7 @@ public class recipesScreen {
         filterButton.getItems().addAll(all, breakfast, lunch, dinner);
 
         backButton.setOnAction(e -> {
-            homeScreen hs = new homeScreen(primaryStage);
+            homeScreen hs = new homeScreen(username, primaryStage);
             primaryStage.setScene(hs.getScene());
         });
 
@@ -98,13 +100,13 @@ public class recipesScreen {
     }
 
     public void setList(VBox list, String mealFilter) {
-        String response = model.performRequest("GET", null, null, null, "ALL", null);
+        String response = model.performRequest("GET", null, null, null, "ALL", null, username);
         String[] recipes = response.split("\\|");
         System.out.println(recipes.length);
         for (int i = 0; i < recipes.length - 1; i++) {
             System.out.println(i);
             Button rec = new Button(recipes[i]);
-            String recResponse = model.performRequest("GET", null, null, null, recipes[i], null);
+            String recResponse = model.performRequest("GET", null, null, null, recipes[i], null, username);
             String[] mealDetails = recResponse.split("\\$");
             String mealType = mealDetails[0];
             String details = mealDetails[1];
@@ -130,7 +132,7 @@ public class recipesScreen {
                 rec.setMaxHeight(10);
                 rec.setMaxWidth(list.getMaxWidth());
                 rec.setOnAction(e -> {
-                    detailedRecipeScreen dsr = new detailedRecipeScreen(primaryStage, name, details);
+                    detailedRecipeScreen dsr = new detailedRecipeScreen(username, primaryStage, name, details);
                     primaryStage.setScene(dsr.getScene());
                 });
                 HBox hb = new HBox(rec, mealLabel);

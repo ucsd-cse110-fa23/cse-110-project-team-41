@@ -36,8 +36,9 @@ public class ConfirmRecipeScreen {
     private String details;
     private File meal;
     private File ingredients;
+    private String username;
 
-    public ConfirmRecipeScreen(Stage primaryStage, String name, String mealType, String details,  File meal, File ingredients) {
+    public ConfirmRecipeScreen(String username, Stage primaryStage, String name, String mealType, String details,  File meal, File ingredients) {
         StackPane root = new StackPane();
         title = new Label("PantryPal");
         mealFilter = new Label(mealType);
@@ -52,6 +53,7 @@ public class ConfirmRecipeScreen {
         this.details = details;
         this.meal = meal;
         this.ingredients = ingredients;
+        this.username = username;
 
         HBox r_buttons = new HBox(saveButton, deleteButton, refreshButton); 
         HBox heading = new HBox(title, r_buttons); 
@@ -84,19 +86,19 @@ public class ConfirmRecipeScreen {
     private void addListeners() {
         deleteButton.setOnAction(e -> { 
             System.out.println("Deleting: " + name);
-            String response = model.performRequest("DELETE", null, null, null, name.trim(), null);
+            String response = model.performRequest("DELETE", null, null, null, name.trim(), null, username);
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Recipe deleted!");
             alert.showAndWait();
             System.out.println(response);
             //Go Back to recipesScreen
-            recipesScreen rs = new recipesScreen(primaryStage);
+            recipesScreen rs = new recipesScreen(username, primaryStage);
             primaryStage.setScene(rs.getScene());
         });  
 
         saveButton.setOnAction(e -> {
             Alert saved = new Alert(Alert.AlertType.INFORMATION, "Recipe saved!");
             saved.showAndWait();
-            recipesScreen rs = new recipesScreen(primaryStage);
+            recipesScreen rs = new recipesScreen(username, primaryStage);
             primaryStage.setScene(rs.getScene());
         });
         refreshButton.setOnAction(e -> {
@@ -105,13 +107,13 @@ public class ConfirmRecipeScreen {
 
     }
     public void refreshRecipe(File meal, File ingredients) {
-        model.performRequest("DELETE", null, null, null, name.trim(), null);
+        model.performRequest("DELETE", null, null, null, name.trim(), null, username);
         Alert alert = new Alert(Alert.AlertType.INFORMATION, "Refreshing recipe:" + name.trim());
         alert.showAndWait();
-        model.performRequest("POST", meal, null, "mealTime", null, null);
+        model.performRequest("POST", meal, null, "mealTime", null, null, username);
         
-        String ingR = model.performRequest("POST", null, ingredients, "ingredients", null, null);
-        String response = model.performRequest("GET", null, null, null, ingR.trim(), null);
+        String ingR = model.performRequest("POST", null, ingredients, "ingredients", null, null, username);
+        String response = model.performRequest("GET", null, null, null, ingR.trim(), null, username);
         String det = response.substring(response.indexOf("\n")+1);
         
         recLabel.setText(det);

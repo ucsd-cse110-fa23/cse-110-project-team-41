@@ -19,21 +19,22 @@ public class recipeHandler {
     private ArrayList<recipe> allRecipes;
     private database dbOBJ = new database(); 
     private int size = 0; 
+    private String user;
 
-    public recipeHandler() {
+    public recipeHandler(String user) {
         allRecipes = new ArrayList<recipe>();
     }
 
-    public void addToDB() {
+    public void addToDB(String user) {
         // this.dbOBJ.clearDB();
-        this.dbOBJ.addFileToDb(); 
+        this.dbOBJ.addFileToDb(user); 
         size++; 
     } 
-    public int getNumRecipes(){ 
-        return getRecipes().size(); 
+    public int getNumRecipes(String user){ 
+        return getRecipes(user).size(); 
     }
-    private void getRecipesFromDB() {
-        Iterator<Document> it = this.dbOBJ.getAll();
+    private void getRecipesFromDB(String user) {
+        Iterator<Document> it = this.dbOBJ.getAll(user);
         while (it.hasNext()) {
             Document doc = it.next();
             recipe newRec = new recipe(doc.getString("title"), doc.getString("mealType"), "Ingredients: \n" + doc.getString("ingredients")
@@ -42,9 +43,9 @@ public class recipeHandler {
             System.out.println(newRec);
         }
     } 
-    public ArrayList<recipe> getRecipes(){ 
+    public ArrayList<recipe> getRecipes(String user){ 
         ArrayList<recipe> dbRecs = new ArrayList<>(); 
-        Iterator<Document> it = this.dbOBJ.getAll();
+        Iterator<Document> it = this.dbOBJ.getAll(user);
         while (it.hasNext()) {
             Document doc = it.next();
             recipe newRec = new recipe(doc.getString("title"), doc.getString("mealType"), "Ingredients: \n" + doc.getString("ingredients")

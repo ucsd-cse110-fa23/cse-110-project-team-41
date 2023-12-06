@@ -16,14 +16,16 @@ public class homeScreen {
     private Label title;
     private Label welcomeMsg;
     private Scene scene;
+    private String username;
 
-    public homeScreen(Stage primaryStage) {
+    public homeScreen(String username, Stage primaryStage) {
         primaryStage.setTitle("PantryPal");
         StackPane root = new StackPane();
         savedRecipesButton = new Button("Saved Recipes");
         newRecipeButton = new Button("New Recipes");
+        this.username = username;
         savedRecipesButton.setOnAction(e -> {
-            recipesScreen rs = new recipesScreen(primaryStage);
+            recipesScreen rs = new recipesScreen(username, primaryStage);
             primaryStage.setScene(rs.getScene());
         }); 
         HBox navButtons = new HBox(savedRecipesButton, newRecipeButton);
@@ -39,7 +41,7 @@ public class homeScreen {
         root.getChildren().addAll(welcomeScreen);
         this.scene = new Scene(root, 400, 300);
         newRecipeButton.setOnAction(e -> {
-            AddRecipe newRecipe = new AddRecipe(this.scene, primaryStage);
+            AddRecipe newRecipe = new AddRecipe(username, this.scene, primaryStage);
             primaryStage.setScene(newRecipe.getScene());
         });
     }

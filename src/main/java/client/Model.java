@@ -15,10 +15,10 @@ import java.net.URI;
  * 
  */
 public class Model {
-    public String performRequest(String method, File mealTime, File ingredients, String postType, String recipeName, String details){
+    public String performRequest(String method, File mealTime, File ingredients, String postType, String recipeName, String details, String user){
         String response = "";
         try{
-            String urlString = "http://localhost:8100/";
+            String urlString = "http://localhost:8100/" + user + "/";
             if(recipeName != null){
                 urlString += "?=" + recipeName;
                 urlString = urlString.replaceAll(" ", "%20");
@@ -40,6 +40,7 @@ public class Model {
                 OutputStream output = connection.getOutputStream();
                 PrintWriter writer = new PrintWriter(new OutputStreamWriter(output, "UTF-8"), true);
                 writer.append("--" + boundary).append(CRLF);
+                writer.append("Username: " + user).append(CRLF);
                 if(postType.equals("mealTime")){
                     writer.append("Content-Disposition: form-data; name=\"file\"; filename=\"" + mealTime.getName() + "\"").append(CRLF);
                     writer.append("Content-Length: " + mealTime.length()).append(CRLF);
@@ -63,7 +64,7 @@ public class Model {
                 System.out.println(urlString);
             }else if(method.equals("PUT")){
                 OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
-                writer.write(recipeName + "\n" + details);
+                writer.write(user + "\n" + recipeName + "\n" + details);
                 writer.close();
             } else if (method.equals("DELETE")){
                 OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
@@ -144,9 +145,9 @@ public class Model {
         }
     }
 
-    public String shareRequest(String recipeName){
+    public String shareRequest(String username, String recipeName){
         try{
-            String urlString = "http://localhost:8100/share/";
+            String urlString = "http://localhost:8100/share/" + username + "/";
             if(recipeName != null){
                 urlString += "?=" + recipeName;
                 urlString = urlString.replaceAll(" ", "%20");

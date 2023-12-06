@@ -82,6 +82,12 @@ public class SignUpScreen {
                     alert.setHeaderText("Failed to Create Account");
                     alert.setContentText("Please try again");
                     alert.showAndWait();
+                } else if (response.equals("User already exists")) {
+                    Alert alert = new Alert(AlertType.ERROR);
+                    alert.setTitle("Create Account Failed");
+                    alert.setHeaderText("Failed to Create Account");
+                    alert.setContentText("Username already exists");
+                    alert.showAndWait();
                 } else {
                     Alert alert = new Alert(AlertType.INFORMATION);
                     alert.setTitle("Account Created");

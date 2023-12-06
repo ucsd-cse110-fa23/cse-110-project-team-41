@@ -92,7 +92,7 @@ public class LoginScreen{
                         model.saveUser(username, password);
                     }
                     //Open home screen
-                    homeScreen hs = new homeScreen(primaryStage);
+                    homeScreen hs = new homeScreen(username, primaryStage);
                     Stage stage = (Stage) loginButton.getScene().getWindow();
                     stage.setScene(hs.getScene());
                 }

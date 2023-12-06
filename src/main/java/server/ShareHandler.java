@@ -34,16 +34,20 @@ public class ShareHandler implements HttpHandler{
     private String handleGet(HttpExchange exchange) {
         String response = "Invalid GET request";
         URI uri = exchange.getRequestURI();
+        String fulluri = uri.toString();
         String query = uri.getRawQuery();
         String name = "";
+        String user = "";
         if (query != null) {
+            user = fulluri.substring(7, fulluri.indexOf("=")-2);
             name = query.substring(query.indexOf("=") + 1);
             name = name.replaceAll("%20", " ");
         }else{
             return "Invalid Request";
         }
+        System.out.println("Sharing User: " + user);
         System.out.println("Name: " + name);
-        recipe r = db.getRecipe(name);
+        recipe r = db.getRecipe(user, name);
         if (r == null) {
             return "Invalid Recipe Name";
         }

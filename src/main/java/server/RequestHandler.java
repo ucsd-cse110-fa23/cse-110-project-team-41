@@ -46,18 +46,22 @@ public class RequestHandler implements HttpHandler {
     private String handleGet(HttpExchange exchange) throws IOException {
         String response = "";
         URI uri = exchange.getRequestURI();
+        String fulluri = uri.toString();
         String query = uri.getRawQuery();
         if (query != null) {
+            System.out.println("Query: " + uri);
+            String user = fulluri.substring(1, fulluri.indexOf("=")-2);
             String value = query.substring(query.indexOf("=") + 1);
             value = value.replaceAll("%20", " ");
+            System.out.println("Getting for User: " + user);
             if (value.equals("ALL")) {
-                Iterator<Document> itr = db.getAll();
+                Iterator<Document> itr = db.getAll(user);
                 while (itr.hasNext()) {
                     response += itr.next().getString("title") + "|";
                     System.out.println("Response is: " + response);
                 }
             } else {
-                recipe out = db.getRecipe(value);
+                recipe out = db.getRecipe(user, value);
                 if (out == null) {
                     response = "";
                 } else {
@@ -69,15 +73,16 @@ public class RequestHandler implements HttpHandler {
     }
 
     private String handlePost(HttpExchange exchange) throws IOException {
+        String user = getPostUser(exchange);
         System.out.println("Handling post request");
         System.out.println(exchange.getRequestHeaders());
         String response = "Invalid POST Request";
         File output = processMultipart(exchange);
         if(output.getName().contains("ingredients")){
             //Invoke GPT-3
-            response = getGPT();
-            recipeHandler handler = new recipeHandler();
-            handler.addToDB();
+            response = getGPT(user);
+            recipeHandler handler = new recipeHandler(user);
+            handler.addToDB(user);
             //Return recipe name
         }else{
             response = "Meal time received";
@@ -89,6 +94,7 @@ public class RequestHandler implements HttpHandler {
         String response = "Invalid PUT Request";
         InputStream in = exchange.getRequestBody();
         Scanner scanner = new Scanner(in);
+        String user = scanner.nextLine();
         String title = scanner.nextLine();
         String line = "";
         String details = "";
@@ -98,7 +104,7 @@ public class RequestHandler implements HttpHandler {
             details += line + "\n";
         }
         scanner.close();
-        db.editRecipe(title, details);
+        db.editRecipe(user, title, details);
         response = "Recipe: " + title +  " edited";
         return response;
     }
@@ -106,10 +112,12 @@ public class RequestHandler implements HttpHandler {
     private String handleDelete(HttpExchange exchange) {
         String response = "Invalid DELETE Request";
         URI uri = exchange.getRequestURI();
+        String fulluri = uri.toString();
         String query = uri.getRawQuery();
+        String user = fulluri.substring(1, fulluri.indexOf("=") - 2);
         String title = query.substring(query.indexOf("=") + 1);
         title = title.replaceAll("%20", " ");
-        boolean success = db.deleteRecipe(title);
+        boolean success = db.deleteRecipe(user, title);
         if (success) {
             response = "Recipe: " + title + " deleted";
         }else{
@@ -201,7 +209,22 @@ public class RequestHandler implements HttpHandler {
                 "Reached end of stream while reading the current line!");
     }
 
-    private String getGPT(){
+    private String getPostUser(HttpExchange exchange) throws IOException {
+        InputStream in = exchange.getRequestBody();
+        String CRLF = "\r\n";
+        String user = "";
+        String nextLine = "";
+        do{
+            nextLine = readLine(in);
+            if(nextLine.contains("Username: ")){
+                user = nextLine.substring(nextLine.indexOf("Username: ") + "Username: ".length(), nextLine.length());
+                return user;
+            }
+        }while(!nextLine.equals(""));
+        return null;
+    }
+
+    private String getGPT(String user){
         File meal = new File("src/main/java/server/mealTime.wav");
         File ingredients = new File("src/main/java/server/ingredients.wav");
         Whisper inputMeal = new Whisper();
@@ -228,7 +251,7 @@ public class RequestHandler implements HttpHandler {
         } catch (Exception e1) {
             e1.printStackTrace();
         }
-        List<String> lines = db.processFile("src/main/java/recipe.txt");
+        List<String> lines = db.processFile(user, "src/main/java/recipe.txt");
         return lines.get(0);
     }
 }
