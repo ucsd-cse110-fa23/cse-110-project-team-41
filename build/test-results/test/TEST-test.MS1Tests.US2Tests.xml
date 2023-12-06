@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
 <testsuite name="test.MS1Tests.US2Tests" tests="3" skipped="0" failures="0" errors="0" timestamp="2023-12-06T06:32:40" hostname="DESKTOP-FSQ252S" time="0.003">
+=======
+<testsuite name="test.MS1Tests.US2Tests" tests="3" skipped="0" failures="0" errors="0" timestamp="2023-12-06T03:45:47" hostname="Josues-Air" time="0.005">
+>>>>>>> 630a283897b215368c7602371c7a165f92decec6
   <properties/>
   <testcase name="testFileReading()" classname="test.MS1Tests.US2Tests" time="0.002"/>
   <testcase name="testRecipeFileExists()" classname="test.MS1Tests.US2Tests" time="0.0"/>

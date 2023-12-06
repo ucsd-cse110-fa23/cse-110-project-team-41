@@ -34,10 +34,10 @@ public class US5Tests {
     void setUp() {
         rh = new recipeHandler("test");
         db = new database();
-        rec = new recipe("Breakfast", "Recipe1", "Description 1");
-        rec2 = new recipe("Breakfast", "Recipe2", "Description 2");
-        rec3 = new recipe("Lunch", "Recipe3", "Description 3");
-        rec4 = new recipe("Dinner", "Recipe4", "Description 4");
+        rec = new recipe("Breakfast", "Recipe1", "Description 1", "imageURl");
+        rec2 = new recipe("Breakfast", "Recipe2", "Description 2","imageURl");
+        rec3 = new recipe("Lunch", "Recipe3", "Description 3","imageURl");
+        rec4 = new recipe("Dinner", "Recipe4", "Description 4","imageURl");
         
 
     }

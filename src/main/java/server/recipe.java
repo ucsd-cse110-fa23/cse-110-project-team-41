@@ -4,11 +4,13 @@ public class recipe {
     private String name;
     private String recDetails;
     private String mealType;
+    private String imageURL;
 
-    public recipe(String recName, String mealType, String details) {
+    public recipe(String recName, String mealType, String details, String imageURL) {
         this.name = recName;
         this.mealType = mealType;
         this.recDetails = details;
+        this.imageURL = imageURL;
     }
 
     public String getName() {
@@ -22,6 +24,11 @@ public class recipe {
     public String getMealType() {
         return this.mealType;
     }
+
+    public String getImageURL(){
+        return this.imageURL;
+    }
+
 
     @Override
     public String toString() {

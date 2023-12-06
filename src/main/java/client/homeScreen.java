@@ -2,6 +2,8 @@ package main.java.client;
 
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
@@ -10,7 +12,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class homeScreen {
+public class homeScreen { 
     private Button savedRecipesButton;
     private Button newRecipeButton;
     private Label title;
@@ -18,7 +20,8 @@ public class homeScreen {
     private Scene scene;
     private String username;
 
-    public homeScreen(String username, Stage primaryStage) {
+    public homeScreen(String username, Stage primaryStage) { 
+        checkServer(); 
         primaryStage.setTitle("PantryPal");
         StackPane root = new StackPane();
         savedRecipesButton = new Button("Saved Recipes");
@@ -48,5 +51,22 @@ public class homeScreen {
 
     public Scene getScene() {
         return this.scene;
-    }
+    } 
+    private void checkServer(){ 
+        Model model = new Model(); 
+        String response = model.performRequest("GET", null, null, null, null, null); 
+        if(response.contains("java.net.ConnectException")){ 
+            serverError(); 
+            response = model.performRequest("GET", null, null, null, null, null); 
+        } 
+    } 
+    private void serverError() { 
+        //Stop program is server isn't running
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle("Missing Server"); 
+        alert.setHeaderText("Server Not Active!"); 
+        alert.setContentText("Please Load Up Server."); 
+        alert.showAndWait(); 
+        System.exit(0);
+    } 
 }

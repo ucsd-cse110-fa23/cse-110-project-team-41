@@ -19,7 +19,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class LoginScreen{ 
+public class loginScreen{ 
     private Button signupButton; 
     private Button loginButton; 
     private CheckBox rememberMe;
@@ -30,7 +30,8 @@ public class LoginScreen{
     private Scene scene;
     private Stage primaryStage;
 
-    public LoginScreen(Stage primaryStage) { 
+    public loginScreen(Stage primaryStage) { 
+        checkServer(); 
         this.primaryStage = primaryStage;
         user = new TextField(); 
         user.setPromptText("Username: "); 
@@ -109,7 +110,7 @@ public class LoginScreen{
 
     public Scene getScene() {
         return this.scene;
-    }
+    } 
 
     private boolean checkRemember(){
         File file = new File("src/main/java/client/user.dat");
@@ -142,4 +143,21 @@ public class LoginScreen{
             return false;
         }
     }
+    private void checkServer(){ 
+        Model model = new Model(); 
+        String response = model.performRequest("GET", null, null, null, null, null); 
+        if(response.contains("java.net.ConnectException")){ 
+            serverError(); 
+            response = model.performRequest("GET", null, null, null, null, null); 
+        } 
+    } 
+    private void serverError() { 
+        //Stop program is server isn't running
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle("Missing Server"); 
+        alert.setHeaderText("Server Not Active!"); 
+        alert.setContentText("Please Load Up Server."); 
+        alert.showAndWait(); 
+        System.exit(0);
+    } 
 }

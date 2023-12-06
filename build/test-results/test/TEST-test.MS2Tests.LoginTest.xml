@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
 <testsuite name="test.MS2Tests.LoginTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2023-12-06T06:32:54" hostname="DESKTOP-FSQ252S" time="0.001">
   <properties/>
   <testcase name="testValidUser()" classname="test.MS2Tests.LoginTest" time="0.0"/>
+=======
+<testsuite name="test.MS2Tests.LoginTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2023-12-06T03:46:25" hostname="Josues-Air" time="0.002">
+  <properties/>
+  <testcase name="testValidUser()" classname="test.MS2Tests.LoginTest" time="0.001"/>
+>>>>>>> 630a283897b215368c7602371c7a165f92decec6
   <testcase name="testCreateUser()" classname="test.MS2Tests.LoginTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
