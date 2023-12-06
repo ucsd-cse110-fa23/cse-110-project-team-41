@@ -145,10 +145,10 @@ public class LoginScreen{
     }
     private void checkServer(){ 
         Model model = new Model(); 
-        String response = model.performRequest("GET", null, null, null, null, null,user.getText()); 
+        String response = model.performRequest("GET", null, null, null, null, null,"test"); 
         if(response.contains("java.net.ConnectException")){ 
             serverError(); 
-            response = model.performRequest("GET", null, null, null, null, null,user.getText()); 
+            response = model.performRequest("GET", null, null, null, null, null,"test"); 
         } 
     } 
     private void serverError() { 

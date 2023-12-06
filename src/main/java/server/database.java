@@ -172,11 +172,11 @@ public class database {
         boolean isIngredients = false;
         boolean isInstructions = false;
         for (String line : split) {
-            if (line.contains("Ingredients:")) {
+            if (line.contains("Ingredients")) {
                 isIngredients = true;
                 isInstructions = false;
 
-            } else if (line.equals("Instructions:")) {
+            } else if (line.equals("Instructions")) {
                 isIngredients = false;
                 isInstructions = true;
             } else if (isIngredients) {

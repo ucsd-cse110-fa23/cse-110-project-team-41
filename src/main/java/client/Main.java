@@ -49,4 +49,12 @@ public class Main extends Application {
         System.exit(0);
     } 
     
+    public int displayError(){ 
+        Model model = new Model(); 
+        String response = model.performRequest("GET", null, null, null, null, null, "test"); 
+        if(response.contains("java.net.ConnectException")){ 
+            return 0; 
+        } 
+        return 1; 
+    } 
 }

@@ -1,45 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<<<<<<< HEAD
-<testsuite name="test.MS1Tests.US3Tests" tests="2" skipped="0" failures="0" errors="0" timestamp="2023-12-06T06:32:40" hostname="DESKTOP-FSQ252S" time="8.432">
+<testsuite name="test.MS1Tests.US3Tests" tests="2" skipped="0" failures="0" errors="0" timestamp="2023-12-06T07:04:25" hostname="DESKTOP-FSQ252S" time="29.585">
   <properties/>
-  <testcase name="testAddRecipes()" classname="test.MS1Tests.US3Tests" time="7.314"/>
-  <testcase name="testRecipesCount()" classname="test.MS1Tests.US3Tests" time="1.118"/>
-  <system-out><![CDATA[data added to mongoDB
-=======
-<testsuite name="test.MS1Tests.US3Tests" tests="2" skipped="0" failures="0" errors="0" timestamp="2023-12-06T03:45:47" hostname="Josues-Air" time="31.319">
-  <properties/>
-  <testcase name="testAddRecipes()" classname="test.MS1Tests.US3Tests" time="29.96"/>
-  <testcase name="testRecipesCount()" classname="test.MS1Tests.US3Tests" time="1.358"/>
+  <testcase name="testAddRecipes()" classname="test.MS1Tests.US3Tests" time="28.459"/>
+  <testcase name="testRecipesCount()" classname="test.MS1Tests.US3Tests" time="1.126"/>
   <system-out><![CDATA[DALL-E Response:
-https://oaidalleapiprodscus.blob.core.windows.net/private/org-Sd9bwBmEf5IDns4KIh3k3fXp/user-mlF2UiRIjgQpU5OH9QHus5gd/img-nvLDyhPN6ixnYOd7RnwKgFh3.png?st=2023-12-06T02%3A45%3A56Z&se=2023-12-06T04%3A45%3A56Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2023-12-05T19%3A54%3A56Z&ske=2023-12-06T19%3A54%3A56Z&sks=b&skv=2021-08-06&sig=G3ZKjC6uQkar1PdOsQ9THqBCSZqa6z2AzfxI4qS%2BpmA%3D
->>>>>>> 630a283897b215368c7602371c7a165f92decec6
+https://oaidalleapiprodscus.blob.core.windows.net/private/org-Sd9bwBmEf5IDns4KIh3k3fXp/user-mlF2UiRIjgQpU5OH9QHus5gd/img-bxROfyUFzUDTONnlYZJuCI5t.png?st=2023-12-06T06%3A04%3A34Z&se=2023-12-06T08%3A04%3A34Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2023-12-05T19%3A54%3A03Z&ske=2023-12-06T19%3A54%3A03Z&sks=b&skv=2021-08-06&sig=xnh/258wPpUlqMSxUOUYLueAiRNV2ljjdjqPT87zLj4%3D
 data added to mongoDB
 DALL-E Response:
-https://oaidalleapiprodscus.blob.core.windows.net/private/org-Sd9bwBmEf5IDns4KIh3k3fXp/user-mlF2UiRIjgQpU5OH9QHus5gd/img-XDrfprswGNecNsHOvp7d5N6q.png?st=2023-12-06T02%3A46%3A05Z&se=2023-12-06T04%3A46%3A05Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2023-12-05T19%3A57%3A18Z&ske=2023-12-06T19%3A57%3A18Z&sks=b&skv=2021-08-06&sig=k%2Bq86r6rTlfVM/mS6kgwH%2BMDdkFiVO5hwLlC6CQhLa4%3D
+https://oaidalleapiprodscus.blob.core.windows.net/private/org-Sd9bwBmEf5IDns4KIh3k3fXp/user-mlF2UiRIjgQpU5OH9QHus5gd/img-dhzUOasd91es3hQZ8uaWP7lZ.png?st=2023-12-06T06%3A04%3A42Z&se=2023-12-06T08%3A04%3A42Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2023-12-05T19%3A56%3A51Z&ske=2023-12-06T19%3A56%3A51Z&sks=b&skv=2021-08-06&sig=YCw7Xvb66iBm7e0tjg4kbXpOiQSomB%2BEVlu%2BnTg/bZg%3D
 data added to mongoDB
 DALL-E Response:
-https://oaidalleapiprodscus.blob.core.windows.net/private/org-Sd9bwBmEf5IDns4KIh3k3fXp/user-mlF2UiRIjgQpU5OH9QHus5gd/img-z9B9wZS0FCoe39l7Yo4SrGRr.png?st=2023-12-06T02%3A46%3A13Z&se=2023-12-06T04%3A46%3A13Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2023-12-05T19%3A53%3A18Z&ske=2023-12-06T19%3A53%3A18Z&sks=b&skv=2021-08-06&sig=0kTO3JPBfvkKtPzPuabk961Ya4TpGtb87XEDEsyYB9E%3D
+https://oaidalleapiprodscus.blob.core.windows.net/private/org-Sd9bwBmEf5IDns4KIh3k3fXp/user-mlF2UiRIjgQpU5OH9QHus5gd/img-Xfi7syreU055Yu06alpArCFK.png?st=2023-12-06T06%3A04%3A50Z&se=2023-12-06T08%3A04%3A50Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2023-12-05T20%3A07%3A19Z&ske=2023-12-06T20%3A07%3A19Z&sks=b&skv=2021-08-06&sig=yCyTODhIIXdEwmQy9cbBNgq/Vw85jntLizm9W/Q1gB8%3D
 data added to mongoDB
 ]]></system-out>
-<<<<<<< HEAD
-  <system-err><![CDATA[Dec 05, 2023 10:32:40 PM com.mongodb.internal.diagnostics.logging.Loggers shouldUseSLF4J
-=======
-  <system-err><![CDATA[Dec 05, 2023 7:45:47 PM com.mongodb.internal.diagnostics.logging.Loggers shouldUseSLF4J
->>>>>>> 630a283897b215368c7602371c7a165f92decec6
+  <system-err><![CDATA[Dec 05, 2023 11:04:25 PM com.mongodb.internal.diagnostics.logging.Loggers shouldUseSLF4J
 WARNING: SLF4J not found on the classpath.  Logging is disabled for the 'org.mongodb.driver' component
-java.nio.file.FileAlreadyExistsException: Quesadilla Avocado Tacos:image.png
-	at java.base/sun.nio.fs.UnixException.translateToIOException(UnixException.java:94)
-	at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:106)
-	at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:111)
-	at java.base/sun.nio.fs.UnixFileSystemProvider.newByteChannel(UnixFileSystemProvider.java:218)
-	at java.base/java.nio.file.spi.FileSystemProvider.newOutputStream(FileSystemProvider.java:484)
-	at java.base/java.nio.file.Files.newOutputStream(Files.java:228)
-	at java.base/java.nio.file.Files.copy(Files.java:3160)
+java.nio.file.InvalidPathException: Illegal char <
+> at index 23: Stir Fry Bowl with Rice
+
+Ingredients
+
+- 2 cups cooked white rice
+- 2 tablespoons olive oil
+- 4 ounces beef, thinly sliced
+- 4 ounces pork, thinly sliced
+- 1 head of lettuce, shredded
+- 1 cup broccoli florets
+- 2 eggs, lightly beaten
+
+Instructions
+
+1. Heat the olive oil in a large frying pan over medium-high heat.
+
+2. Add the beef and pork and cook for about 5 minutes, stirring occasionally, until lightly browned.
+
+3. Add the lettuce and broccoli florets and cook for another 3 minutes, stirring occasionally.
+
+4. Push the cooked meat and vegetables to one side of the pan and add the eggs. Cook for a few minutes, stirring, until scrambled.
+
+5. Mix the eggs with the meat and vegetables.
+
+6. Serve the stir fry over cooked white rice. Enjoy!image.png
+	at java.base/sun.nio.fs.WindowsPathParser.normalize(WindowsPathParser.java:182)
+	at java.base/sun.nio.fs.WindowsPathParser.parse(WindowsPathParser.java:153)
+	at java.base/sun.nio.fs.WindowsPathParser.parse(WindowsPathParser.java:77)
+	at java.base/sun.nio.fs.WindowsPath.parse(WindowsPath.java:92)
+	at java.base/sun.nio.fs.WindowsFileSystem.getPath(WindowsFileSystem.java:232)
+	at java.base/java.nio.file.Path.of(Path.java:147)
+	at java.base/java.nio.file.Paths.get(Paths.java:69)
 	at main.java.server.imageGenerator.saveImage(imageGenerator.java:92)
 	at main.java.server.imageGenerator.main(imageGenerator.java:36)
-	at main.java.server.database.addRecipeFile(database.java:83)
-	at main.java.server.database.addFileToDb(database.java:45)
-	at main.java.server.recipeHandler.addToDB(recipeHandler.java:29)
+	at main.java.server.database.addRecipeFile(database.java:82)
+	at main.java.server.database.addFileToDb(database.java:44)
+	at main.java.server.recipeHandler.addToDB(recipeHandler.java:30)
 	at test.MS1Tests.US3Tests.testAddRecipes(US3Tests.java:45)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
@@ -125,19 +138,44 @@ java.nio.file.FileAlreadyExistsException: Quesadilla Avocado Tacos:image.png
 	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:65)
 	at worker.org.gradle.process.internal.worker.GradleWorkerMain.run(GradleWorkerMain.java:69)
 	at worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
-java.nio.file.FileAlreadyExistsException: Quesadilla Avocado Tacos:image.png
-	at java.base/sun.nio.fs.UnixException.translateToIOException(UnixException.java:94)
-	at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:106)
-	at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:111)
-	at java.base/sun.nio.fs.UnixFileSystemProvider.newByteChannel(UnixFileSystemProvider.java:218)
-	at java.base/java.nio.file.spi.FileSystemProvider.newOutputStream(FileSystemProvider.java:484)
-	at java.base/java.nio.file.Files.newOutputStream(Files.java:228)
-	at java.base/java.nio.file.Files.copy(Files.java:3160)
+java.nio.file.InvalidPathException: Illegal char <
+> at index 23: Stir Fry Bowl with Rice
+
+Ingredients
+
+- 2 cups cooked white rice
+- 2 tablespoons olive oil
+- 4 ounces beef, thinly sliced
+- 4 ounces pork, thinly sliced
+- 1 head of lettuce, shredded
+- 1 cup broccoli florets
+- 2 eggs, lightly beaten
+
+Instructions
+
+1. Heat the olive oil in a large frying pan over medium-high heat.
+
+2. Add the beef and pork and cook for about 5 minutes, stirring occasionally, until lightly browned.
+
+3. Add the lettuce and broccoli florets and cook for another 3 minutes, stirring occasionally.
+
+4. Push the cooked meat and vegetables to one side of the pan and add the eggs. Cook for a few minutes, stirring, until scrambled.
+
+5. Mix the eggs with the meat and vegetables.
+
+6. Serve the stir fry over cooked white rice. Enjoy!image.png
+	at java.base/sun.nio.fs.WindowsPathParser.normalize(WindowsPathParser.java:182)
+	at java.base/sun.nio.fs.WindowsPathParser.parse(WindowsPathParser.java:153)
+	at java.base/sun.nio.fs.WindowsPathParser.parse(WindowsPathParser.java:77)
+	at java.base/sun.nio.fs.WindowsPath.parse(WindowsPath.java:92)
+	at java.base/sun.nio.fs.WindowsFileSystem.getPath(WindowsFileSystem.java:232)
+	at java.base/java.nio.file.Path.of(Path.java:147)
+	at java.base/java.nio.file.Paths.get(Paths.java:69)
 	at main.java.server.imageGenerator.saveImage(imageGenerator.java:92)
 	at main.java.server.imageGenerator.main(imageGenerator.java:36)
-	at main.java.server.database.addRecipeFile(database.java:83)
-	at main.java.server.database.addFileToDb(database.java:45)
-	at main.java.server.recipeHandler.addToDB(recipeHandler.java:29)
+	at main.java.server.database.addRecipeFile(database.java:82)
+	at main.java.server.database.addFileToDb(database.java:44)
+	at main.java.server.recipeHandler.addToDB(recipeHandler.java:30)
 	at test.MS1Tests.US3Tests.testAddRecipes(US3Tests.java:45)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
@@ -223,19 +261,44 @@ java.nio.file.FileAlreadyExistsException: Quesadilla Avocado Tacos:image.png
 	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:65)
 	at worker.org.gradle.process.internal.worker.GradleWorkerMain.run(GradleWorkerMain.java:69)
 	at worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
-java.nio.file.FileAlreadyExistsException: Quesadilla Avocado Tacos:image.png
-	at java.base/sun.nio.fs.UnixException.translateToIOException(UnixException.java:94)
-	at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:106)
-	at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:111)
-	at java.base/sun.nio.fs.UnixFileSystemProvider.newByteChannel(UnixFileSystemProvider.java:218)
-	at java.base/java.nio.file.spi.FileSystemProvider.newOutputStream(FileSystemProvider.java:484)
-	at java.base/java.nio.file.Files.newOutputStream(Files.java:228)
-	at java.base/java.nio.file.Files.copy(Files.java:3160)
+java.nio.file.InvalidPathException: Illegal char <
+> at index 23: Stir Fry Bowl with Rice
+
+Ingredients
+
+- 2 cups cooked white rice
+- 2 tablespoons olive oil
+- 4 ounces beef, thinly sliced
+- 4 ounces pork, thinly sliced
+- 1 head of lettuce, shredded
+- 1 cup broccoli florets
+- 2 eggs, lightly beaten
+
+Instructions
+
+1. Heat the olive oil in a large frying pan over medium-high heat.
+
+2. Add the beef and pork and cook for about 5 minutes, stirring occasionally, until lightly browned.
+
+3. Add the lettuce and broccoli florets and cook for another 3 minutes, stirring occasionally.
+
+4. Push the cooked meat and vegetables to one side of the pan and add the eggs. Cook for a few minutes, stirring, until scrambled.
+
+5. Mix the eggs with the meat and vegetables.
+
+6. Serve the stir fry over cooked white rice. Enjoy!image.png
+	at java.base/sun.nio.fs.WindowsPathParser.normalize(WindowsPathParser.java:182)
+	at java.base/sun.nio.fs.WindowsPathParser.parse(WindowsPathParser.java:153)
+	at java.base/sun.nio.fs.WindowsPathParser.parse(WindowsPathParser.java:77)
+	at java.base/sun.nio.fs.WindowsPath.parse(WindowsPath.java:92)
+	at java.base/sun.nio.fs.WindowsFileSystem.getPath(WindowsFileSystem.java:232)
+	at java.base/java.nio.file.Path.of(Path.java:147)
+	at java.base/java.nio.file.Paths.get(Paths.java:69)
 	at main.java.server.imageGenerator.saveImage(imageGenerator.java:92)
 	at main.java.server.imageGenerator.main(imageGenerator.java:36)
-	at main.java.server.database.addRecipeFile(database.java:83)
-	at main.java.server.database.addFileToDb(database.java:45)
-	at main.java.server.recipeHandler.addToDB(recipeHandler.java:29)
+	at main.java.server.database.addRecipeFile(database.java:82)
+	at main.java.server.database.addFileToDb(database.java:44)
+	at main.java.server.recipeHandler.addToDB(recipeHandler.java:30)
 	at test.MS1Tests.US3Tests.testAddRecipes(US3Tests.java:45)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)

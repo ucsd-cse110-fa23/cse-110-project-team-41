@@ -196,7 +196,7 @@ public class recipesScreen {
             System.out.println("recresponse: ");
             System.out.println(recResponse);
             System.out.println("done");
-            String[] mealDetails = recResponse.split("\\$");
+            String[] mealDetails = recResponse.split("$");
             String mealType = mealDetails[0];
             String details = mealDetails[1];
             String imageURL; 
@@ -265,10 +265,10 @@ public class recipesScreen {
     }  
     private void checkServer(){ 
         Model model = new Model(); 
-        String response = model.performRequest("GET", null, null, null, null, null,username); 
+        String response = model.performRequest("GET", null, null, null, null, null,"test"); 
         if(response.contains("java.net.ConnectException")){ 
             serverError(); 
-            response = model.performRequest("GET", null, null, null, null, null,username); 
+            response = model.performRequest("GET", null, null, null, null, null,"test"); 
         } 
     } 
     private void serverError() { 

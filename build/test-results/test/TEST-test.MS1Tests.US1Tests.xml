@@ -1,15 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<<<<<<< HEAD
-<testsuite name="test.MS1Tests.US1Tests" tests="2" skipped="0" failures="0" errors="0" timestamp="2023-12-06T06:32:40" hostname="DESKTOP-FSQ252S" time="0.007">
-  <properties/>
-  <testcase name="testWhisperTask2()" classname="test.MS1Tests.US1Tests" time="0.002"/>
-  <testcase name="testGenerateRecipe()" classname="test.MS1Tests.US1Tests" time="0.005"/>
-=======
-<testsuite name="test.MS1Tests.US1Tests" tests="2" skipped="0" failures="0" errors="0" timestamp="2023-12-06T03:45:47" hostname="Josues-Air" time="0.006">
+<testsuite name="test.MS1Tests.US1Tests" tests="2" skipped="0" failures="0" errors="0" timestamp="2023-12-06T07:04:25" hostname="DESKTOP-FSQ252S" time="0.006">
   <properties/>
   <testcase name="testWhisperTask2()" classname="test.MS1Tests.US1Tests" time="0.001"/>
   <testcase name="testGenerateRecipe()" classname="test.MS1Tests.US1Tests" time="0.004"/>
->>>>>>> 630a283897b215368c7602371c7a165f92decec6
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
