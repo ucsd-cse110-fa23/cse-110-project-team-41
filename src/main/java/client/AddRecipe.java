@@ -1,6 +1,8 @@
 package main.java.client;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.Iterator;
@@ -160,9 +162,14 @@ public class AddRecipe {
             } else {
                 model.performRequest("POST", meal, null, "mealTime", null, null);
                 String ingR = model.performRequest("POST", null, ingredients, "ingredients", null, null);
-                String response = model.performRequest("GET", null, null, null, ingR.trim(), null);
-                String details = response.substring(response.indexOf("\n")+1);
-                ConfirmRecipeScreen crs = new ConfirmRecipeScreen(parent, ingR, details, meal, ingredients);
+                String nll = model.performRequest("GET", null, null, null, ingR.trim(), null);
+                String details = nll.substring(nll.indexOf("\n")+1); 
+                String mealType = "mealType";
+                try (BufferedReader br = new BufferedReader(new FileReader("src/main/java/meal.txt"))) {
+                    String line; 
+                    if ((line = br.readLine()) != null) {mealType = line;}
+                } catch (Exception ex) {System.out.println(ex);}
+                ConfirmRecipeScreen crs = new ConfirmRecipeScreen(parent, ingR, mealType, details, meal, ingredients);
                 parent.setScene(crs.getScene());
             }
         });

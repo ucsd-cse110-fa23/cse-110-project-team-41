@@ -23,6 +23,7 @@ public class ConfirmRecipeScreen {
     private Scene scene;
     private Label title;
     private Label recNameMsg;
+    private Label mealFilter;
     private TextArea recLabel;
     private Button saveButton;
     private Button deleteButton; 
@@ -30,18 +31,21 @@ public class ConfirmRecipeScreen {
     private ScrollPane detailedRecipe;
     private Stage primaryStage;
     private Model model;
+    private String mealType;
     private String name;
     private String details;
     private File meal;
     private File ingredients;
 
-    public ConfirmRecipeScreen(Stage primaryStage, String name, String details, File meal, File ingredients) {
+    public ConfirmRecipeScreen(Stage primaryStage, String name, String mealType, String details,  File meal, File ingredients) {
         StackPane root = new StackPane();
-        title = new Label("PantyPal");
+        title = new Label("PantryPal");
+        mealFilter = new Label(mealType);
         recNameMsg = new Label(name);
         saveButton = new Button("Save"); 
         deleteButton = new Button("Delete"); 
         refreshButton = new Button("Refresh Recipe"); 
+        this.mealType = mealType;
         this.primaryStage = primaryStage;
         this.model = new Model();
         this.name = name;
@@ -80,7 +84,7 @@ public class ConfirmRecipeScreen {
     private void addListeners() {
         deleteButton.setOnAction(e -> { 
             System.out.println("Deleting: " + name);
-            String response = model.performRequest("DELETE", null, null, null, name, null);
+            String response = model.performRequest("DELETE", null, null, null, name.trim(), null);
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Recipe deleted!");
             alert.showAndWait();
             System.out.println(response);
@@ -101,7 +105,9 @@ public class ConfirmRecipeScreen {
 
     }
     public void refreshRecipe(File meal, File ingredients) {
-        model.performRequest("DELETE", null, null, "mealTime", name, null);
+        model.performRequest("DELETE", null, null, null, name.trim(), null);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION, "Refreshing recipe:" + name.trim());
+        alert.showAndWait();
         model.performRequest("POST", meal, null, "mealTime", null, null);
         
         String ingR = model.performRequest("POST", null, ingredients, "ingredients", null, null);
@@ -112,6 +118,7 @@ public class ConfirmRecipeScreen {
         recNameMsg.setText(ingR);
         name = ingR;
         details = det;
+        addListeners();
     }
 
 }

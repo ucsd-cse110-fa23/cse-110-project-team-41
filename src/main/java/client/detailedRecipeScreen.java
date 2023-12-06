@@ -37,7 +37,7 @@ public class detailedRecipeScreen {
 
     public detailedRecipeScreen(Stage primaryStage, String name, String details) {
         StackPane root = new StackPane();
-        title = new Label("PantyPal");
+        title = new Label("PantryPal");
         recNameMsg = new Label(name);
         backButton = new Button("Back");
         editButton = new Button("Edit"); 

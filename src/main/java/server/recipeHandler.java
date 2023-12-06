@@ -36,7 +36,7 @@ public class recipeHandler {
         Iterator<Document> it = this.dbOBJ.getAll();
         while (it.hasNext()) {
             Document doc = it.next();
-            recipe newRec = new recipe(doc.getString("title"), "Ingredients: \n" + doc.getString("ingredients")
+            recipe newRec = new recipe(doc.getString("title"), doc.getString("mealType"), "Ingredients: \n" + doc.getString("ingredients")
                     + "\nInstructions: \n" + doc.getString("instructions"));
             allRecipes.add(newRec);
             System.out.println(newRec);
@@ -47,7 +47,7 @@ public class recipeHandler {
         Iterator<Document> it = this.dbOBJ.getAll();
         while (it.hasNext()) {
             Document doc = it.next();
-            recipe newRec = new recipe(doc.getString("title"), "Ingredients: \n" + doc.getString("ingredients")
+            recipe newRec = new recipe(doc.getString("title"), doc.getString("mealType"), "Ingredients: \n" + doc.getString("ingredients")
                     + "\nInstructions: \n" + doc.getString("instructions"));
             dbRecs.add(newRec);
         } 
