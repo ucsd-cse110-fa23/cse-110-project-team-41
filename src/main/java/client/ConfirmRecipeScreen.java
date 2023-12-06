@@ -40,10 +40,11 @@ public class ConfirmRecipeScreen {
     private String details;
     private File meal;
     private File ingredients;
+    private String username;
     private String imageURL;
     private ImageView imageView;
 
-    public ConfirmRecipeScreen(Stage primaryStage, String name, String mealType, String details,  File meal, File ingredients, String imageURL) {
+    public ConfirmRecipeScreen(String username, Stage primaryStage, String name, String mealType, String details,  File meal, File ingredients, String imageURL) {
         checkServer(); 
         StackPane root = new StackPane();
         title = new Label("PantryPal");
@@ -59,6 +60,7 @@ public class ConfirmRecipeScreen {
         this.details = details;
         this.meal = meal;
         this.ingredients = ingredients;
+        this.username = username;
         this.imageURL = imageURL;
 
          
@@ -107,19 +109,19 @@ public class ConfirmRecipeScreen {
     private void addListeners() {
         deleteButton.setOnAction(e -> { 
             System.out.println("Deleting: " + name);
-            String response = model.performRequest("DELETE", null, null, null, name.trim(), null);
+            String response = model.performRequest("DELETE", null, null, null, name.trim(), null, username);
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Recipe deleted!");
             alert.showAndWait();
             System.out.println(response);
             //Go Back to recipesScreen
-            recipesScreen rs = new recipesScreen(primaryStage);
+            recipesScreen rs = new recipesScreen(username, primaryStage);
             primaryStage.setScene(rs.getScene());
         });  
 
         saveButton.setOnAction(e -> {
             Alert saved = new Alert(Alert.AlertType.INFORMATION, "Recipe saved!");
             saved.showAndWait();
-            recipesScreen rs = new recipesScreen(primaryStage);
+            recipesScreen rs = new recipesScreen(username, primaryStage);
             primaryStage.setScene(rs.getScene());
         });
         refreshButton.setOnAction(e -> {
@@ -128,13 +130,13 @@ public class ConfirmRecipeScreen {
 
     }
     public void refreshRecipe(File meal, File ingredients) {
-        model.performRequest("DELETE", null, null, null, name.trim(), null);
-        Alert alert = new Alert(Alert.AlertType.INFORMATION, "Refreshing recipe: " + name.trim());
+        model.performRequest("DELETE", null, null, null, name.trim(), null, username);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION, "Refreshing recipe:" + name.trim());
         alert.showAndWait();
-        model.performRequest("POST", meal, null, "mealTime", null, null);
+        model.performRequest("POST", meal, null, "mealTime", null, null, username);
         
-        String ingR = model.performRequest("POST", null, ingredients, "ingredients", null, null);
-        String response = model.performRequest("GET", null, null, null, ingR.trim(), null);
+        String ingR = model.performRequest("POST", null, ingredients, "ingredients", null, null, username);
+        String response = model.performRequest("GET", null, null, null, ingR.trim(), null, username);
         String det = response.substring(response.indexOf("\n")+1);
 
         imageGenerator recipeImage = new imageGenerator(ingR);
@@ -159,10 +161,10 @@ public class ConfirmRecipeScreen {
     } 
     private void checkServer(){ 
         Model model = new Model(); 
-        String response = model.performRequest("GET", null, null, null, null, null); 
+        String response = model.performRequest("GET", null, null, null, null, null, username); 
         if(response.contains("java.net.ConnectException")){ 
             serverError(); 
-            response = model.performRequest("GET", null, null, null, null, null); 
+            response = model.performRequest("GET", null, null, null, null, null, username); 
         } 
     } 
     private void serverError() { 

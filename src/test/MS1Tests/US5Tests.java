@@ -32,7 +32,7 @@ public class US5Tests {
 
     @BeforeEach 
     void setUp() {
-        rh = new recipeHandler();
+        rh = new recipeHandler("test");
         db = new database();
         rec = new recipe("Breakfast", "Recipe1", "Description 1", "imageURl");
         rec2 = new recipe("Breakfast", "Recipe2", "Description 2","imageURl");
@@ -48,10 +48,10 @@ public class US5Tests {
     @Test
     void testDeleteDB() {
         // 4 recipes already exist in the database, delete recipe2
-        db.deleteRecipe("Recipe2");
+        db.deleteRecipe("test", "Recipe2");
         //if a recipe dne in db, attempting to find it will result in a null return value
         //we now attempt to find the recipe we deleted, but since it should not exist in the db anymore we should get null
-        assertEquals(null,db.getRecipe("Recipe2"));
+        assertEquals(null,db.getRecipe("test", "Recipe2"));
     }
     
 }

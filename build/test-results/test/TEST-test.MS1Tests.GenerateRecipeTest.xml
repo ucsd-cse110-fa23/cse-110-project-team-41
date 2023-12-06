@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
 <testsuite name="test.MS1Tests.GenerateRecipeTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2023-12-06T07:43:17" hostname="Tharuns-MacBook-Pro.local" time="2.031">
   <properties/>
   <testcase name="testWhisperTask2()" classname="test.MS1Tests.GenerateRecipeTest" time="2.026"/>
@@ -8,5 +9,12 @@ Breakfast.
 Transcription Result: 
 Breakfast.
 ]]></system-out>
+=======
+<testsuite name="test.MS1Tests.GenerateRecipeTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2023-12-06T07:38:07" hostname="DESKTOP-FSQ252S" time="0.007">
+  <properties/>
+  <testcase name="testWhisperTask2()" classname="test.MS1Tests.GenerateRecipeTest" time="0.002"/>
+  <testcase name="testGenerateRecipe()" classname="test.MS1Tests.GenerateRecipeTest" time="0.004"/>
+  <system-out><![CDATA[]]></system-out>
+>>>>>>> 3283d4a458047e18faba5dee68b5d1b870f7fb9d
   <system-err><![CDATA[]]></system-err>
 </testsuite>

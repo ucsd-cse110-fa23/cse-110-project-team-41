@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List; 
 import org.junit.jupiter.api.Test; 
 import javafx.stage.Stage;
-import main.java.client.loginScreen; 
+import main.java.client.LoginScreen; 
 import main.java.server.Server; 
 import main.java.client.Main; 
 

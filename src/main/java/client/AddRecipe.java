@@ -55,11 +55,12 @@ public class AddRecipe {
     private HBox recipeName;
     private Model model;
     private VBox elements;
+    private String username;
 
     /*
      * Constructor for recipe scene that sets UI element info
      */
-    public AddRecipe(Scene prevScene, Stage parent) { 
+    public AddRecipe(String username, Scene prevScene, Stage parent) { 
         checkServer(); 
         // Initialize variables
         audioFormat = getAudioFormat();
@@ -75,6 +76,8 @@ public class AddRecipe {
         stopButton = new Button("Stop Recording");
         this.model = new Model();
         addListeners();
+        checkFiles();
+        this.username = username;
 
         // elements stacks all the hbox on top of each other
         elements = new VBox();
@@ -162,9 +165,9 @@ public class AddRecipe {
             } else if (!ingredients.exists()) {
                 fileError("ingredients");
             } else {
-                model.performRequest("POST", meal, null, "mealTime", null, null);
-                String ingR = model.performRequest("POST", null, ingredients, "ingredients", null, null);
-                String nll = model.performRequest("GET", null, null, null, ingR.trim(), null);
+                model.performRequest("POST", meal, null, "mealTime", null, null, username);
+                String ingR = model.performRequest("POST", null, ingredients, "ingredients", null, null, username);
+                String nll = model.performRequest("GET", null, null, null, ingR.trim(), null, username);
                 String details = nll.substring(nll.indexOf("\n")+1); 
                 String mealType = "mealType";
                 String imageURL;
@@ -193,7 +196,7 @@ public class AddRecipe {
                     imageURL = "file://"+imageFile.getAbsolutePath(); 
                 }
 
-                ConfirmRecipeScreen crs = new ConfirmRecipeScreen(parent, ingR, mealType, details, meal, ingredients, imageURL);
+                ConfirmRecipeScreen crs = new ConfirmRecipeScreen(username, parent, ingR, mealType, details, meal, ingredients, imageURL);
                 parent.setScene(crs.getScene());
             }
         });
@@ -284,12 +287,23 @@ public class AddRecipe {
 
         alert.showAndWait();
     } 
+
+    private void checkFiles(){
+        File meal = new File("mealtime.wav");
+        File ingredients = new File("ingredients.wav");
+        if(meal.exists()){
+            meal.delete();
+        }
+        if(ingredients.exists()){
+            ingredients.delete();
+        }
+    }
     private void checkServer(){ 
         Model model = new Model(); 
-        String response = model.performRequest("GET", null, null, null, null, null); 
+        String response = model.performRequest("GET", null, null, null, null, null, username); 
         if(response.contains("java.net.ConnectException")){ 
             serverError(); 
-            response = model.performRequest("GET", null, null, null, null, null); 
+            response = model.performRequest("GET", null, null, null, null, null, username); 
         } 
     } 
     private void serverError() { 

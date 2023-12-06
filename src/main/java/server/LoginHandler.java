@@ -69,7 +69,11 @@ public class LoginHandler implements HttpHandler{
             String query = uri.getRawQuery();
             if (query != null) {
                 System.out.println("this is " + username + " " + password);
-                response = db.addUser(username, password) ? username + " Added" : "Failed to add user";
+                if (db.containsUser(username)) {
+                    response = "User already exists";
+                }else{
+                    response = db.addUser(username, password) ? username + " Added" : "Failed to add user";
+                }
             }
             return response;
         }catch(Exception e){

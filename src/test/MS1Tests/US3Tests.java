@@ -31,22 +31,22 @@ public class US3Tests {
     
     @Test
     void testRecipesCount() {
-        rh = new recipeHandler();
-        assert(rh.getNumRecipes() >= 0);
+        rh = new recipeHandler("test");
+        assert(rh.getNumRecipes("test") >= 0);
     }
 
     @Test
     void testAddRecipes() { 
-        rh = new recipeHandler();
+        rh = new recipeHandler("test");
         // rh.getRecipeElements(primaryStage); 
-        int currentCount = rh.getNumRecipes();
+        int currentCount = rh.getNumRecipes("test");
         // load in the same recipe 3 times into the database. 
         for(int i = 0; i < 3; i++) {
-            rh.addToDB();
+            rh.addToDB("test");
         }
-        ArrayList<recipe> recipes = rh.getRecipes();
+        ArrayList<recipe> recipes = rh.getRecipes("test");
         // Assert database accounted for 3 new recipes and total count matches with database count.
-        assertEquals(currentCount + 3, rh.getNumRecipes());
+        assertEquals(currentCount + 3, rh.getNumRecipes("test"));
         assertEquals(currentCount + 3, recipes.size());
     }
 }

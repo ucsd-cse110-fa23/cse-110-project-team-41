@@ -38,10 +38,11 @@ public class recipesScreen {
     private Button backButton;
     private ScrollPane recipes;
     private Model model; 
+    private String username;
     private String filter = "all"; 
     private int sort = 1; 
 
-    public recipesScreen(Stage primaryStage) { 
+    public recipesScreen(String username, Stage primaryStage) { 
         checkServer(); 
         StackPane root = new StackPane();
         title = new Label("PantryPal");
@@ -49,6 +50,7 @@ public class recipesScreen {
         backButton = new Button("Back");
         this.model = new Model();
         this.primaryStage = primaryStage;
+        this.username = username;
 
         filterButton = new MenuButton("Filter by Meal");
         MenuItem all = new MenuItem("All");
@@ -64,7 +66,7 @@ public class recipesScreen {
         sortButton.getItems().addAll(name, time1, time2); 
 
         backButton.setOnAction(e -> {
-            homeScreen hs = new homeScreen(primaryStage);
+            homeScreen hs = new homeScreen(username, primaryStage);
             primaryStage.setScene(hs.getScene());
         });
 
@@ -184,13 +186,13 @@ public class recipesScreen {
 
 
     public void setList(VBox list, String mealFilter) {
-        String response = model.performRequest("GET", null, null, null, "ALL", null);
+        String response = model.performRequest("GET", null, null, null, "ALL", null, username);
         String[] recipes = response.split("\\|");
         System.out.println(recipes.length);
         for (int i = 0; i < recipes.length - 1; i++) {
             System.out.println(i);
             Button rec = new Button(recipes[i]);
-            String recResponse = model.performRequest("GET", null, null, null, recipes[i], null);
+            String recResponse = model.performRequest("GET", null, null, null, recipes[i], null, username);
             System.out.println("recresponse: ");
             System.out.println(recResponse);
             System.out.println("done");
@@ -251,7 +253,7 @@ public class recipesScreen {
                 rec.setMaxHeight(10);
                 rec.setMaxWidth(list.getMaxWidth());
                 rec.setOnAction(e -> {
-                    detailedRecipeScreen dsr = new detailedRecipeScreen(primaryStage, name, details, imageURL);
+                    detailedRecipeScreen dsr = new detailedRecipeScreen(username, primaryStage, name, details, imageURL);
                     primaryStage.setScene(dsr.getScene());
                 });
                 HBox hb = new HBox(imageView, rec, mealLabel);
@@ -262,10 +264,10 @@ public class recipesScreen {
     }  
     private void checkServer(){ 
         Model model = new Model(); 
-        String response = model.performRequest("GET", null, null, null, null, null); 
+        String response = model.performRequest("GET", null, null, null, null, null,"test"); 
         if(response.contains("java.net.ConnectException")){ 
             serverError(); 
-            response = model.performRequest("GET", null, null, null, null, null); 
+            response = model.performRequest("GET", null, null, null, null, null,"test"); 
         } 
     } 
     private void serverError() { 
@@ -276,5 +278,28 @@ public class recipesScreen {
         alert.setContentText("Please Load Up Server."); 
         alert.showAndWait(); 
         System.exit(0);
+    } 
+    public static void sortRec(String by, ArrayList<String> list){ 
+        switch (by) { 
+            case "name": 
+                list.sort((a,b) -> a.compareTo(b)); 
+                break;
+            case "time (new)": 
+                // ArrayList<String> listR = new ArrayList<>(); 
+                // for (int i = list.size()-1 ; i <= 0 ; i--){ 
+                //     listR.add(list.get(i)); 
+                // } 
+                // list.clear(); 
+                // for (String s : listR){ 
+                //     list.add(s); 
+                // }
+                Collections.reverse(list);
+                break; 
+            case "time (old)": 
+                list = list; 
+                break; 
+            default:
+                break;
+        }
     } 
 }

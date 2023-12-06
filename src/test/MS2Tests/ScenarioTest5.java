@@ -42,6 +42,7 @@ public class ScenarioTest5 {
     private boolean editing;
     private Model model;
     private String name;
+    private String name2;
     private String details;
     private String imageURL;
     private ImageView imageView;
@@ -61,6 +62,7 @@ public class ScenarioTest5 {
         editing = false;
         this.model = new Model();
         this.name = name;
+        this.name2 = name2;
         this.details = details;
         this.imageURL = imageURL;
 
@@ -108,7 +110,7 @@ public class ScenarioTest5 {
     private void addListeners() {
 
         shareButton.setOnAction(e -> {
-            String link = model.shareRequest(name);
+            String link = model.shareRequest(name, name2);
             if (link.contains("Invalid") || link.contains("Error")) {
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Failed to share recipe!");
                 alert.showAndWait();
