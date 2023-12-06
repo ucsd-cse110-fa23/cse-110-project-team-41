@@ -158,10 +158,10 @@ public class ConfirmRecipeScreen {
     } 
     private void checkServer(){ 
         Model model = new Model(); 
-        String response = model.performRequest("GET", null, null, null, null, null); 
+        String response = model.performRequest("GET", null, null, null, null, null, username); 
         if(response.contains("java.net.ConnectException")){ 
             serverError(); 
-            response = model.performRequest("GET", null, null, null, null, null); 
+            response = model.performRequest("GET", null, null, null, null, null, username); 
         } 
     } 
     private void serverError() { 

@@ -52,7 +52,7 @@ public class SignUpScreen {
 
     private void addListeners(){
         backButton.setOnAction(e -> {
-            loginScreen ls = new loginScreen(primaryStage);
+            LoginScreen ls = new LoginScreen(primaryStage);
             Stage stage = (Stage) backButton.getScene().getWindow();
             stage.setScene(ls.getScene());
         });
@@ -95,7 +95,7 @@ public class SignUpScreen {
                     alert.setHeaderText("Account Created");
                     alert.setContentText("Your login has been created");
                     alert.showAndWait();
-                    loginScreen ls = new loginScreen(primaryStage);
+                    LoginScreen ls = new LoginScreen(primaryStage);
                     Stage stage = (Stage) createButton.getScene().getWindow();
                     stage.setScene(ls.getScene());
                 }
@@ -108,10 +108,10 @@ public class SignUpScreen {
     } 
     private void checkServer(){ 
         Model model = new Model(); 
-        String response = model.performRequest("GET", null, null, null, null, null); 
+        String response = model.performRequest("GET", null, null, null, null, null, user.getText()); 
         if(response.contains("java.net.ConnectException")){ 
             serverError(); 
-            response = model.performRequest("GET", null, null, null, null, null); 
+            response = model.performRequest("GET", null, null, null, null, null,user.getText()); 
         } 
     } 
     private void serverError() { 

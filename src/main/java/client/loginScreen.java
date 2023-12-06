@@ -19,7 +19,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class loginScreen{ 
+public class LoginScreen{ 
     private Button signupButton; 
     private Button loginButton; 
     private CheckBox rememberMe;
@@ -30,7 +30,7 @@ public class loginScreen{
     private Scene scene;
     private Stage primaryStage;
 
-    public loginScreen(Stage primaryStage) { 
+    public LoginScreen(Stage primaryStage) { 
         checkServer(); 
         this.primaryStage = primaryStage;
         user = new TextField(); 
@@ -145,10 +145,10 @@ public class loginScreen{
     }
     private void checkServer(){ 
         Model model = new Model(); 
-        String response = model.performRequest("GET", null, null, null, null, null); 
+        String response = model.performRequest("GET", null, null, null, null, null,user.getText()); 
         if(response.contains("java.net.ConnectException")){ 
             serverError(); 
-            response = model.performRequest("GET", null, null, null, null, null); 
+            response = model.performRequest("GET", null, null, null, null, null,user.getText()); 
         } 
     } 
     private void serverError() { 
