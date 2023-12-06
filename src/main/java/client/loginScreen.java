@@ -1,6 +1,8 @@
 package main.java.client;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -34,6 +36,7 @@ public class LoginScreen{
         user.setPromptText("Username: "); 
         pass = new TextField(); 
         pass.setPromptText("Password: "); 
+        checkRemember();
         primaryStage.setTitle("PantryPal"); 
         loginButton = new Button("Log In"); 
         signupButton = new Button("Sign Up"); 
@@ -106,5 +109,37 @@ public class LoginScreen{
 
     public Scene getScene() {
         return this.scene;
+    }
+
+    private boolean checkRemember(){
+        File file = new File("src/main/java/client/user.dat");
+        if (file.exists()) {
+            //Read file
+            try{
+                FileReader fr = new FileReader(file);
+                BufferedReader br = new BufferedReader(fr);
+                String username = br.readLine();
+                String password = br.readLine();
+                br.close();
+                Model model = new Model();
+                String response = model.performLoginRequest("GET", username, password);
+                if (response.contains("Invalid")) {
+                    Alert alert = new Alert(AlertType.ERROR, "Invalid Username or Password Saved", ButtonType.OK);
+                    alert.show();
+                    return false;
+                }else{
+                    user.setText(username);
+                    pass.setText(password);
+                    return true;
+                }
+            }catch(Exception e){
+                System.out.println("Error: " + e);
+                Alert alert = new Alert(AlertType.ERROR, "Error Reading Saved Username/Password Data", ButtonType.OK);
+                alert.show();
+                return false;
+            }
+        }else{
+            return false;
+        }
     }
 }
