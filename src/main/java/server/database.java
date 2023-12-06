@@ -25,7 +25,6 @@ public class database {
     private String uri;
 
     public database() {
-
         // Replace the placeholder with your MongoDB deployment's connection string
         this.uri = "mongodb+srv://pantryPal:team41@pantrypal.2gh1r0b.mongodb.net/?retryWrites=true&w=majority";
         /*
@@ -38,22 +37,22 @@ public class database {
          */
     }
 
-    public void addFileToDb() {
+    public void addFileToDb(String user) {
         try (MongoClient mongoClient = MongoClients.create(uri)) {
             MongoDatabase database = mongoClient.getDatabase("Recipes");
-            MongoCollection<Document> collection = database.getCollection("savedRecipes");
-            addRecipeFile(collection, "src/main/java/recipe.txt");
+            MongoCollection<Document> collection = database.getCollection(user);
+            addRecipeFile(user, collection, "src/main/java/recipe.txt");
         } catch (Exception e) {
             System.out.println(e);
         }
     }
 
-    public Iterator<Document> getAll() {
+    public Iterator<Document> getAll(String user) {
         String uri = "mongodb+srv://pantryPal:team41@pantrypal.2gh1r0b.mongodb.net/?retryWrites=true&w=majority";
 
         try (MongoClient mongoClient = MongoClients.create(uri)) {
             MongoDatabase database = mongoClient.getDatabase("Recipes");
-            MongoCollection<Document> collection = database.getCollection("savedRecipes");
+            MongoCollection<Document> collection = database.getCollection(user);
             return collection.find().iterator();
         } catch (Exception e) {
             System.out.println(e);
@@ -61,7 +60,7 @@ public class database {
         return null;
     }
 
-    private void addRecipeFile(MongoCollection<Document> collection, String fp) {
+    private void addRecipeFile(String user, MongoCollection<Document> collection, String fp) {
 
             String mealType = "mealType";
             try (BufferedReader br = new BufferedReader(new FileReader("src/main/java/meal.txt"))) {
@@ -73,7 +72,7 @@ public class database {
                 System.out.println(e);
             }
         
-            ArrayList<String> lines = (ArrayList<String>) processFile(fp);
+            ArrayList<String> lines = (ArrayList<String>) processFile(user, fp);
             String title = lines.get(0);
             String ingredients = lines.get(1);
             String instructions = lines.get(2);
@@ -99,10 +98,10 @@ public class database {
   
     }
 
-    public void clearDB() {
+    public void clearDB(String user) {
         try (MongoClient mongoClient = MongoClients.create(uri)) {
             MongoDatabase database = mongoClient.getDatabase("Recipes");
-            MongoCollection<Document> collection = database.getCollection("savedRecipes");
+            MongoCollection<Document> collection = database.getCollection(user);
             collection.deleteMany(new Document());
             System.out.println("Cleared Database");
         } catch (Exception e) {
@@ -110,11 +109,11 @@ public class database {
         } 
     }
 
-    public void editRecipe(String recipeName, String updated){
+    public void editRecipe(String user, String recipeName, String updated){
         try (MongoClient mongoClient = MongoClients.create(uri)) {
             MongoDatabase database = mongoClient.getDatabase("Recipes");
-            MongoCollection<Document> collection = database.getCollection("savedRecipes");
-            ArrayList<String> lines = (ArrayList<String>) processEdit(updated);
+            MongoCollection<Document> collection = database.getCollection(user);
+            ArrayList<String> lines = (ArrayList<String>) processEdit(user, updated);
             Bson filter = eq("title", recipeName);
             Bson updateIng = set("ingredients", lines.get(0));
             Bson updateIns = set("instructions", lines.get(1));
@@ -125,7 +124,7 @@ public class database {
         }
     }
 
-    public List<String> processFile(String fp) {
+    public List<String> processFile(String user, String fp) {
         List<String> lines = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(fp))) {
             StringBuilder title = new StringBuilder();
@@ -136,10 +135,10 @@ public class database {
             boolean isIngredients = false;
             boolean isInstructions = false;
             while ((line = br.readLine()) != null) {
-                if (line.contains("Ingredients:")) {
+                if (line.contains("Ingredient")) {
                     isIngredients = true;
                     isInstructions = false;
-                } else if (line.contains("Instructions:")) {
+                } else if (line.contains("Instruction")) {
                     isIngredients = false;
                     isInstructions = true;
                 } else if (isIngredients) {
@@ -165,7 +164,7 @@ public class database {
     }
 
 
-    private List<String> processEdit(String edited){
+    private List<String> processEdit(String user, String edited){
         ArrayList<String> lines = new ArrayList<>();
         String[] split = edited.split("\n");
         StringBuilder ingredients = new StringBuilder();
@@ -173,11 +172,11 @@ public class database {
         boolean isIngredients = false;
         boolean isInstructions = false;
         for (String line : split) {
-            if (line.contains("Ingredients:")) {
+            if (line.contains("Ingredients")) {
                 isIngredients = true;
                 isInstructions = false;
 
-            } else if (line.equals("Instructions:")) {
+            } else if (line.equals("Instructions")) {
                 isIngredients = false;
                 isInstructions = true;
             } else if (isIngredients) {
@@ -191,8 +190,8 @@ public class database {
         return lines;
     }
 
-    public recipe getRecipe(String title){
-        Iterator<Document> itr = this.getAll();
+    public recipe getRecipe(String user, String title){
+        Iterator<Document> itr = this.getAll(user);
         while(itr.hasNext()){
             Document doc = itr.next();
             if(doc.getString("title").equals(title)){
@@ -201,10 +200,10 @@ public class database {
         }
         return null;
     } 
-    public boolean deleteRecipe(String title){ 
+    public boolean deleteRecipe(String user, String title){ 
         try (MongoClient mongoClient = MongoClients.create(uri)) {
             MongoDatabase database = mongoClient.getDatabase("Recipes");
-            MongoCollection<Document> collection = database.getCollection("savedRecipes");
+            MongoCollection<Document> collection = database.getCollection(user);
             collection.deleteOne(new Document().append("title", title)); 
             System.out.println("Deleted " + title); 
             return true; 
@@ -248,15 +247,29 @@ public class database {
         return false;
     }
 
-    public boolean clearRecipes(){
+    public boolean clearRecipes(String user){
         try (MongoClient mongoClient = MongoClients.create(uri)) {
             MongoDatabase database = mongoClient.getDatabase("Recipes");
-            MongoCollection<Document> collection = database.getCollection("savedRecipes");
+            MongoCollection<Document> collection = database.getCollection(user);
             collection.drop();
             return true;
         } catch (Exception e) {
             System.out.println(e);
             return false;
         }
+    }
+
+    public boolean containsUser(String username){
+        try (MongoClient mongoClient = MongoClients.create(uri)) {
+            MongoDatabase database = mongoClient.getDatabase("Users");
+            MongoCollection<Document> collection = database.getCollection("users");
+            Document doc = collection.find(eq("username", username)).first();
+            if(doc != null){
+                return true;
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return false;
     }
 }

@@ -30,7 +30,7 @@ public class US4Tests {
 
     @BeforeEach 
     void setUp() {
-        rh = new recipeHandler();
+        rh = new recipeHandler("test");
         db = new database();
         rec = new recipe("Dinner", "Recipe1", "Description 1", "imageURL");
     }
@@ -40,15 +40,15 @@ public class US4Tests {
      */
     @Test
     void testEdit() {
-        int beforeCount = rh.getNumRecipes();
+        int beforeCount = rh.getNumRecipes("test");
 
         String recName = rec.getName();
         String updated = "Updated Description for Recipe1";
 
-        db.editRecipe(recName, updated);
+        db.editRecipe("test", recName, updated);
 
         // Assert that no new recipes were created/added to the database, only modified. 
-        assertEquals(beforeCount, rh.getNumRecipes());
+        assertEquals(beforeCount, rh.getNumRecipes("test"));
     }
 
 } 

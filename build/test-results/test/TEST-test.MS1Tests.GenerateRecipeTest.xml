@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="test.MS1Tests.GenerateRecipeTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2023-12-06T03:45:46" hostname="Josues-Air" time="0.645">
+<testsuite name="test.MS1Tests.GenerateRecipeTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2023-12-06T07:38:07" hostname="DESKTOP-FSQ252S" time="0.007">
   <properties/>
-  <testcase name="testWhisperTask2()" classname="test.MS1Tests.GenerateRecipeTest" time="0.638"/>
-  <testcase name="testGenerateRecipe()" classname="test.MS1Tests.GenerateRecipeTest" time="0.005"/>
-  <system-out><![CDATA[Error Result: {  "error": {    "message": "Invalid file format. Supported formats: ['flac', 'm4a', 'mp3', 'mp4', 'mpeg', 'mpga', 'oga', 'ogg', 'wav', 'webm']",    "type": "invalid_request_error",    "param": null,    "code": null  }}
-Error Result: {  "error": {    "message": "Invalid file format. Supported formats: ['flac', 'm4a', 'mp3', 'mp4', 'mpeg', 'mpga', 'oga', 'ogg', 'wav', 'webm']",    "type": "invalid_request_error",    "param": null,    "code": null  }}
-]]></system-out>
+  <testcase name="testWhisperTask2()" classname="test.MS1Tests.GenerateRecipeTest" time="0.002"/>
+  <testcase name="testGenerateRecipe()" classname="test.MS1Tests.GenerateRecipeTest" time="0.004"/>
+  <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

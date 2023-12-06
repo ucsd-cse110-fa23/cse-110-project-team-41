@@ -42,7 +42,7 @@ public class US2Tests {
             writer.write("Ingredients:\n Chicken\n Rice\n Eggs");
             writer.write("Instructions:\n Cook Chicken\n Cook Rice\n Cook Eggs");
             writer.close();
-            List<String> recipe = db.processFile(tempFile.toPath().toString());
+            List<String> recipe = db.processFile("test",tempFile.toPath().toString());
             assert(recipe.size() == 3);
             assert(recipe.get(0).length() > 0);
             assert(recipe.get(1).length() > 0);

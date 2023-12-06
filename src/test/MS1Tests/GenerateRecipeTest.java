@@ -6,6 +6,7 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import main.java.client.homeScreen;
 import main.java.server.Whisper;
+import test.MockWhisper;
 
 import org.junit.jupiter.api.BeforeEach;
 
@@ -24,7 +25,7 @@ public class GenerateRecipeTest extends Application {
 
     @Override 
     public void start(Stage primaryStage) {
-        homeScreen hs = new homeScreen(primaryStage); 
+        homeScreen hs = new homeScreen("test", primaryStage); 
         primaryStage.setScene(hs.getScene()); 
         primaryStage.show(); 
     } 
@@ -95,8 +96,8 @@ public class GenerateRecipeTest extends Application {
         }
 
         // Uncomment when mocking is no longer needed
-        Whisper inputMeal = new Whisper();
-        Whisper inputIngred = new Whisper();
+        Whisper inputMeal = new MockWhisper();
+        Whisper inputIngred = new MockWhisper();
         
         // - String mealTranscribed = inputMeal.Main(mealFile);
         // - String ingredientsTranscribed = inputMeal.Main(ingredientsFile);

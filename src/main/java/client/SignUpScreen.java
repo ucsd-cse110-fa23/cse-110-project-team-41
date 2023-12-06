@@ -52,7 +52,7 @@ public class SignUpScreen {
 
     private void addListeners(){
         backButton.setOnAction(e -> {
-            loginScreen ls = new loginScreen(primaryStage);
+            LoginScreen ls = new LoginScreen(primaryStage);
             Stage stage = (Stage) backButton.getScene().getWindow();
             stage.setScene(ls.getScene());
         });
@@ -83,13 +83,19 @@ public class SignUpScreen {
                     alert.setHeaderText("Failed to Create Account");
                     alert.setContentText("Please try again");
                     alert.showAndWait();
+                } else if (response.equals("User already exists")) {
+                    Alert alert = new Alert(AlertType.ERROR);
+                    alert.setTitle("Create Account Failed");
+                    alert.setHeaderText("Failed to Create Account");
+                    alert.setContentText("Username already exists");
+                    alert.showAndWait();
                 } else {
                     Alert alert = new Alert(AlertType.INFORMATION);
                     alert.setTitle("Account Created");
                     alert.setHeaderText("Account Created");
                     alert.setContentText("Your login has been created");
                     alert.showAndWait();
-                    loginScreen ls = new loginScreen(primaryStage);
+                    LoginScreen ls = new LoginScreen(primaryStage);
                     Stage stage = (Stage) createButton.getScene().getWindow();
                     stage.setScene(ls.getScene());
                 }
@@ -102,10 +108,10 @@ public class SignUpScreen {
     } 
     private void checkServer(){ 
         Model model = new Model(); 
-        String response = model.performRequest("GET", null, null, null, null, null); 
+        String response = model.performRequest("GET", null, null, null, null, null, "test"); 
         if(response.contains("java.net.ConnectException")){ 
             serverError(); 
-            response = model.performRequest("GET", null, null, null, null, null); 
+            response = model.performRequest("GET", null, null, null, null, null,"test"); 
         } 
     } 
     private void serverError() { 
