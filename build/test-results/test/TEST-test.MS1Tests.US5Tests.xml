@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
 <testsuite name="test.MS1Tests.US5Tests" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-12-06T06:29:36" hostname="Tharuns-MacBook-Pro.local" time="3.663">
   <properties/>
   <testcase name="testDeleteDB()" classname="test.MS1Tests.US5Tests" time="3.663"/>
+=======
+<testsuite name="test.MS1Tests.US5Tests" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-12-06T06:18:34" hostname="Josues-Air" time="3.173">
+  <properties/>
+  <testcase name="testDeleteDB()" classname="test.MS1Tests.US5Tests" time="3.173"/>
+>>>>>>> 827af6c338a547a926e3b138eea045d8521a2254
   <system-out><![CDATA[Deleted Recipe2
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>

@@ -129,7 +129,7 @@ public class ConfirmRecipeScreen {
     }
     public void refreshRecipe(File meal, File ingredients) {
         model.performRequest("DELETE", null, null, null, name.trim(), null);
-        Alert alert = new Alert(Alert.AlertType.INFORMATION, "Refreshing recipe:" + name.trim());
+        Alert alert = new Alert(Alert.AlertType.INFORMATION, "Refreshing recipe: " + name.trim());
         alert.showAndWait();
         model.performRequest("POST", meal, null, "mealTime", null, null);
         
@@ -144,12 +144,17 @@ public class ConfirmRecipeScreen {
             e1.printStackTrace();
         }
         String refreshImageURL = recipeImage.getImageURL();
-        
+
         recLabel.setText(det);
         recNameMsg.setText(ingR);
         name = ingR;
         details = det;
         imageURL = refreshImageURL;
+
+        if(imageURL != null && !imageURL.isEmpty()){
+            this.imageView.setImage(new Image(imageURL));
+        }
+
         addListeners();
     } 
     private void checkServer(){ 

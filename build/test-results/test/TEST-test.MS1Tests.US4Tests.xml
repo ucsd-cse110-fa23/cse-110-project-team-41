@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
 <testsuite name="test.MS1Tests.US4Tests" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-12-06T06:29:30" hostname="Tharuns-MacBook-Pro.local" time="5.643">
   <properties/>
   <testcase name="testEdit()" classname="test.MS1Tests.US4Tests" time="5.643"/>
+=======
+<testsuite name="test.MS1Tests.US4Tests" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-12-06T06:18:29" hostname="Josues-Air" time="4.448">
+  <properties/>
+  <testcase name="testEdit()" classname="test.MS1Tests.US4Tests" time="4.448"/>
+>>>>>>> 827af6c338a547a926e3b138eea045d8521a2254
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
