@@ -19,6 +19,7 @@ import javafx.stage.Stage;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import main.java.server.database;
+import main.java.server.imageGenerator;
 import main.java.server.recipe;
 
 public class ConfirmRecipeScreen {
@@ -133,11 +134,22 @@ public class ConfirmRecipeScreen {
         String ingR = model.performRequest("POST", null, ingredients, "ingredients", null, null);
         String response = model.performRequest("GET", null, null, null, ingR.trim(), null);
         String det = response.substring(response.indexOf("\n")+1);
+
+        imageGenerator recipeImage = new imageGenerator(ingR);
+        try{
+            recipeImage.main();
+        } catch (Exception e1){
+            e1.printStackTrace();
+        }
+        String refreshImageURL = recipeImage.getImageURL();
+
+
         
         recLabel.setText(det);
         recNameMsg.setText(ingR);
         name = ingR;
         details = det;
+        imageURL = refreshImageURL;
         addListeners();
     }
 

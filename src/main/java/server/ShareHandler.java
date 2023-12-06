@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URI;
 import java.io.File;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 
 public class ShareHandler implements HttpHandler{
     private database db;
@@ -46,6 +48,7 @@ public class ShareHandler implements HttpHandler{
         System.out.println("Name: " + name);
         recipe r = db.getRecipe(name);
 
+        /* *
         String localImage = name+"image.png";
         File imageFile = new File(localImage);
         ;
@@ -53,8 +56,9 @@ public class ShareHandler implements HttpHandler{
         if(!imageFile.exists()){
             return "image not found";
         }
-        String imagePath = "file://"+imageFile.getAbsolutePath().replace(" ", "%20");;
-
+        String imagePath = "file://"+imageFile.getAbsolutePath().replace(" ", "%20");
+        */
+    
         if (r == null) {
             return "Invalid Recipe Name";
         }
@@ -65,7 +69,7 @@ public class ShareHandler implements HttpHandler{
             .append("<body>")
             .append("<h1>").append(r.getName()).append("</h1>")
             //Image Here
-            .append("<img src=\"").append(imagePath).append("\" alt=\"Recipe Image\"/>")
+            .append("<img src=\"").append(r.getImageURL()).append("\" alt=\"Recipe Image\"/>")
             .append("<h2>").append("Details").append("</h2>")
             .append("<p>").append(r.getDetails().replaceAll("\n","<br\\>")).append("</p>")
             .append("</body>")
