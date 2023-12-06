@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<<<<<<< HEAD
-<testsuite name="test.MS1Tests.US2Tests" tests="3" skipped="0" failures="0" errors="0" timestamp="2023-12-06T07:43:19" hostname="Tharuns-MacBook-Pro.local" time="0.008">
+<testsuite name="test.MS1Tests.US2Tests" tests="3" skipped="0" failures="0" errors="0" timestamp="2023-12-06T08:04:41" hostname="Tharuns-MacBook-Pro.local" time="0.009">
   <properties/>
-  <testcase name="testFileReading()" classname="test.MS1Tests.US2Tests" time="0.002"/>
-  <testcase name="testRecipeFileExists()" classname="test.MS1Tests.US2Tests" time="0.002"/>
+  <testcase name="testFileReading()" classname="test.MS1Tests.US2Tests" time="0.004"/>
+  <testcase name="testRecipeFileExists()" classname="test.MS1Tests.US2Tests" time="0.001"/>
   <testcase name="testConnectToDB()" classname="test.MS1Tests.US2Tests" time="0.001"/>
-=======
-<testsuite name="test.MS1Tests.US2Tests" tests="3" skipped="0" failures="0" errors="0" timestamp="2023-12-06T07:38:07" hostname="DESKTOP-FSQ252S" time="0.004">
-  <properties/>
-  <testcase name="testFileReading()" classname="test.MS1Tests.US2Tests" time="0.002"/>
-  <testcase name="testRecipeFileExists()" classname="test.MS1Tests.US2Tests" time="0.0"/>
-  <testcase name="testConnectToDB()" classname="test.MS1Tests.US2Tests" time="0.0"/>
->>>>>>> 3283d4a458047e18faba5dee68b5d1b870f7fb9d
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
