@@ -144,8 +144,6 @@ public class ConfirmRecipeScreen {
             e1.printStackTrace();
         }
         String refreshImageURL = recipeImage.getImageURL();
-
-
         
         recLabel.setText(det);
         recNameMsg.setText(ingR);
