@@ -129,7 +129,7 @@ public class ConfirmRecipeScreen {
     }
     public void refreshRecipe(File meal, File ingredients) {
         model.performRequest("DELETE", null, null, null, name.trim(), null);
-        Alert alert = new Alert(Alert.AlertType.INFORMATION, "Refreshing recipe:" + name.trim());
+        Alert alert = new Alert(Alert.AlertType.INFORMATION, "Refreshing recipe: " + name.trim());
         alert.showAndWait();
         model.performRequest("POST", meal, null, "mealTime", null, null);
         

@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="test.MS1Tests.US3Tests" tests="2" skipped="0" failures="0" errors="0" timestamp="2023-12-06T03:45:47" hostname="Josues-Air" time="31.319">
+<testsuite name="test.MS1Tests.US3Tests" tests="2" skipped="0" failures="0" errors="0" timestamp="2023-12-06T06:17:55" hostname="Josues-Air" time="33.636">
   <properties/>
-  <testcase name="testAddRecipes()" classname="test.MS1Tests.US3Tests" time="29.96"/>
-  <testcase name="testRecipesCount()" classname="test.MS1Tests.US3Tests" time="1.358"/>
+  <testcase name="testAddRecipes()" classname="test.MS1Tests.US3Tests" time="32.14"/>
+  <testcase name="testRecipesCount()" classname="test.MS1Tests.US3Tests" time="1.494"/>
   <system-out><![CDATA[DALL-E Response:
-https://oaidalleapiprodscus.blob.core.windows.net/private/org-Sd9bwBmEf5IDns4KIh3k3fXp/user-mlF2UiRIjgQpU5OH9QHus5gd/img-nvLDyhPN6ixnYOd7RnwKgFh3.png?st=2023-12-06T02%3A45%3A56Z&se=2023-12-06T04%3A45%3A56Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2023-12-05T19%3A54%3A56Z&ske=2023-12-06T19%3A54%3A56Z&sks=b&skv=2021-08-06&sig=G3ZKjC6uQkar1PdOsQ9THqBCSZqa6z2AzfxI4qS%2BpmA%3D
+https://oaidalleapiprodscus.blob.core.windows.net/private/org-Sd9bwBmEf5IDns4KIh3k3fXp/user-mlF2UiRIjgQpU5OH9QHus5gd/img-iCrbGGBT3bvONi50KUmQ8Wgw.png?st=2023-12-06T05%3A18%3A05Z&se=2023-12-06T07%3A18%3A05Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2023-12-05T20%3A00%3A11Z&ske=2023-12-06T20%3A00%3A11Z&sks=b&skv=2021-08-06&sig=DCCTOjWhj/zm9pIT2AeFWlNiov%2BqUI/OQLKFEWuOgMA%3D
 data added to mongoDB
 DALL-E Response:
-https://oaidalleapiprodscus.blob.core.windows.net/private/org-Sd9bwBmEf5IDns4KIh3k3fXp/user-mlF2UiRIjgQpU5OH9QHus5gd/img-XDrfprswGNecNsHOvp7d5N6q.png?st=2023-12-06T02%3A46%3A05Z&se=2023-12-06T04%3A46%3A05Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2023-12-05T19%3A57%3A18Z&ske=2023-12-06T19%3A57%3A18Z&sks=b&skv=2021-08-06&sig=k%2Bq86r6rTlfVM/mS6kgwH%2BMDdkFiVO5hwLlC6CQhLa4%3D
+https://oaidalleapiprodscus.blob.core.windows.net/private/org-Sd9bwBmEf5IDns4KIh3k3fXp/user-mlF2UiRIjgQpU5OH9QHus5gd/img-676iPnH5wTWfJOGJVMty6tKL.png?st=2023-12-06T05%3A18%3A14Z&se=2023-12-06T07%3A18%3A14Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2023-12-05T19%3A53%3A36Z&ske=2023-12-06T19%3A53%3A36Z&sks=b&skv=2021-08-06&sig=7MfXqQfs4xiOx3lgPZRPsE4jGPO8TpAPACZQhn9zC0Q%3D
 data added to mongoDB
 DALL-E Response:
-https://oaidalleapiprodscus.blob.core.windows.net/private/org-Sd9bwBmEf5IDns4KIh3k3fXp/user-mlF2UiRIjgQpU5OH9QHus5gd/img-z9B9wZS0FCoe39l7Yo4SrGRr.png?st=2023-12-06T02%3A46%3A13Z&se=2023-12-06T04%3A46%3A13Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2023-12-05T19%3A53%3A18Z&ske=2023-12-06T19%3A53%3A18Z&sks=b&skv=2021-08-06&sig=0kTO3JPBfvkKtPzPuabk961Ya4TpGtb87XEDEsyYB9E%3D
+https://oaidalleapiprodscus.blob.core.windows.net/private/org-Sd9bwBmEf5IDns4KIh3k3fXp/user-mlF2UiRIjgQpU5OH9QHus5gd/img-7DvOt5WGelkSc2cUeVeTgsAn.png?st=2023-12-06T05%3A18%3A23Z&se=2023-12-06T07%3A18%3A23Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2023-12-05T20%3A01%3A01Z&ske=2023-12-06T20%3A01%3A01Z&sks=b&skv=2021-08-06&sig=0iA2gDJL3bmCNz7/6ZJWkEO0HVGii0gc%2BfbSBq79RJk%3D
 data added to mongoDB
 ]]></system-out>
-  <system-err><![CDATA[Dec 05, 2023 7:45:47 PM com.mongodb.internal.diagnostics.logging.Loggers shouldUseSLF4J
+  <system-err><![CDATA[Dec 05, 2023 10:17:55 PM com.mongodb.internal.diagnostics.logging.Loggers shouldUseSLF4J
 WARNING: SLF4J not found on the classpath.  Logging is disabled for the 'org.mongodb.driver' component
-java.nio.file.FileAlreadyExistsException: Quesadilla Avocado Tacos:image.png
+java.nio.file.FileAlreadyExistsException: Butter-Steak and Roasted Potato Broccolidorimage.png
 	at java.base/sun.nio.fs.UnixException.translateToIOException(UnixException.java:94)
 	at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:106)
 	at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:111)
@@ -113,7 +113,7 @@ java.nio.file.FileAlreadyExistsException: Quesadilla Avocado Tacos:image.png
 	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:65)
 	at worker.org.gradle.process.internal.worker.GradleWorkerMain.run(GradleWorkerMain.java:69)
 	at worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
-java.nio.file.FileAlreadyExistsException: Quesadilla Avocado Tacos:image.png
+java.nio.file.FileAlreadyExistsException: Butter-Steak and Roasted Potato Broccolidorimage.png
 	at java.base/sun.nio.fs.UnixException.translateToIOException(UnixException.java:94)
 	at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:106)
 	at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:111)
@@ -211,7 +211,7 @@ java.nio.file.FileAlreadyExistsException: Quesadilla Avocado Tacos:image.png
 	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:65)
 	at worker.org.gradle.process.internal.worker.GradleWorkerMain.run(GradleWorkerMain.java:69)
 	at worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
-java.nio.file.FileAlreadyExistsException: Quesadilla Avocado Tacos:image.png
+java.nio.file.FileAlreadyExistsException: Butter-Steak and Roasted Potato Broccolidorimage.png
 	at java.base/sun.nio.fs.UnixException.translateToIOException(UnixException.java:94)
 	at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:106)
 	at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:111)
