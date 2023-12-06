@@ -24,6 +24,7 @@ public class MS2US3Test {
 
     @BeforeEach 
     void setUp() {
+        recipes = new ArrayList<>();
         rec1 = new recipe("Recipe1", "Breakfast", "Description 1", "imageURl 1");
         rec2 = new recipe("Recipe2", "Breakfast", "Description 2","imageURl 2");
         rec3 = new recipe("Recipe3", "Breakfast", "Description 3","imageURl 3");
@@ -48,7 +49,7 @@ public class MS2US3Test {
         // ^ - user likes this third recipes and saves it to the database
 
         assertEquals(1, recipes.size()); // Despite multiple refreshes, user only saves one to the database.
-        assertEquals("Breakfast", recipes.get(0).getName()); // Refresh method respects user's mealType desire.
+        assertEquals("Recipe3", recipes.get(0).getName()); // Refresh method respects user's mealType desire.
         assertFalse(recipes.contains(rec1)); 
         assertFalse(recipes.contains(rec2)); 
         assertTrue(recipes.contains(rec3)); 

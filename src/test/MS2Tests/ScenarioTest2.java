@@ -18,6 +18,7 @@ public class ScenarioTest2 {
 
     @BeforeEach 
     void setUp() {
+        recipes = new ArrayList<>();
         rec1 = new recipe("Recipe1", "Breakfast", "Description 1", "imageURl 1");
         rec2 = new recipe("Recipe2", "Breakfast", "Description 2","imageURl 2");
     }
@@ -38,8 +39,8 @@ public class ScenarioTest2 {
         // ^ - user likes this  recipes and saves it to the database
 
         assertEquals(1, recipes.size()); // Despite multiple refreshes, user only saves one to the database.
-        assertEquals("Breakfast", recipes.get(0).getName()); // Refresh method respects user's mealType desire.
-        assertEquals("imageURL 2", recipes.get(0).getImageURL());//make sure image is also refreshed 
+        assertEquals("Recipe2", recipes.get(0).getName()); // Refresh method respects user's mealType desire.
+        assertEquals("imageURl 2", recipes.get(0).getImageURL());//make sure image is also refreshed 
         assertFalse(recipes.contains(rec1)); 
         assertTrue(recipes.contains(rec2)); 
     }  
