@@ -135,10 +135,10 @@ public class database {
             boolean isIngredients = false;
             boolean isInstructions = false;
             while ((line = br.readLine()) != null) {
-                if (line.contains("Ingredients:")) {
+                if (line.contains("Ingredient")) {
                     isIngredients = true;
                     isInstructions = false;
-                } else if (line.contains("Instructions:")) {
+                } else if (line.contains("Instruction")) {
                     isIngredients = false;
                     isInstructions = true;
                 } else if (isIngredients) {

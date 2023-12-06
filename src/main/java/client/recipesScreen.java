@@ -196,7 +196,7 @@ public class recipesScreen {
             System.out.println("recresponse: ");
             System.out.println(recResponse);
             System.out.println("done");
-            String[] mealDetails = recResponse.split("$");
+            String[] mealDetails = recResponse.split("\\$");
             String mealType = mealDetails[0];
             String details = mealDetails[1];
             String imageURL; 
