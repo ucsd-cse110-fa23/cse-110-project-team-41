@@ -1,13 +1,19 @@
 package main.java.client;
 
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.ScrollPane; 
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
@@ -16,9 +22,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import main.java.server.imageGenerator;
-
+import main.java.server.imageGenerator; 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Collections;
 
 
 public class recipesScreen {
@@ -26,18 +33,20 @@ public class recipesScreen {
     private Scene scene;
     private Label title;
     private Label welcomeMsg;
-    private Button editButton;
+    private MenuButton sortButton; 
     private MenuButton filterButton;
     private Button backButton;
     private ScrollPane recipes;
-    private Model model;
+    private Model model; 
+    private String filter = "all"; 
+    private int sort = 1; 
 
-    public recipesScreen(Stage primaryStage) {
+    public recipesScreen(Stage primaryStage) { 
+        checkServer(); 
         StackPane root = new StackPane();
         title = new Label("PantryPal");
         welcomeMsg = new Label("Saved Recipes");
         backButton = new Button("Back");
-        editButton = new Button("Edit");
         this.model = new Model();
         this.primaryStage = primaryStage;
 
@@ -45,64 +54,134 @@ public class recipesScreen {
         MenuItem all = new MenuItem("All");
         MenuItem breakfast = new MenuItem("Breakfast");
         MenuItem lunch = new MenuItem("Lunch");
-        MenuItem dinner = new MenuItem("Dinner");
-        filterButton.getItems().addAll(all, breakfast, lunch, dinner);
+        MenuItem dinner = new MenuItem("Dinner"); 
+        filterButton.getItems().addAll(all, breakfast, lunch, dinner); 
+
+        sortButton = new MenuButton("Sort"); 
+        MenuItem name = new MenuItem("name");
+        MenuItem time1 = new MenuItem("Time (new)"); 
+        MenuItem time2 = new MenuItem("Time(old)"); 
+        sortButton.getItems().addAll(name, time1, time2); 
 
         backButton.setOnAction(e -> {
             homeScreen hs = new homeScreen(primaryStage);
             primaryStage.setScene(hs.getScene());
         });
 
-        HBox heading = new HBox(backButton, title, editButton, filterButton);
+        HBox heading = new HBox(backButton, title, sortButton, filterButton); 
         heading.setAlignment(Pos.CENTER);
         heading.setSpacing(80);
         VBox text = new VBox(heading, welcomeMsg);
         text.setAlignment(Pos.CENTER);
 
-        VBox uiElement = new VBox();
-        setList(uiElement, "all");
+        VBox uiElement = new VBox(); 
+        setList(uiElement, "all"); 
         recipes = new ScrollPane(uiElement);
 
         BorderPane recipeListScreen = new BorderPane();
         recipeListScreen.setTop(text);
         recipeListScreen.setCenter(recipes);
         root.getChildren().addAll(recipeListScreen);
-        this.scene = new Scene(root, 400, 300);
+        this.scene = new Scene(root, 700, 300); 
+
+        name.setOnAction(e -> { 
+            this.sort = 1; 
+            sortBy(recipeListScreen,this.sort); 
+        }); 
+        time1.setOnAction(e -> { 
+            this.sort = 2; 
+            sortBy(recipeListScreen,this.sort); 
+        }); 
+        time2.setOnAction(e -> { 
+            this.sort = 3; 
+            sortBy(recipeListScreen,this.sort); 
+        }); 
 
 
-        all.setOnAction(e -> {
-            VBox uiE = new VBox();
-            setList(uiE, "all");
-            recipes = new ScrollPane(uiE);
-            recipeListScreen.setCenter(recipes);
-            primaryStage.setScene(new Scene(root, 400, 300));
+        all.setOnAction(e -> { 
+            this.filter = "all"; 
+            // VBox uiE = new VBox();
+            // setList(uiE, filter); 
+            sortBy(recipeListScreen,this.sort); 
+            // recipes = new ScrollPane(uiE);
+            // recipeListScreen.setCenter(recipes); 
+            // primaryStage.setScene(this.scene); 
+        }); 
+        breakfast.setOnAction(e -> { 
+            this.filter = "Breakfast"; 
+            sortBy(recipeListScreen,this.sort); 
+            // VBox uiE = new VBox();
+            // setList(uiE, filter); 
+            // recipes = new ScrollPane(uiE);
+            // recipeListScreen.setCenter(recipes);
+            // primaryStage.setScene(this.scene); 
         });
-        breakfast.setOnAction(e -> {
-            VBox uiE = new VBox();
-            setList(uiE, "Breakfast");
-            recipes = new ScrollPane(uiE);
-            recipeListScreen.setCenter(recipes);
-            primaryStage.setScene(new Scene(root, 400, 300));
+        lunch.setOnAction(e -> { 
+            this.filter = "Lunch"; 
+            sortBy(recipeListScreen,this.sort); 
+            // VBox uiE = new VBox();
+            // setList(uiE, filter); 
+            // recipes = new ScrollPane(uiE);
+            // recipeListScreen.setCenter(recipes); 
+            // primaryStage.setScene(this.scene); 
         });
-        lunch.setOnAction(e -> {
-            VBox uiE = new VBox();
-            setList(uiE, "Lunch");
-            recipes = new ScrollPane(uiE);
-            recipeListScreen.setCenter(recipes);
-            primaryStage.setScene(new Scene(root, 400, 300));
-        });
-        dinner.setOnAction(e -> {
-            VBox uiE = new VBox();
-            setList(uiE, "Dinner");
-            recipes = new ScrollPane(uiE);
-            recipeListScreen.setCenter(recipes);
-            primaryStage.setScene(new Scene(root, 400, 300));
-        });
-    }
-
+        dinner.setOnAction(e -> { 
+            this.filter = "Dinner"; 
+            sortBy(recipeListScreen,this.sort); 
+            // VBox uiE = new VBox();
+            // setList(uiE, filter);
+            // recipes = new ScrollPane(uiE);
+            // recipeListScreen.setCenter(recipes); 
+            // primaryStage.setScene(this.scene); 
+        }); 
+    } 
     public Scene getScene() {
         return this.scene;
-    }
+    } 
+    private void sortBy(BorderPane recipeListScreen, int type){ 
+        if (type == 3){ 
+            VBox uiE = new VBox();
+            setList(uiE, this.filter); 
+            ObservableList<Node> suiE = uiE.getChildren(); 
+            VBox SorteduiE = new VBox(); 
+            SorteduiE.getChildren().addAll(suiE); 
+            recipes = new ScrollPane(SorteduiE); 
+            recipeListScreen.setCenter(recipes); 
+            primaryStage.setScene(this.scene); 
+        } else if (type == 2){ 
+            VBox uiE = new VBox();
+            setList(uiE, this.filter); 
+            ObservableList<Node> suiE = uiE.getChildren(); 
+            ArrayList<Node> suiEr = new ArrayList<>(); 
+            for (int i=suiE.size()-1; i>=0; i--){ 
+                Node n = suiE.get(i); 
+                suiEr.add(n); 
+            } 
+            VBox SorteduiE = new VBox(); 
+            SorteduiE.getChildren().addAll(suiEr); 
+            recipes = new ScrollPane(SorteduiE); 
+            recipeListScreen.setCenter(recipes); 
+            primaryStage.setScene(this.scene); 
+        } else{ 
+            VBox uiE = new VBox(); 
+            setList(uiE, this.filter); 
+            // SortedList<Node> suiE = uiE.getChildren().sorted((a,b) -> (((Button)(((HBox)a).getChildren().get(1))).getText().compareTo(((Button)(((HBox)b).getChildren().get(1))).getText()))); 
+            ObservableList<Node> suiE = uiE.getChildren(); 
+            ArrayList<Node> suiEr = new ArrayList<>(); 
+            for (int i=0; i<suiE.size(); i++){ 
+                Node n = suiE.get(i); 
+                suiEr.add(n); 
+            } 
+            suiEr.sort((a,b) -> (((Button)(((HBox)a).getChildren().get(1))).getText().compareTo(((Button)(((HBox)b).getChildren().get(1))).getText()))); 
+            
+            VBox SorteduiE = new VBox(); 
+            SorteduiE.getChildren().addAll(suiEr); 
+            recipes = new ScrollPane(SorteduiE); 
+            recipeListScreen.setCenter(recipes); 
+            primaryStage.setScene(this.scene); 
+        }
+    } 
+
 
     public void setList(VBox list, String mealFilter) {
         String response = model.performRequest("GET", null, null, null, "ALL", null);
@@ -118,7 +197,7 @@ public class recipesScreen {
             String[] mealDetails = recResponse.split("\\$");
             String mealType = mealDetails[0];
             String details = mealDetails[1];
-            String imageURL;
+            String imageURL; 
 
             //String imageURL = mealDetails[2];
             //need to get imageURL from mongoDB JSON object
@@ -128,9 +207,10 @@ public class recipesScreen {
            //regenerates image each time if it does not exist already locally
            //not saving in mongoDb since imageURL expires after around 2hrs
            
-            String localImage = recipes[i]+"image.png";
+            String localImage = recipes[i]+"image.jpg";
             File imageFile = new File(localImage);
-            if(!imageFile.exists()){
+            if(!imageFile.exists()){ 
+                System.out.println("Not exist"); 
                 imageGenerator recipeImage = new imageGenerator(recipes[i]);
                 try{
                     recipeImage.main();
@@ -138,8 +218,9 @@ public class recipesScreen {
                     e1.printStackTrace();
                 }
                 imageURL = recipeImage.getImageURL();
-            }else{
-                imageURL = "file://"+imageFile.getAbsolutePath();
+            }else{ 
+                System.out.println("Does exist"); 
+                imageURL = "file://"+imageFile.getAbsolutePath(); 
             }
 
 
@@ -178,6 +259,23 @@ public class recipesScreen {
                 hb.setAlignment(Pos.CENTER_LEFT);
                 list.getChildren().add(hb);
             }
-        }
-    }
+        } 
+    }  
+    private void checkServer(){ 
+        Model model = new Model(); 
+        String response = model.performRequest("GET", null, null, null, null, null); 
+        if(response.contains("java.net.ConnectException")){ 
+            serverError(); 
+            response = model.performRequest("GET", null, null, null, null, null); 
+        } 
+    } 
+    private void serverError() { 
+        //Stop program is server isn't running
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle("Missing Server"); 
+        alert.setHeaderText("Server Not Active!"); 
+        alert.setContentText("Please Load Up Server."); 
+        alert.showAndWait(); 
+        System.exit(0);
+    } 
 }

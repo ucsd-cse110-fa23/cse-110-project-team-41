@@ -59,7 +59,8 @@ public class AddRecipe {
     /*
      * Constructor for recipe scene that sets UI element info
      */
-    public AddRecipe(Scene prevScene, Stage parent) {
+    public AddRecipe(Scene prevScene, Stage parent) { 
+        checkServer(); 
         // Initialize variables
         audioFormat = getAudioFormat();
         this.parent = parent;
@@ -273,5 +274,22 @@ public class AddRecipe {
         alert.setContentText("Please make sure all aspects are recorded before submitting.");
 
         alert.showAndWait();
-    }
+    } 
+    private void checkServer(){ 
+        Model model = new Model(); 
+        String response = model.performRequest("GET", null, null, null, null, null); 
+        if(response.contains("java.net.ConnectException")){ 
+            serverError(); 
+            response = model.performRequest("GET", null, null, null, null, null); 
+        } 
+    } 
+    private void serverError() { 
+        //Stop program is server isn't running
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle("Missing Server"); 
+        alert.setHeaderText("Server Not Active!"); 
+        alert.setContentText("Please Load Up Server."); 
+        alert.showAndWait(); 
+        System.exit(0);
+    } 
 }
