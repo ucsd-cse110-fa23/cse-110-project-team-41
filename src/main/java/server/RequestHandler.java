@@ -65,7 +65,7 @@ public class RequestHandler implements HttpHandler {
                 if (out == null) {
                     response = "";
                 } else {
-                    response = out.getMealType() + "$" +  out.getDetails() + "$" + out.getImageURL();
+                    response = out.getMealType() + "$" +  out.getDetails(); // + "$" + out.getImageURL();
                 }
             }
         }

@@ -147,13 +147,16 @@ public class ConfirmRecipeScreen {
         }
         String refreshImageURL = recipeImage.getImageURL();
 
-
-        
         recLabel.setText(det);
         recNameMsg.setText(ingR);
         name = ingR;
         details = det;
         imageURL = refreshImageURL;
+
+        if(imageURL != null && !imageURL.isEmpty()){
+            this.imageView.setImage(new Image(imageURL));
+        }
+
         addListeners();
     } 
     private void checkServer(){ 

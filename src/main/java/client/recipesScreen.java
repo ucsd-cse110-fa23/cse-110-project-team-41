@@ -199,7 +199,7 @@ public class recipesScreen {
             String[] mealDetails = recResponse.split("\\$");
             String mealType = mealDetails[0];
             String details = mealDetails[1];
-            String imageURL; 
+            String imageURL;
 
             //String imageURL = mealDetails[2];
             //need to get imageURL from mongoDB JSON object
@@ -209,7 +209,8 @@ public class recipesScreen {
            //regenerates image each time if it does not exist already locally
            //not saving in mongoDb since imageURL expires after around 2hrs
            
-            String localImage = recipes[i]+"image.jpg";
+           
+            String localImage = recipes[i]+"image.png";
             File imageFile = new File(localImage);
             if(!imageFile.exists()){ 
                 System.out.println("Not exist"); 
@@ -224,9 +225,7 @@ public class recipesScreen {
                 System.out.println("Does exist"); 
                 imageURL = "file://"+imageFile.getAbsolutePath(); 
             }
-
-
-           
+                       
             System.out.println(recipes[i]);
             if (mealType.equals(mealFilter) || mealFilter.equals("all")) {
                 Label mealLabel = new Label(mealType);

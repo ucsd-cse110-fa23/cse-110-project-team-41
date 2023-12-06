@@ -170,6 +170,7 @@ public class AddRecipe {
                 String nll = model.performRequest("GET", null, null, null, ingR.trim(), null, username);
                 String details = nll.substring(nll.indexOf("\n")+1); 
                 String mealType = "mealType";
+                String imageURL;
                 //temp imageURl 
                 //String imageURL = "https://oaidalleapiprodscus.blob.core.windows.net/private/org-Sd9bwBmEf5IDns4KIh3k3fXp/user-mlF2UiRIjgQpU5OH9QHus5gd/img-Mxf2GRV2JwmSkO7yzxs2xQz1.png?st=2023-12-05T10%3A32%3A23Z&se=2023-12-05T12%3A32%3A23Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2023-12-04T16%3A34%3A12Z&ske=2023-12-05T16%3A34%3A12Z&sks=b&skv=2021-08-06&sig=ZrHOLUPfVtALS316YtqbVBwngjn6zAtLgjuJDqGBLAg%3D";
                 
@@ -179,13 +180,21 @@ public class AddRecipe {
                 } catch (Exception ex) {System.out.println(ex);}
 
                 
-                imageGenerator recipeImage = new imageGenerator(ingR);
-                try{
-                    recipeImage.main();
-                } catch (Exception e1){
-                    e1.printStackTrace();
+                String localImage = ingR+"image.png";
+                File imageFile = new File(localImage);
+                if(!imageFile.exists()){ 
+                    System.out.println("Not exist"); 
+                    imageGenerator recipeImage = new imageGenerator(ingR);
+                    try{
+                        recipeImage.main();
+                    } catch (Exception e1){
+                        e1.printStackTrace();
+                    }
+                    imageURL = recipeImage.getImageURL();
+                }else{ 
+                    System.out.println("Does exist"); 
+                    imageURL = "file://"+imageFile.getAbsolutePath(); 
                 }
-                String imageURL = recipeImage.getImageURL(); 
 
                 ConfirmRecipeScreen crs = new ConfirmRecipeScreen(username, parent, ingR, mealType, details, meal, ingredients, imageURL);
                 parent.setScene(crs.getScene());
