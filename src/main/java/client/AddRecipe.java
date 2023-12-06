@@ -30,6 +30,7 @@ import javafx.stage.Stage;
 //Going to remove once mvc is setup
 import main.java.server.ChatGPT;
 import main.java.server.Whisper;
+import main.java.server.imageGenerator;
 
 /**
  * Creates a new recipe from user input and adds it to database.
@@ -59,8 +60,7 @@ public class AddRecipe {
      * Constructor for recipe scene that sets UI element info
      */
     public AddRecipe(Scene prevScene, Stage parent) {
-        // Initialize variables 
-        checkServer(); 
+        // Initialize variables
         audioFormat = getAudioFormat();
         this.parent = parent;
         this.prevScene = prevScene;
@@ -166,11 +166,24 @@ public class AddRecipe {
                 String nll = model.performRequest("GET", null, null, null, ingR.trim(), null);
                 String details = nll.substring(nll.indexOf("\n")+1); 
                 String mealType = "mealType";
+                //temp imageURl 
+                //String imageURL = "https://oaidalleapiprodscus.blob.core.windows.net/private/org-Sd9bwBmEf5IDns4KIh3k3fXp/user-mlF2UiRIjgQpU5OH9QHus5gd/img-Mxf2GRV2JwmSkO7yzxs2xQz1.png?st=2023-12-05T10%3A32%3A23Z&se=2023-12-05T12%3A32%3A23Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2023-12-04T16%3A34%3A12Z&ske=2023-12-05T16%3A34%3A12Z&sks=b&skv=2021-08-06&sig=ZrHOLUPfVtALS316YtqbVBwngjn6zAtLgjuJDqGBLAg%3D";
+                
                 try (BufferedReader br = new BufferedReader(new FileReader("src/main/java/meal.txt"))) {
                     String line; 
                     if ((line = br.readLine()) != null) {mealType = line;}
                 } catch (Exception ex) {System.out.println(ex);}
-                ConfirmRecipeScreen crs = new ConfirmRecipeScreen(parent, ingR, mealType, details, meal, ingredients);
+
+                
+                imageGenerator recipeImage = new imageGenerator(ingR);
+                try{
+                    recipeImage.main();
+                } catch (Exception e1){
+                    e1.printStackTrace();
+                }
+                String imageURL = recipeImage.getImageURL(); 
+
+                ConfirmRecipeScreen crs = new ConfirmRecipeScreen(parent, ingR, mealType, details, meal, ingredients, imageURL);
                 parent.setScene(crs.getScene());
             }
         });
@@ -260,22 +273,5 @@ public class AddRecipe {
         alert.setContentText("Please make sure all aspects are recorded before submitting.");
 
         alert.showAndWait();
-    } 
-    private void checkServer(){ 
-        Model model = new Model(); 
-        String response = model.performRequest("GET", null, null, null, null, null); 
-        if(response.contains("java.net.ConnectException")){ 
-            serverError(); 
-            response = model.performRequest("GET", null, null, null, null, null); 
-        } 
-    } 
-    private void serverError() { 
-        //Stop program is server isn't running
-        Alert alert = new Alert(AlertType.ERROR);
-        alert.setTitle("Missing Server"); 
-        alert.setHeaderText("Server Not Active!"); 
-        alert.setContentText("Please Load Up Server."); 
-        alert.showAndWait(); 
-        System.exit(0);
-    } 
+    }
 }

@@ -28,7 +28,7 @@ public class Main extends Application {
             primaryStage.setScene(hs.getScene());
             primaryStage.show();
         }else{
-            LoginScreen ls = new LoginScreen(primaryStage); 
+            loginScreen ls = new loginScreen(primaryStage); 
             primaryStage.setScene(ls.getScene()); 
             primaryStage.show();
         }
@@ -82,13 +82,5 @@ public class Main extends Application {
         }else{
             return false;
         }
-    } 
-    public int displayError(){ 
-        Model model = new Model(); 
-        String response = model.performRequest("GET", null, null, null, null, null); 
-        if(response.contains("java.net.ConnectException")){ 
-            return 0; 
-        } 
-        return 1; 
-    } 
+    }
 }

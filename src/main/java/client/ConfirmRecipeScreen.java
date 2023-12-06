@@ -5,7 +5,6 @@ import java.io.File;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -17,6 +16,8 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import main.java.server.database;
 import main.java.server.recipe;
 
@@ -37,9 +38,10 @@ public class ConfirmRecipeScreen {
     private String details;
     private File meal;
     private File ingredients;
+    private String imageURL;
+    private ImageView imageView;
 
-    public ConfirmRecipeScreen(Stage primaryStage, String name, String mealType, String details,  File meal, File ingredients) {
-        checkServer(); 
+    public ConfirmRecipeScreen(Stage primaryStage, String name, String mealType, String details,  File meal, File ingredients, String imageURL) {
         StackPane root = new StackPane();
         title = new Label("PantryPal");
         mealFilter = new Label(mealType);
@@ -54,6 +56,15 @@ public class ConfirmRecipeScreen {
         this.details = details;
         this.meal = meal;
         this.ingredients = ingredients;
+        this.imageURL = imageURL;
+
+         
+        if(imageURL != null && !imageURL.isEmpty()){
+            this.imageView = new ImageView(new Image(imageURL));
+            this.imageView.setFitWidth(250);
+            this.imageView.setFitHeight(250);
+        }
+        
 
         HBox r_buttons = new HBox(saveButton, deleteButton, refreshButton); 
         HBox heading = new HBox(title, r_buttons); 
@@ -70,12 +81,19 @@ public class ConfirmRecipeScreen {
         detailedRecipe = new ScrollPane(recLabel);
         detailedRecipe.setFitToWidth(true); 
         detailedRecipe.setFitToHeight(true); 
+        
 
         BorderPane detailedScreen = new BorderPane(); 
         detailedScreen.setTop(text); 
         detailedScreen.setCenter(detailedRecipe); 
+        
+        if(this.imageView != null){
+            VBox imageContainer = new VBox(imageView);
+            imageContainer.setAlignment(Pos.CENTER);
+            detailedScreen.setRight(imageContainer);
+        }
         root.getChildren().addAll(detailedScreen); 
-        this.scene = new Scene(root, 400, 300); 
+        this.scene = new Scene(root, 1000, 600); 
         addListeners();
     }
 
@@ -121,23 +139,6 @@ public class ConfirmRecipeScreen {
         name = ingR;
         details = det;
         addListeners();
-    } 
-    private void checkServer(){ 
-        Model model = new Model(); 
-        String response = model.performRequest("GET", null, null, null, null, null); 
-        if(response.contains("java.net.ConnectException")){ 
-            serverError(); 
-            response = model.performRequest("GET", null, null, null, null, null); 
-        } 
-    } 
-    private void serverError() { 
-        //Stop program is server isn't running
-        Alert alert = new Alert(AlertType.ERROR);
-        alert.setTitle("Missing Server"); 
-        alert.setHeaderText("Server Not Active!"); 
-        alert.setContentText("Please Load Up Server."); 
-        alert.showAndWait(); 
-        System.exit(0);
-    } 
+    }
 
 }

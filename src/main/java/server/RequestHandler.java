@@ -61,7 +61,7 @@ public class RequestHandler implements HttpHandler {
                 if (out == null) {
                     response = "";
                 } else {
-                    response = out.getMealType() + "$" +  out.getDetails();
+                    response = out.getMealType() + "$" +  out.getDetails() + "$" + out.getImageURL();
                 }
             }
         }
@@ -229,6 +229,9 @@ public class RequestHandler implements HttpHandler {
             e1.printStackTrace();
         }
         List<String> lines = db.processFile("src/main/java/recipe.txt");
-        return lines.get(0);
+                
+        
+        return lines.get(0); 
+
     }
 }
